@@ -1,0 +1,27 @@
+body{
+    padding:0;
+    margin:0;
+}
+.nav-container{
+    position:relative;
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* .nav-container a{
+    border:1px solid red;
+} */
+.nav-l{
+    border:1px solid red;
+    float: left;
+}
+.nav-r{
+    float:right;
+    border:1px solid red;
+}
+.nav-c{
+    border:1px solid red;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%, 0%);
+}
