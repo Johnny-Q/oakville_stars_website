@@ -3,7 +3,7 @@ body{
     margin:0;
 }
 .nav-container{
-    position:relative;
+    position: relative;
     width: 50%;
     margin: 0 auto;
 }
@@ -12,8 +12,8 @@ body{
     border:1px solid red;
 } */
 .nav-l{
-    border:1px solid red;
     float: left;
+    border:1px solid red;
 }
 .nav-r{
     float:right;
