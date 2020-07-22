@@ -1,0 +1,77 @@
+$color1: #7BDFF2;
+$color2: #B2F7EF;
+$color3: #EFF7F6;
+$color4: #F7D6E0;
+$color5: #F2B5D4;
+
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-container {
+    display: block;
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.navbar {
+    a {
+        float: left;
+        color: $color5;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: color .3s;
+    }
+
+    a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: $color1;
+        transition: width .3s;
+    }
+
+    a:hover {
+        color: $color1;
+        transition: color;
+    }
+
+    a:hover::after {
+        width: 100%;
+        transition: width;
+    }
+}
+
+.nav-l {
+    float: left;
+}
+
+.nav-r {
+    float: right;
+}
+
+.nav-c {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+.debug {
+    border: 1px solid red;
+}
