@@ -147,6 +147,10 @@ input {
   padding: 14px 18px;
 }
 
+input[type=submit] {
+  padding: 14px 58px;
+}
+
 .parallax {
   background: url("https://unsplash.it/1920/1080") no-repeat center;
   height: 400px;
