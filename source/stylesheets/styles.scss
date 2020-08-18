@@ -7,7 +7,7 @@ $color6: #fbfbfb;
 
 * {
     box-sizing: border-box;
-    
+    font-family: 'Poppins', sans-serif;
 }
 
 .col-1 {
@@ -61,7 +61,6 @@ $color6: #fbfbfb;
 [class*="col-"] {
     float: left;
     padding: 15px;
-    // border: 1px solid red;
 }
 
 .debug {
@@ -79,7 +78,7 @@ body {
     display: table;
 }
 
-.row{
+.row {
     padding-left: 10%;
     padding-right: 10%;
     background-color: $color6;
@@ -91,12 +90,13 @@ body {
     display: table;
 }
 
-input{
+input {
     background-color: white;
     width: 100%;
     padding: 14px 18px;
 }
-input[type='submit']{
+
+input[type='submit'] {
     padding: 14px 58px;
 }
 
@@ -108,7 +108,7 @@ input[type='submit']{
     padding-left: 10%;
 }
 
-.contact{
+.contact {
     background: white;
     position: absolute;
     width: 500px;
@@ -116,30 +116,47 @@ input[type='submit']{
     bottom: 40px;
 }
 
-.seperator{
+.seperator {
     height: 5px;
     width: 40px;
     background-color: $color1;
 }
 
-.main-text{
-    text-align: center;
+.center-rel {
     position: relative;
     left: 50%;
     top: 50%;
-    
+    transform: translate(-50%, -50%);
+}
+.center-abs {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero {
+    position: relative;
+    height: 500px;
+    text-align: center;
+    background: url("https://unsplash.it/1920/1080") no-repeat center;
+    background-attachment: fixed;
 }
 
 @media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  [class*="col-"] {
-    width: 100%;
-  }
-  .parallax, .row{
-      padding: 15px;
-  }
-  .contact{
-    //   position: static;
-    width: 400px;
-  }
+
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .parallax,
+    .row {
+        padding: 15px;
+    }
+
+    .contact {
+        //   position: static;
+        width: 400px;
+    }
 }

@@ -4,30 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../build/stylesheets/contact.css">
-    <title>Contact Us - Oakville Starz</title>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">    <title>Contact Us - Oakville Starz</title>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <div class="navbar clearfix">
-                <div class=" nav-c">
-                    <img src="" alt="logo" />
-                </div>
-                <div class="nav-l">
-                    <a href="">home1</a>
-                    <a href="">pages</a>
-                    <a href="">events</a>
-                </div>
-                <div class="nav-r">
-                    <a href="">blog</a>
-                    <a href="">shop</a>
-                    <a href="">elements</a>
-                </div>
+        <div class="navbar-contents">
+            <div class="nav-l">
+                <a href="">home</a>
+                <a href="">pages</a>
+                <a href="">Contact</a>
+            </div>
+            <div class="nav-c">
+                <img src="../../logo.jpg" height="85px" alt="logo" />
+            </div>
+            <div class="nav-r">
+                <a href="">blog</a>
+                <a href="">shop</a>
+                <a href="">elements</a>
+            </div>
+        </div>
+        <div class="navbar-responsive">
+            <div class="bar">
+                <img src="../../logo.jpg" height="85px" alt="logo" />
+                <div class="icon" onclick="showLinks()">&#9776;</div>
+            </div>
+            <div class="dropdown-links">
+                <a href="">home</a>
+                <a href="">pages</a>
+                <a href="">Contact</a>
+                <a href="">blog</a>
+                <a href="">shop</a>
+                <a href="">elements</a>
             </div>
         </div>
     </nav>
-
     <main class="clearfix">
         <section class="parallax col-12">
             <div class="contact">
@@ -63,6 +75,7 @@
     <div class="parallax">
 
     </div>
+    <script src="../js/nav.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .col-1 {
@@ -64,65 +65,6 @@ body {
   margin: 0;
 }
 
-.nav-container {
-  display: block;
-  position: relative;
-  width: 50%;
-  margin: 0 auto;
-  height: 100px;
-}
-
-.navbar {
-  height: 100%;
-  font-weight: 20px;
-}
-.navbar a {
-  float: left;
-  color: #F2B5D4;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  transition: color 0.3s;
-}
-.navbar a::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #7BDFF2;
-  transition: width 0.3s;
-}
-.navbar a:hover {
-  color: #7BDFF2;
-  transition: color;
-}
-.navbar a:hover::after {
-  width: 100%;
-  transition: width;
-}
-
-.nav-l {
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
-  float: left;
-}
-
-.nav-r {
-  float: right;
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-.nav-c {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .clearfix::after {
   content: "";
   clear: both;
@@ -173,13 +115,36 @@ input[type=submit] {
   background-color: #7BDFF2;
 }
 
+.center-rel {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-abs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero {
+  position: relative;
+  height: 500px;
+  text-align: center;
+  background: url("https://unsplash.it/1920/1080") no-repeat center;
+  background-attachment: fixed;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   [class*=col-] {
     width: 100%;
   }
 
-  .parallax, .row {
+  .parallax,
+.row {
     padding: 15px;
   }
 
@@ -188,4 +153,4 @@ input[type=submit] {
   }
 }
 
-/*# sourceMappingURL=contact.css.map */
+/*# sourceMappingURL=styles.css.map */
