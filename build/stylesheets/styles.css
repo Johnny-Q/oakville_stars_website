@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.col-1 {
+  width: 8.33%;
+}
+
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-5 {
+  width: 41.66%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33%;
+}
+
+.col-8 {
+  width: 66.66%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.33%;
+}
+
+.col-11 {
+  width: 91.66%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+[class*=col-] {
+  float: left;
+  padding: 15px;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.row {
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #fbfbfb;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+input {
+  background-color: white;
+  width: 100%;
+  padding: 14px 18px;
+}
+
+input[type=submit] {
+  padding: 14px 58px;
+}
+
+.parallax {
+  background: url("https://unsplash.it/1920/1080") no-repeat center;
+  height: 400px;
+  background-attachment: fixed;
+  position: relative;
+  padding-left: 10%;
+}
+
+.contact {
+  background: white;
+  position: absolute;
+  width: 500px;
+  padding: 50px 60px;
+  bottom: 40px;
+}
+
+.seperator {
+  height: 5px;
+  width: 40px;
+  background-color: #7BDFF2;
+}
+
+.center-rel {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-abs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero {
+  position: relative;
+  height: 500px;
+  text-align: center;
+  background: url("https://unsplash.it/1920/1080") no-repeat center;
+  background-attachment: fixed;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*=col-] {
+    width: 100%;
+  }
+
+  .parallax,
+.row {
+    padding: 15px;
+  }
+
+  .contact {
+    width: 400px;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

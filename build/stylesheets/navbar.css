@@ -1,0 +1,103 @@
+nav {
+  z-index: 10;
+  display: block;
+  width: 80%;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+nav .navbar-contents {
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: fit-content;
+}
+nav [class*=nav-] {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  float: left;
+}
+nav [class*=nav-] a {
+  float: left;
+  color: #F2B5D4;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  transition: color 0.3s;
+}
+nav [class*=nav-] a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #7BDFF2;
+  transition: width 0.3s;
+}
+nav [class*=nav-] a:hover {
+  color: #7BDFF2;
+  transition: color 0.3s;
+}
+nav [class*=nav-] a:hover::after {
+  width: 100%;
+  transition: width 0.3s;
+}
+nav .navbar-responsive {
+  display: none;
+  height: 100%;
+}
+nav .navbar-responsive .bar {
+  height: 100%;
+}
+nav .navbar-responsive .dropdown-links {
+  max-height: 0;
+  width: 100vw;
+  overflow: hidden;
+  background-color: white;
+  transition: max-height 0.2s ease-out;
+}
+
+@media screen and (max-width: 850px) {
+  nav {
+    width: 100%;
+  }
+  nav .navbar-contents {
+    display: none;
+  }
+  nav .navbar-responsive {
+    display: block;
+  }
+  nav .navbar-responsive .bar {
+    padding: 0 30px;
+  }
+  nav .navbar-responsive .bar img {
+    float: left;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  nav .navbar-responsive .bar .icon {
+    float: right;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  nav .dropdown-links a {
+    padding: 5px 30px;
+    text-align: left;
+    display: block;
+    color: #F2B5D4;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav .dropdown-links a:hover {
+    color: #7BDFF2;
+    transition: color 0.3s;
+  }
+}
+
+/*# sourceMappingURL=navbar.css.map */

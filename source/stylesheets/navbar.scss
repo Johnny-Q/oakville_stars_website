@@ -1,0 +1,123 @@
+$color1: #7BDFF2;
+$color2: #B2F7EF;
+$color3: #EFF7F6;
+$color4: #F7D6E0;
+$color5: #F2B5D4;
+$color6: #fbfbfb;
+
+nav {
+    z-index: 10;
+    display: block;
+    width: 80%;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+
+    .navbar-contents {
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        width: fit-content;
+    }
+
+    [class*="nav-"] {
+        position: relative;
+        top: 50%;
+        transform: translate(0, -50%);
+        float: left;
+
+        a {
+            float: left;
+            color: $color5;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: color .3s;
+        }
+
+        //for the underline
+        a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: $color1;
+            transition: width .3s;
+        }
+
+        a:hover {
+            color: $color1;
+            transition: color .3s;
+        }
+
+        a:hover::after {
+            width: 100%;
+            transition: width .3s;
+        }
+    }
+
+    .navbar-responsive {
+        display: none;
+        height: 100%;
+
+        .bar {
+            height: 100%;
+        }
+
+        .dropdown-links {
+            max-height: 0;
+            width: 100vw;
+            overflow: hidden;
+            background-color: white;
+            transition: max-height 0.2s ease-out;
+        }
+    }
+}
+
+@media screen and (max-width: 850px) {
+    nav {
+        width: 100%;
+
+        .navbar-contents {
+            display: none;
+        }
+
+        .navbar-responsive {
+            display: block;
+
+            .bar {
+                padding: 0 30px;
+                img {
+                    float: left;position: relative;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                }
+
+                .icon {
+                    float: right;
+                    position: relative;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                }
+            }
+
+        }
+
+        .dropdown-links a {
+            padding: 5px 30px;
+            text-align: left;
+            display: block;
+            color: $color5;
+            text-decoration: none;
+            transition: color .3s;
+        }
+        .dropdown-links a:hover {
+            color: $color1;
+            transition: color .3s;
+        }
+    }
+}
