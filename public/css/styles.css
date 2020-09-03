@@ -54,6 +54,7 @@
 [class*=col-] {
   float: left;
   padding: 15px;
+  border: 1px solid red;
 }
 
 .debug {
@@ -90,7 +91,8 @@ input {
 }
 
 input[type=submit] {
-  padding: 14px 58px;
+  text-align: center;
+  padding: 14px 0px;
 }
 
 .parallax {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
+    <script src="js/user.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- img goes here -->
+    <div class="logo">
+        <h3>Oakville STARZ</h3>
+        <!-- <img class="centered-rel" src="images/logo.jpg" alt="" height="90px"> -->
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">HOME</a>
+            </li>
+            <li>
+                <a href="/about">ABOUT US</a>
+            </li>
+            <li>
+                <a href="/contact">CONTACT</a>
+            </li>
+            <li>
+                <a href="/test">EVENTS</a>
+            </li>
+            <li>
+                <a href="/test">MEMBER REGISTRATION</a>
+            </li>
+            <li>
+                <a href="/test">PERFORMANCE REGISTRATION</a>
+            </li>
+            <li>
+                <a href="/test">SIGN IN</a>
+            </li>
+        </ul>
+    </nav>
+    <input type="text" id="email" placeholder="email">
+    <input type="password" id="password" placeholder="password">
+    <input type="submit" onclick="login()">
+</body>
+
+</html>

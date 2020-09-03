@@ -7,3 +7,5 @@ function showLinks() {
         e.style.maxHeight = e.scrollHeight + "px";
     }
 }
+
+//footer

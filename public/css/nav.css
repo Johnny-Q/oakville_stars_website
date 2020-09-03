@@ -1,0 +1,43 @@
+* {
+  font-family: "Quicksand", sans-serif;
+}
+
+div.logo {
+  height: fit-content;
+  text-align: center;
+}
+
+.centered-abs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate("-50%", "-50%");
+}
+
+.centered-rel {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate("-50%", "-50%");
+}
+
+nav {
+  overflow: hidden;
+}
+nav ul {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1000px;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+nav ul li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=nav.css.map */

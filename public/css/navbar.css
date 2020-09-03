@@ -61,6 +61,21 @@ nav .navbar-responsive .dropdown-links {
   transition: max-height 0.2s ease-out;
 }
 
+.footer-margin {
+  margin-bottom: 500px;
+}
+
+footer {
+  background: url("https://unsplash.it/1920/1080") no-repeat center;
+  background-attachment: fixed;
+  height: 500px;
+  border: 1px solid red;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 @media screen and (max-width: 850px) {
   nav {
     width: 100%;
