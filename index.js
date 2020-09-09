@@ -30,6 +30,15 @@ app.get("/contact", (req, res) => {
 app.get("/test", (req, res) => {
     res.render("test.html");
 });
+app.get("/cards", (req, res) => {
+    res.render("card.html");
+});
+app.get("/list", (req, res) => {
+    res.render("list.html");
+});
+app.get("/events", (req, res) => {
+    res.render("events.html");
+});
 
 //signup
 app.get("/signup", (req, res) => {

@@ -1,10 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 * {
   font-family: "Quicksand", sans-serif;
+  box-sizing: border-box;
 }
 
 div.logo {
+  display: flex;
+  justify-content: center;
   height: fit-content;
-  text-align: center;
+}
+
+.logo-text {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.031em;
+  font-size: 38px;
+  padding: 8px 16px;
+  font-weight: 400;
+  border: 1px solid black;
+  width: fit-content;
 }
 
 .centered-abs {
@@ -21,23 +34,62 @@ div.logo {
   transform: translate("-50%", "-50%");
 }
 
-nav {
-  overflow: hidden;
-}
 nav ul {
+  border-bottom: 1px solid #a6ddff;
   margin: 0 auto;
   padding: 0;
+  padding-bottom: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1200px;
   overflow: hidden;
   flex-wrap: nowrap;
 }
 nav ul li {
-  margin: 0;
-  padding: 0;
+  margin-left: 20px;
+  padding-bottom: 5px;
   display: inline-block;
+  word-break: keep-all;
+  width: fit-content;
+}
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  letter-spacing: 0.214em;
+}
+nav ul li a:hover {
+  color: #3b9ad5;
+}
+nav ul li.active {
+  border-bottom: 1px solid #3b9ad5;
+}
+
+main {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 1100px) {
+  nav {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=nav.css.map */
