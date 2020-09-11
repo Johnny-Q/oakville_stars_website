@@ -1,11 +1,13 @@
-function showLinks() {
-    var e = document.querySelector(".dropdown-links");
-    if (e.style.maxHeight) {
-        e.style.maxHeight = null;
-    }
-    else {
-        e.style.maxHeight = e.scrollHeight + "px";
-    }
-}
+const hamburgerClick = document.querySelector(".hamburger-click");
+const hamburger = document.querySelector(".hamburger");
+const mobileNav = document.querySelector(".mobile");
+const close = document.querySelector(".cross");
+hamburgerClick.addEventListener("click", function(){
+    console.log("clicked");
+    mobileNav.style.width = '100%';
+});
 
-//footer
+close.addEventListener("click", function(){
+    console.log("clicked");
+    mobileNav.style.width = "0";
+});

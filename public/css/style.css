@@ -71,6 +71,7 @@ p {
 div.logo {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
   height: fit-content;
 }
 
@@ -85,7 +86,24 @@ div.logo {
 }
 
 .hamburger {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-self: start;
+  align-self: center;
+  color: #3b9ad5;
+  transform: scale(0.8);
+  z-index: -1;
+  margin-left: 10px;
+}
+
+.hamburger-click {
   display: none;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  height: 50px;
+  width: 50px;
+  max-width: 60px;
+  z-index: 1;
   justify-self: start;
   align-self: center;
 }
@@ -122,6 +140,48 @@ nav ul li.active {
 }
 nav ul > :first-child {
   margin-left: 0;
+}
+
+nav.mobile {
+  display: none;
+  width: 0;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  background-color: #edf4fe;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: all ease-in-out 0.3s;
+}
+nav.mobile .cross {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: scale(0.7);
+}
+nav.mobile ul {
+  padding: 56px 20px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+nav.mobile ul li {
+  margin: 0;
+  padding: 16px 24px;
+  width: fit-content;
+  text-align: left;
+}
+nav.mobile ul li a {
+  font-size: 22px;
+}
+nav.mobile ul li a.active {
+  font-weight: 700;
+}
+nav.mobile ul li.active {
+  border: none;
+  font-weight: 700;
 }
 
 body {
@@ -171,12 +231,16 @@ p {
     font-size: 22px;
   }
 
-  .hamburger {
-    display: inline-block;
+  .hamburger-click {
+    display: flex;
   }
 
   nav ul {
     display: none;
+  }
+
+  nav.mobile {
+    display: block;
   }
 
   footer {

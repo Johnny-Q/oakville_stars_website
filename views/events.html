@@ -7,7 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
-    <script src="js/test.js" defer></script>
+    <script src="js/nav.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -15,17 +15,48 @@
 </head>
 
 <body>
-    <!-- img goes here -->
+     <!-- img goes here -->
     <div class="logo container">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" class="hamburger">
-            <path fill-rule="evenodd"
-                d="M19 8H5a1 1 0 1 1 0-2h14a1 1 0 0 1 0 2zm0 5.097H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2zm0 5.25H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2z">
-            </path>
-        </svg>
+        <div class="hamburger">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px">
+                <path fill-rule="evenodd"
+                    d="M19 8H5a1 1 0 1 1 0-2h14a1 1 0 0 1 0 2zm0 5.097H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2zm0 5.25H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2z">
+                </path>
+            </svg>
+        </div>
+
         <h1 class="logo-text">Oakville STARZ</h1>
         <!-- <img class="centered-rel" src="images/logo.jpg" alt="" height="90px"> -->
+        <div class="hamburger-click"></div>
     </div>
     <nav>
+        <ul>
+            <li>
+                <a href="/">HOME</a>
+            </li>
+            <li>
+                <a href="/about">ABOUT US</a>
+            </li>
+            <li class="active">
+                <a href="/events">EVENTS</a>
+            </li>
+            <li>
+                <a href="/contact">CONTACT</a>
+            </li>
+            <li>
+                <a href="/list">REGISTER</a>
+            </li>
+            <li>
+                <a href="/test">SIGN IN</a>
+            </li>
+        </ul>
+    </nav>
+    <nav class="mobile">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="40px" height="40px">
+            <path fill-rule="evenodd"
+                d="M19.245 4.313a1.065 1.065 0 0 0-1.508 0L11.78 10.27 5.82 4.313A1.065 1.065 0 1 0 4.312 5.82l5.958 5.958-5.958 5.959a1.067 1.067 0 0 0 1.508 1.508l5.959-5.958 5.958 5.958a1.065 1.065 0 1 0 1.508-1.508l-5.958-5.959 5.958-5.958a1.065 1.065 0 0 0 0-1.508">
+            </path>
+        </svg>
         <ul>
             <li>
                 <a href="/">HOME</a>
