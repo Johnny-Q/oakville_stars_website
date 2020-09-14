@@ -8,7 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
     <script src="js/nav.js" defer></script>
-    <script src="js/events.js" defer></script>
+    <script src="js/admin.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -38,7 +38,7 @@
             <li>
                 <a href="/about">ABOUT US</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/events">EVENTS</a>
             </li>
             <li>
@@ -65,7 +65,7 @@
             <li>
                 <a href="/about">ABOUT US</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/events">EVENTS</a>
             </li>
             <li>
@@ -79,114 +79,102 @@
             </li>
         </ul>
     </nav>
-
-
-
-    <!-- cards container -->
     <main>
-        <h1>
-            Current and Upcoming Events
-        </h1>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-header">
-                    <img src="https://img1.wsimg.com/isteam/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/delete.PNG/:/cr=t:3.39%25,l:13.82%25,w:76.92%25,h:96.61%25/rs=w:360px,h:240px,cg:true,m"
-                        alt="">
+        <h2>
+            PENDING HOURS
+        </h2>
+        <div class="pending-container">
+            <div class="pending">
+                <input type="checkbox">
+                <div class="member-name labelled-text">
+                    <small>ID: 5lNOO5fbbCPQCLGtiT8j0QjuaPm2</small>
+                    <h1>Jane Doe</h1>
                 </div>
-                <div class="card-body">
-                    <small>Februrary 31st, 2020</small>
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam doloribus debitis minima ad
-                        ullam nihil a dolore et aliquid similique.</p>
+                <div class="hours labelled-text">
+                    <small>HOURS</small>
+                    <h1>16</h1>
                 </div>
-                <button class="action-button">
-                    Sign Up
-                </button>
+                <div class="btn-group">
+                    <button class="action-button">AUTHORIZE</button>
+                    <button class="action-button delete-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
+                                fill="#242424"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <img src="//img1.wsimg.com/isteam/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/temp.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:360,h:240,cg:true"
-                        alt="">
+            <div class="pending">
+                <input type="checkbox" name="" id="">
+                <div class="member-name labelled-text">
+                    <small>ID: 5lNOO5fbbCPQCLGtiT8j0QjuaPm2</small>
+                    <h1>Jane Doe</h1>
                 </div>
-                <div class="card-body">
-                    <small>Februrary 31st, 2020</small>
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam doloribus debitis minima ad
-                        ullam nihil a dolore et aliquid similique.</p>
+                <div class="hours labelled-text">
+                    <small>HOURS</small>
+                    <h1>16</h1>
                 </div>
-                <button class="action-button">
-                    Sign Up
-                </button>
+                <div class="btn-group">
+                    <button class="action-button">AUTHORIZE</button>
+                    <button class="action-button delete-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
+                                fill="#242424"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <img src="https://img1.wsimg.com/isteam/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/temp-0001.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:76.92%25/rs=w:360px,h:240px,cg:true"
-                        alt="">
+            <div class="pending">
+                <input type="checkbox" name="" id="">
+                <div class="member-name labelled-text">
+                    <small>ID: 5lNOO5fbbCPQCLGtiT8j0QjuaPm2</small>
+                    <h1>Jane Doe</h1>
                 </div>
-                <div class="card-body">
-                    <small>Februrary 31st, 2020</small>
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam doloribus debitis minima ad
-                        ullam nihil a dolore et aliquid similique.</p>
+                <div class="hours labelled-text">
+                    <small>HOURS</small>
+                    <h1>16</h1>
                 </div>
-                <button class="action-button">
-                    Sign Up
-                </button>
+                <div class="btn-group">
+                    <button class="action-button">AUTHORIZE</button>
+                    <button class="action-button delete-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
+                                fill="#242424"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-        <div>
-            <h2>
-                PAST EVENTS
-            </h2>
-        </div>
 
+        <h2>EVENTS</h2>
 
-        <!-- past events -->
-        <div class="list-container">
-            <div class="list">
-                <h1 class="date">
-                    July 31, 2020
-                </h1>
-                <div class="details">
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem ipsum corporis
-                        necessitatibus cumque, libero eveniet aliquam minus ad deserunt dignissimos repellat illo
-                        odio nobis voluptatem explicabo qui quis delectus incidunt. Ab odio, id quas illo voluptatem
-                        placeat molestias, quia facere a laboriosam eius? Consectetur assumenda repellat sequi
-                        sapiente aspernatur quod aliquam ex impedit quisquam neque, porro in dolores aliquid,
-                        voluptatibus itaque unde soluta atque nemo. Assumenda, molestiae voluptas! Numquam, eius.
-                    </p>
+        <div class="events_admin-container">
+            <div class="events_admin">
+                <input type="checkbox" name="" id="">
+                <div class="name labelled-text">
+                    <small>ID: 5lNOO5fbbCPQCLGtiT8j0QjuaPm2</small>
+                    <h2>Mock Waterloo Math Contest</h2>
                 </div>
-            </div>
-            <div class="list">
-                <h1 class="date">
-                    July 31, 2020
-                </h1>
-                <div class="details">
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem ipsum corporis
-                        necessitatibus cumque, libero eveniet aliquam minus ad deserunt dignissimos repellat illo
-                        odio nobis voluptatem explicabo qui quis delectus incidunt. Ab odio, id quas illo voluptatem
-                        placeat molestias, quia facere a laboriosam eius? Consectetur assumenda repellat sequi
-                        sapiente aspernatur quod aliquam ex impedit quisquam neque, porro in dolores aliquid,
-                        voluptatibus itaque unde soluta atque nemo. Assumenda, molestiae voluptas! Numquam, eius.
-                    </p>
+                <div class="date labelled-text">
+                    <small>DATE</small>
+                    <p>12/25/20</p>
                 </div>
-            </div>
-            <div class="list">
-                <h1 class="date">
-                    July 31, 2020
-                </h1>
-                <div class="details">
-                    <h3>Lorem ipsum dolor sit amet.</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem ipsum corporis
-                        necessitatibus cumque, libero eveniet aliquam minus ad deserunt dignissimos repellat illo
-                        odio nobis voluptatem explicabo qui quis delectus incidunt. Ab odio, id quas illo voluptatem
-                        placeat molestias, quia facere a laboriosam eius? Consectetur assumenda repellat sequi
-                        sapiente aspernatur quod aliquam ex impedit quisquam neque, porro in dolores aliquid,
-                        voluptatibus itaque unde soluta atque nemo. Assumenda, molestiae voluptas! Numquam, eius.
-                    </p>
+                <div class="count labelled-text">
+                    <small>MEMBERS</small>
+                    <p>151</p>
+                </div>
+                <div class="btn-group">
+                    <button class="action-button">EDIT</button>
+                    <button class="action-button delete-button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
+                                fill="#242424"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>

@@ -16,7 +16,6 @@ $black: rgb(27, 27, 27);
 
 html,
 body {
-    width: 100vw;
     margin: 0;
     padding: 0;
 }
@@ -58,7 +57,11 @@ p {
     color: $gray;
     line-height: 1.5;
 }
-
+button{
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
 .action-button {
     text-decoration: none;
     outline: none;
@@ -75,6 +78,8 @@ p {
     background-color: $blue;
 
     transition: all ease .2s;
+    
+    cursor: pointer;
 }
 
 .action-button:hover {
@@ -101,6 +106,7 @@ div.logo {
 }
 
 .hamburger {
+    display: none;
     grid-column: 1/2;
     grid-row: 1/2;
     justify-self: start;
@@ -110,7 +116,8 @@ div.logo {
     z-index: -1;
     margin-left: 10px;
 }
-.hamburger-click{
+
+.hamburger-click {
     display: none;
     grid-column: 1/2;
     grid-row: 1/2;
@@ -118,7 +125,7 @@ div.logo {
     width: 50px;
     max-width: 60px;
     z-index: 1;
-    
+
     justify-self: start;
     align-self: center;
 }
@@ -169,9 +176,9 @@ nav.mobile {
     height: 100%;
     max-width: none;
     margin: 0;
-    
+
     background-color: $textblue;
-    
+
     position: fixed;
     top: 0;
     left: 0;
@@ -199,15 +206,17 @@ nav.mobile {
             padding: 16px 24px;
             width: fit-content;
             text-align: left;
-            
-            a{
+
+            a {
                 font-size: 22px;
             }
-            a.active{
+
+            a.active {
                 font-weight: 700;
             }
         }
-        li.active{
+
+        li.active {
             border: none;
             font-weight: 700;
         }
@@ -270,13 +279,17 @@ footer {
         display: flex;
     }
 
+    .hamburger {
+        display: block;
+    }
+
     nav {
         ul {
             display: none;
         }
     }
 
-    nav.mobile{
+    nav.mobile {
         display: block;
     }
 
@@ -292,6 +305,7 @@ footer {
 }
 
 @media (max-width: 500px) {
+
     //font-size changing
     h1,
     .logo-text {
@@ -510,50 +524,31 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 
-}
+    .card {
+        display: grid;
+        grid-template-rows: 3fr 3fr 1fr;
 
-.card {
-    // margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    margin-bottom: 40px;
-    transition: all .2s ease-in-out;
+        .card-header {
+            overflow: hidden;
+            img {
+                height: 100%;
+                width: 100%;
+                max-height: 240px;
+                object-fit: contain;
+            }
+        }
 
-    .card-header {
-        height: fit-content;
+        .card-body{
+            h3{
+                margin-top: 0;
+            }
+        }
 
-        img {
-            width: 100%;
-            object-fit: cover;
+        .action-button {
+            justify-self: end;
+            align-self: start;
         }
     }
-
-    .card-body {
-        h3 {
-            margin-top: 0;
-            color: black;
-            margin-bottom: 15px;
-        }
-    }
-
-    .card-footer {
-        button {
-            float: right;
-
-            //core styling
-            background-color: $blue;
-            border: none;
-            // border-radius: 8px;
-            padding: 14px 18px;
-            color: white;
-            outline: none;
-        }
-    }
-}
-
-.card:hover {
-    transform: scale(1.01);
 }
 
 .list-container {
@@ -686,3 +681,222 @@ footer {
 }
 
 /* END CONTACT PAGE */
+
+.labelled-text {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    align-items: center;
+    // overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+    small {
+        align-self: end;
+    }
+
+    h1 {
+        margin: 0;
+        text-align: left;
+    }
+
+    p {
+        margin: 0;
+
+    }
+}
+
+.btn-group{
+    font-size: 0;
+    // overflow: hidden;
+    white-space: nowrap;
+    .action-button{
+        transition: none;
+    }
+    .action-button:hover{
+        transform: none;
+    }
+    .delete-button{
+        padding: 16px;
+        background-color: lightgray;
+    }
+}
+
+.events_admin-container{
+    .events_admin{
+        height: 100px;
+        display: grid;
+        // grid-template-columns: 30px 3fr 1fr 1fr 2fr;
+        grid-template-columns: 20px repeat(12, 1fr);
+        grid-template-rows: 1fr;
+        grid-template-areas: "checkbox name name name name name name date date count empty3 button button";
+        // gap: 10px;
+        background-color: $textblue;
+        align-items: center;
+        padding: 20px;
+        margin: 20px 0;
+        input[type='checkbox']{
+            grid-area: checkbox;
+        }
+        .name{
+            padding-left: 20px;
+            grid-area: name;
+            h2{
+                margin: 0;
+                color: black;
+            }
+        }
+        .date{
+            grid-area: date;
+        }
+        .count{
+            grid-area: count;
+        }
+
+        .btn-group{
+            justify-self: end;
+            grid-area: button;
+        }
+
+    }
+}
+
+
+@media (max-width:1000px) {
+
+    //change text size and padding
+    .events_admin-container {
+        .events_admin {
+            small {
+                font-size: 10px;
+            }
+        }
+    }
+}
+@media(max-width: 600px){
+    .btn-group {
+        .action-button {
+            padding: 8px 16px;
+        }
+
+        .delete-button {
+            padding: 8px;
+        }
+    }
+}
+@media (max-width: 800px) {
+    .events_admin-container {
+        .events_admin {
+            height: fit-content;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 20px repeat(3, 1fr);
+            grid-template-areas: 
+                "empty checkbox"
+                "name name"
+                "date count"
+                "button button";
+            input[type='checkbox']{
+                justify-self: end;
+            }
+            .name{
+                padding: 0;
+            }
+            .btn-group {
+                justify-self: center;
+                grid-area: button;
+                padding: 8px 16px;
+            }
+        }
+    }
+}
+
+
+.pending-container {
+    .pending {
+        display: grid;
+        grid-template-columns: 30px 1fr 70px 1fr;
+        justify-items: start;
+        align-items: center;
+        background-color: $textblue;
+        padding: 20px;
+        margin: 20px 0;
+
+        .member-name {
+            width: 100%;
+            overflow: hidden;
+
+            h1 {
+                text-align: left;
+                margin: 0;
+            }
+        }
+
+        .hours {
+            h1 {
+                text-align: left;
+                margin: 0;
+            }
+        }
+
+        .btn-group {
+            justify-self: end;
+            align-self: center;
+        }
+    }
+}
+
+@media (max-width:1000px) {
+
+    //change text size and padding
+    .pending-container {
+        .pending {
+            small {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .btn-group {
+        .action-button {
+            padding: 8px 16px;
+        }
+
+        .delete-button {
+            padding: 8px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .pending-container {
+        .pending {
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 20px 1fr 1fr;
+            grid-template-areas:
+                "empty checkbox"
+                "name  hours"
+                "button  button";
+            row-gap: 20px;
+
+            .member-name {
+                grid-area: name;
+            }
+
+            .hours {
+                grid-area: hours;
+                justify-self: center;
+            }
+
+            input[type='checkbox'] {
+                grid-area: checkbox;
+                justify-self: end;
+            }
+
+            .btn-group {
+                justify-self: center;
+                grid-area: button;
+            }
+        }
+    }
+}

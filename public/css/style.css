@@ -7,7 +7,6 @@
 
 html,
 body {
-  width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -50,6 +49,12 @@ p {
   line-height: 1.5;
 }
 
+button {
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
 .action-button {
   text-decoration: none;
   outline: none;
@@ -62,6 +67,7 @@ p {
   color: black;
   background-color: #3b9ad5;
   transition: all ease 0.2s;
+  cursor: pointer;
 }
 
 .action-button:hover {
@@ -86,6 +92,7 @@ div.logo {
 }
 
 .hamburger {
+  display: none;
   grid-column: 1/2;
   grid-row: 1/2;
   justify-self: start;
@@ -233,6 +240,10 @@ p {
 
   .hamburger-click {
     display: flex;
+  }
+
+  .hamburger {
+    display: block;
   }
 
   nav ul {
@@ -432,37 +443,25 @@ p {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
-.card {
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  margin-bottom: 40px;
-  transition: all 0.2s ease-in-out;
+.card-container .card {
+  display: grid;
+  grid-template-rows: 3fr 3fr 1fr;
 }
-.card .card-header {
-  height: fit-content;
+.card-container .card .card-header {
+  overflow: hidden;
 }
-.card .card-header img {
+.card-container .card .card-header img {
+  height: 100%;
   width: 100%;
-  object-fit: cover;
+  max-height: 240px;
+  object-fit: contain;
 }
-.card .card-body h3 {
+.card-container .card .card-body h3 {
   margin-top: 0;
-  color: black;
-  margin-bottom: 15px;
 }
-.card .card-footer button {
-  float: right;
-  background-color: #3b9ad5;
-  border: none;
-  padding: 14px 18px;
-  color: white;
-  outline: none;
-}
-
-.card:hover {
-  transform: scale(1.01);
+.card-container .card .action-button {
+  justify-self: end;
+  align-self: start;
 }
 
 .list-container .list {
@@ -569,5 +568,165 @@ p {
   }
 }
 /* END CONTACT PAGE */
+.labelled-text {
+  display: grid;
+  grid-template-rows: 30px 1fr;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.labelled-text small {
+  align-self: end;
+}
+.labelled-text h1 {
+  margin: 0;
+  text-align: left;
+}
+.labelled-text p {
+  margin: 0;
+}
+
+.btn-group {
+  font-size: 0;
+  white-space: nowrap;
+}
+.btn-group .action-button {
+  transition: none;
+}
+.btn-group .action-button:hover {
+  transform: none;
+}
+.btn-group .delete-button {
+  padding: 16px;
+  background-color: lightgray;
+}
+
+.events_admin-container .events_admin {
+  height: 100px;
+  display: grid;
+  grid-template-columns: 20px repeat(12, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "checkbox name name name name name name date date count empty3 button button";
+  background-color: #edf4fe;
+  align-items: center;
+  padding: 20px;
+  margin: 20px 0;
+}
+.events_admin-container .events_admin input[type=checkbox] {
+  grid-area: checkbox;
+}
+.events_admin-container .events_admin .name {
+  padding-left: 20px;
+  grid-area: name;
+}
+.events_admin-container .events_admin .name h2 {
+  margin: 0;
+  color: black;
+}
+.events_admin-container .events_admin .date {
+  grid-area: date;
+}
+.events_admin-container .events_admin .count {
+  grid-area: count;
+}
+.events_admin-container .events_admin .btn-group {
+  justify-self: end;
+  grid-area: button;
+}
+
+@media (max-width: 1000px) {
+  .events_admin-container .events_admin small {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .btn-group .action-button {
+    padding: 8px 16px;
+  }
+  .btn-group .delete-button {
+    padding: 8px;
+  }
+}
+@media (max-width: 800px) {
+  .events_admin-container .events_admin {
+    height: fit-content;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 20px repeat(3, 1fr);
+    grid-template-areas: "empty checkbox" "name name" "date count" "button button";
+  }
+  .events_admin-container .events_admin input[type=checkbox] {
+    justify-self: end;
+  }
+  .events_admin-container .events_admin .name {
+    padding: 0;
+  }
+  .events_admin-container .events_admin .btn-group {
+    justify-self: center;
+    grid-area: button;
+    padding: 8px 16px;
+  }
+}
+.pending-container .pending {
+  display: grid;
+  grid-template-columns: 30px 1fr 70px 1fr;
+  justify-items: start;
+  align-items: center;
+  background-color: #edf4fe;
+  padding: 20px;
+  margin: 20px 0;
+}
+.pending-container .pending .member-name {
+  width: 100%;
+  overflow: hidden;
+}
+.pending-container .pending .member-name h1 {
+  text-align: left;
+  margin: 0;
+}
+.pending-container .pending .hours h1 {
+  text-align: left;
+  margin: 0;
+}
+.pending-container .pending .btn-group {
+  justify-self: end;
+  align-self: center;
+}
+
+@media (max-width: 1000px) {
+  .pending-container .pending small {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .btn-group .action-button {
+    padding: 8px 16px;
+  }
+  .btn-group .delete-button {
+    padding: 8px;
+  }
+}
+@media (max-width: 800px) {
+  .pending-container .pending {
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 20px 1fr 1fr;
+    grid-template-areas: "empty checkbox" "name  hours" "button  button";
+    row-gap: 20px;
+  }
+  .pending-container .pending .member-name {
+    grid-area: name;
+  }
+  .pending-container .pending .hours {
+    grid-area: hours;
+    justify-self: center;
+  }
+  .pending-container .pending input[type=checkbox] {
+    grid-area: checkbox;
+    justify-self: end;
+  }
+  .pending-container .pending .btn-group {
+    justify-self: center;
+    grid-area: button;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

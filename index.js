@@ -27,17 +27,25 @@ app.get("/", (req, res) => {
 app.get("/contact", (req, res) => {
     res.render("contact.html");
 });
-app.get("/test", (req, res) => {
-    res.render("test.html");
+app.get("/fonts", (req, res) => {
+    res.render("fonts.html");
 });
-app.get("/list", (req, res) => {
-    res.render("list.html");
-});
+app.get("/admin", (req, res) => {
+    res.render("admin.html");
+}); 
 app.get("/events", (req, res) => {
     res.render("events.html");
 });
 app.get("/about", (req, res)=>{
     res.render("about.html");
+});
+
+//components
+app.get("/pending", (req, res)=>{
+    res.render("pending.html");
+});
+app.get("/events_admin", (req, res)=>{
+    res.render("adminevents.html");
 });
 
 //signup
