@@ -14,20 +14,21 @@
 </div>
 */
 window.onload = function () {
-    renderCards(6);
-    renderLists(3);
+    renderCards(true, 6);
+    renderLists(true, 3);
 }
+
 const cardContainer = document.querySelector(".card-container");
 const listContainer = document.querySelector(".list-container");
 
 var lastCard = null;
 var lastList = null;
 
-function createCard(img_src, dateString, title, description) {
+function createCard(img_src, dateString, title, description, signedup = false) {
     var cardDiv = createElement("div", "card");
     var cardHeader = createElement("div", "card-header");
     var cardBody = createElement("div", "card-body");
-    var button = createElement("button", "action-button", "Sign Up");
+    var button = createElement("button", "action-button", signedup?"Signed Up":"Sign Up");
 
     var img = document.createElement("img"); img.src = img_src;
     cardHeader.append(img);
@@ -64,30 +65,51 @@ function createElement(type, className = "", text = "") {
     return temp;
 }
 
-function renderCards(limit=3) {
+function renderCards(paginate = false, limit = 3) {
     var query = db.collection("events").where("unix", ">=", Date.now()).orderBy("unix");
-    if (lastCard !== null) {
-        console.log("applied start After");
-        query = query.startAfter(lastCard);
+
+    if (paginate) {
+        if (lastCard !== null) {
+            console.log("applied start After");
+            query = query.startAfter(lastCard);
+        }
+        query = query.limit(limit);
     }
-    query.limit(limit).get()
+    query.get()
         .then(qs => {
             lastCard = qs.docs[qs.docs.length - 1];
             qs.forEach(d => {
                 var data = d.data();
-                createCard(data.photo_url, data.dateString, data.event_name, data.description);
+                //check if the user is signed up for this event
+                if (auth.currentUser != null) {
+                    console.log("checking");
+                    db.collection("signups").doc(`${auth.currentUser.uid}_${d.id}`).get().then(doc=>{
+                        if(doc.exists){
+                            console.log("detected sign up");
+                            createCard(data.photo_url, data.dateString, data.event_name, data.description, true);
+                        }else{
+                            createCard(data.photo_url, data.dateString, data.event_name, data.description);
+                        }
+                    })
+                } else {
+                    createCard(data.photo_url, data.dateString, data.event_name, data.description);
+                }
             })
         });
 }
 
-function renderLists(limit=3) {
+
+function renderLists(paginate = false, limit = 3) {
     var query = db.collection("events").where("unix", "<=", Date.now())
         .orderBy("unix")
-    if (lastList !== null) {
-        console.log("applied start After");
-        query = query.startAfter(lastList);
+    if (paginate) {
+        query = query.limit(limit);
+        if (lastList !== null) {
+            console.log("applied start After");
+            query = query.startAfter(lastList);
+        }
     }
-    query.limit(limit).get()
+    query.get()
         .then(qs => {
             lastList = qs.docs[qs.docs.length - 1];
             qs.forEach(d => {

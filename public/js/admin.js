@@ -73,14 +73,14 @@ document.querySelector("#delete-all-events").addEventListener("click", function 
 //create event
 document.querySelector("#confirmCreate").addEventListener("click", function () {
     var data = getFormData();
-    addEvent(data.photo, data.dateString, data.unix, data.title, data.desc);
+    addEvent(data.photo, data.dateString, data.unix, data.name, data.desc);
 });
 
 //edit button
 document.querySelector("#confirmEdit").addEventListener("click", function (event) {
     event.preventDefault();
     var data = getFormData();
-    console.log(data.eventID, data.photo, data.unix, data.name, data.desc);
+    // console.log(data.eventID, data.photo, data.unix, data.name, data.desc);
     updateEvent(data.eventID, data.photo, data.dateString, data.unix, data.name, data.desc);
 });
 function showCreateEvent() {
@@ -318,10 +318,18 @@ function addEvent(img_src = "", dateString = "", unix = 0, title = "", descripti
         "event_name": title,
         "description": description,
         "member_count": count
-    }).then(() => {
-        createEvent(id, title, dateString, 0);
+    }).then((doc) => {
+        events[doc.id] = {
+            "photo_url": img_src,
+            "dateString": dateString,
+            "unix": unix,
+            "event_name": title,
+            "description": description,
+            "member_count": count
+        }
+        createEvent(doc.id, title, dateString, 0);
     }).catch((err) => {
-        console.log("unsuccessful");
+        console.log("unsuccessful", err);
     });
 }
 function updateEvent(event_id, img_src, dateString, unix, title, description) {
