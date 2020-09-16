@@ -1,20 +1,7 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyDkn3sh33RTb6nRPtNAD9p-JZc6Qbb-frg",
-    authDomain: "test-json-cbef3.firebaseapp.com",
-    databaseURL: "https://test-json-cbef3.firebaseio.com",
-    projectId: "test-json-cbef3",
-    storageBucket: "test-json-cbef3.appspot.com",
-    messagingSenderId: "610759909312",
-    appId: "1:610759909312:web:e3fb6f03a77529824a7225"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 //users
 //add hours to pending
 //add document
-function addPending(uid, hours) {
+function requestHours(uid, hours) {
     db.collection("pending").add({
         "uid": uid,
         "hours": hours
@@ -49,12 +36,41 @@ function getCurrentHours(uid) {
 
 //admin
 //add/remove events
-function addEvent(name, day, month, year) {
-    var d = new Date(`${year}-${month}-${day}T00:00:00`);
+function generateRandomEvents(amount = 0) {
+    while (amount--) {
+        var date = faker.date.future();
+        var dateString = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+        var unix = date.getTime();
+
+        var img_src = faker.image.image();
+
+        var title = faker.lorem.word();
+        var desc = faker.lorem.paragraph();
+
+
+        addEvent(img_src, dateString, unix, title, desc);
+    }
+    // console.log(img_src, dateString, unix, title, desc);
+}
+
+
+
+// function addEvent(name, day, month, year) {
+//     var d = new Date(`${year}-${month}-${day}T00:00:00`);
+//     db.collection("events").add({
+//         "name": name,
+//         "date": d
+//     })
+// }
+function addEvent(img_src, dateString, unix, title, description, count = 0) {
     db.collection("events").add({
-        "name": name,
-        "date": d
-    })
+        "photo_url": img_src,
+        "dateString": dateString,
+        "unix": unix,
+        "event_name": title,
+        "description": description,
+        "member_count": count
+    });
 }
 function removeEvent(event_id) {
     db.collection("events").doc(event_id).delete().then(() => {
@@ -63,6 +79,15 @@ function removeEvent(event_id) {
         console.log("couldn't remove", event_id, err);
     });
 }
+
+function getEvents() {
+    db.collection("events").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            console.log(doc.id, " => ", doc.data().event_name);
+        })
+    })
+}
+
 
 //get pending hours
 function getPending() {
@@ -78,7 +103,7 @@ function getPending() {
 //make this into a transaction
 function accept(pending_id) {
     let docRef = db.collection("pending").doc(pending_id);
-    
+
     return db.runTransaction(function (transaction) {
         return transaction.get(docRef).then(function (doc) {
             if (!doc.exists) {
@@ -95,13 +120,13 @@ function accept(pending_id) {
     }).then(() => {
         console.log("success")
         //delete elements on screen
-    }).catch(err=>{
+    }).catch(err => {
         console.log("unsucessful", err);
     });
 }
 function decline(pending_id) {
     let docRef = db.collection("pending").doc(pending_id);
-    
+
     return db.runTransaction(function (transaction) {
         return transaction.get(docRef).then(function (doc) {
             if (!doc.exists) {
@@ -117,7 +142,7 @@ function decline(pending_id) {
     }).then(() => {
         console.log("success")
         //delete elements on screen
-    }).catch(err=>{
+    }).catch(err => {
         console.log("unsucessful", err);
     });
 }

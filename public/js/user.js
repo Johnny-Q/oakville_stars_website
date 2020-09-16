@@ -7,9 +7,12 @@ const firebaseConfig = {
     messagingSenderId: "610759909312",
     appId: "1:610759909312:web:e3fb6f03a77529824a7225"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firestore.settings({timestampsInSnapshots: true});
 // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
 const auth = firebase.auth();
 function signup() {
     let email = document.getElementById("email").value;

@@ -53,6 +53,7 @@ button {
   text-decoration: none;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 .action-button {
@@ -587,6 +588,8 @@ p {
 }
 
 .btn-group {
+  width: fit-content;
+  height: fit-content;
   font-size: 0;
   white-space: nowrap;
 }
@@ -726,6 +729,126 @@ p {
   .pending-container .pending .btn-group {
     justify-self: center;
     grid-area: button;
+  }
+}
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+
+.modal {
+  background-color: white;
+  z-index: 3;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  display: none;
+}
+.modal h3 {
+  grid-area: text;
+}
+.modal .btn-group {
+  width: fit-content;
+  height: fit-content;
+}
+
+.positive-button {
+  padding: 20px;
+  letter-spacing: 0.125em;
+  font-size: 18px;
+  color: #3b9ad5;
+  background-color: #edf4fe;
+}
+
+.negative-button {
+  padding: 20px;
+  letter-spacing: 0.125em;
+  font-size: 18px;
+  color: #1b1b1b;
+  background-color: #f0f0f0;
+}
+
+.delete-event-modal .btn-group .positive-button {
+  color: red;
+  background-color: #ffdbd9;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.row .btn-group .positive-button {
+  background: transparent;
+}
+.row .btn-group .negative-button {
+  background: transparent;
+}
+
+.create-event-modal form {
+  width: 90%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "name name" "date datestring" "photo photo" "textbox textbox" "empty button";
+  gap: 30px;
+}
+.create-event-modal form input {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 18px;
+  padding: 0;
+}
+.create-event-modal form #name {
+  grid-area: name;
+}
+.create-event-modal form #date {
+  grid-area: date;
+}
+.create-event-modal form #dateString {
+  grid-area: datestring;
+}
+.create-event-modal form #photo {
+  grid-area: photo;
+}
+.create-event-modal form #desc {
+  grid-area: textbox;
+}
+.create-event-modal form textarea {
+  width: 100%;
+  color: #5e5e5e;
+  border-color: #e2e2e2;
+  padding: 8px;
+  resize: vertical;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.create-event-modal form .btn-group {
+  grid-area: button;
+  justify-self: end;
+  align-self: end;
+}
+
+@media (max-width: 900px) {
+  .create-event-modal form {
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "date" "datestring" "photo" "textbox" "button";
   }
 }
 

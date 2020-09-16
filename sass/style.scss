@@ -5,6 +5,9 @@ $textblue: rgb(237, 244, 254);
 $gray: rgb(94, 94, 94);
 $lightgray: rgb(191, 191, 191);
 $black: rgb(27, 27, 27);
+$lightred:rgb(255, 219, 217);
+$red: red;
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 /* begin global components */
@@ -57,11 +60,14 @@ p {
     color: $gray;
     line-height: 1.5;
 }
-button{
+
+button {
     text-decoration: none;
     outline: none;
     border: none;
+    cursor: pointer;
 }
+
 .action-button {
     text-decoration: none;
     outline: none;
@@ -78,7 +84,7 @@ button{
     background-color: $blue;
 
     transition: all ease .2s;
-    
+
     cursor: pointer;
 }
 
@@ -530,6 +536,7 @@ footer {
 
         .card-header {
             overflow: hidden;
+
             img {
                 height: 100%;
                 width: 100%;
@@ -538,8 +545,8 @@ footer {
             }
         }
 
-        .card-body{
-            h3{
+        .card-body {
+            h3 {
                 margin-top: 0;
             }
         }
@@ -705,24 +712,29 @@ footer {
     }
 }
 
-.btn-group{
+.btn-group {
+    width: fit-content;
+    height: fit-content;
     font-size: 0;
     // overflow: hidden;
     white-space: nowrap;
-    .action-button{
+
+    .action-button {
         transition: none;
     }
-    .action-button:hover{
+
+    .action-button:hover {
         transform: none;
     }
-    .delete-button{
+
+    .delete-button {
         padding: 16px;
         background-color: lightgray;
     }
 }
 
-.events_admin-container{
-    .events_admin{
+.events_admin-container {
+    .events_admin {
         height: 100px;
         display: grid;
         // grid-template-columns: 30px 3fr 1fr 1fr 2fr;
@@ -734,25 +746,30 @@ footer {
         align-items: center;
         padding: 20px;
         margin: 20px 0;
-        input[type='checkbox']{
+
+        input[type='checkbox'] {
             grid-area: checkbox;
         }
-        .name{
+
+        .name {
             padding-left: 20px;
             grid-area: name;
-            h2{
+
+            h2 {
                 margin: 0;
                 color: black;
             }
         }
-        .date{
+
+        .date {
             grid-area: date;
         }
-        .count{
+
+        .count {
             grid-area: count;
         }
 
-        .btn-group{
+        .btn-group {
             justify-self: end;
             grid-area: button;
         }
@@ -772,7 +789,8 @@ footer {
         }
     }
 }
-@media(max-width: 600px){
+
+@media(max-width: 600px) {
     .btn-group {
         .action-button {
             padding: 8px 16px;
@@ -783,23 +801,27 @@ footer {
         }
     }
 }
+
 @media (max-width: 800px) {
     .events_admin-container {
         .events_admin {
             height: fit-content;
             grid-template-columns: 3fr 1fr;
             grid-template-rows: 20px repeat(3, 1fr);
-            grid-template-areas: 
+            grid-template-areas:
                 "empty checkbox"
                 "name name"
                 "date count"
                 "button button";
-            input[type='checkbox']{
+
+            input[type='checkbox'] {
                 justify-self: end;
             }
-            .name{
+
+            .name {
                 padding: 0;
             }
+
             .btn-group {
                 justify-self: center;
                 grid-area: button;
@@ -897,6 +919,165 @@ footer {
                 justify-self: center;
                 grid-area: button;
             }
+        }
+    }
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.modal {
+    background-color: white;
+    z-index: 3;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+
+    display: none;
+    h3 {
+        grid-area: text;
+    }
+
+    .btn-group {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    display: none;
+}
+
+.positive-button {
+    padding: 20px;
+    letter-spacing: 0.125em;
+    font-size: 18px;
+    color: $blue;
+    background-color: $textblue;
+}
+
+.negative-button {
+    padding: 20px;
+    letter-spacing: 0.125em;
+    font-size: 18px;
+    color: $black;
+    background-color: rgb(240, 240, 240);
+}
+
+.delete-event-modal {
+    .btn-group {
+        .positive-button {
+            color: $red;
+            background-color: $lightred;
+        }
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+
+    .btn-group {
+        .positive-button {
+            background: transparent;
+        }
+
+        .negative-button {
+            background: transparent;
+        }
+    }
+}
+.create-event-modal {
+    form {
+        width: 90%;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "name name"
+            "date datestring"
+            "photo photo"
+            "textbox textbox"
+            "empty button";
+
+        gap: 30px;
+
+        input {
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgb(226, 226, 226);
+            font-size: 18px;
+            padding: 0;
+        }
+
+        #name {
+            grid-area: name;
+        }
+
+        #date {
+            grid-area: date;
+        }
+
+        #dateString {
+            grid-area: datestring;
+        }
+
+        #photo {
+            grid-area: photo;
+        }
+
+        #desc {
+            grid-area: textbox;
+        }
+
+        textarea {
+            width: 100%;
+            color: rgb(94, 94, 94);
+            border-color: rgb(226, 226, 226);
+            padding: 8px;
+            resize: vertical;
+            font-size: 18px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        .btn-group {
+            grid-area: button;
+            justify-self: end;
+            align-self: end;
+        }
+
+    }
+}
+
+@media (max-width: 900px) {
+    .create-event-modal {
+        form {
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+                "name"
+                "date"
+                "datestring"
+                "photo"
+                "textbox"
+                "button";
         }
     }
 }

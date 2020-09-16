@@ -4,7 +4,7 @@ const bodyparser = require("body-parser");
 const cookieparser = require("cookie-parser");
 const admin = require("firebase-admin");
 const csrf = require("csurf");
-
+const faker = require("faker");
 //middlewares
 app.use(bodyparser.json());
 app.use(cookieparser());
@@ -41,11 +41,11 @@ app.get("/about", (req, res)=>{
 });
 
 //components
-app.get("/pending", (req, res)=>{
-    res.render("pending.html");
+app.get("/modal", (req, res)=>{
+    res.render("modal.html");
 });
-app.get("/events_admin", (req, res)=>{
-    res.render("adminevents.html");
+app.get("/new_event", (req, res)=>{
+    res.render("newevent.html");
 });
 
 //signup
@@ -79,6 +79,13 @@ app.get("/login", (req, res) => {
 });
 app.post("/login", (req, res) => {
 
+});
+
+//faker
+app.get("/date", (req, res)=>{
+    var date = faker.date.future();
+    
+    res.send((new Date(date).getTime().toString()));
 });
 
 //profile

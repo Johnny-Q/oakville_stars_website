@@ -1,29 +1,21 @@
 # oakville_stars_website
 Node application for oakville starz hosted on firebase  
 
-# API Routes
-/login
-/signup
-
-Profiles
-/members/:credID //from auth
-
 Events
-/events
-/events/:eventID //for signing up for events
+    image url
+    date (store unix timestamp but with milliseconds)
+    name
+    description
+    signed up members
 
-# Functionality
-Members
-Add hours
-Sign up for events / 
-Password ress and stuff
+Signups (id = MEMID_EVENTID)
+    member id
+    event id
 
-Admin
-Authorize hours
+Hours Request
+    member id
+    Name
+    hours
 
-Events
-Add events
-Delete events
 
-Hours
-/
+how confirms are going to work, supply a call back, and if confirmed, call the callback

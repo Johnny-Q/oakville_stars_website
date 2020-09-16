@@ -4,7 +4,7 @@
   "description": "Static website for oakville stars",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon index.js",
+    "dev": "nodemon index.js",
     "sass": "sass --watch sass:public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,6 +28,7 @@
     "firebase-tools": "^8.7.0"
   },
   "devDependencies": {
+    "faker": "^5.1.0",
     "nodemon": "^2.0.4"
   }
 }
