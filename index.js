@@ -41,11 +41,11 @@ app.get("/about", (req, res)=>{
 });
 
 //components
-app.get("/modal", (req, res)=>{
-    res.render("modal.html");
+app.get("/signin", (req, res)=>{
+    res.render("signin.html");
 });
-app.get("/new_event", (req, res)=>{
-    res.render("newevent.html");
+app.get("/copy", (req, res)=>{
+    res.render("copy.html");
 });
 
 //signup
@@ -53,7 +53,7 @@ app.get("/signup", (req, res) => {
     res.render("signup.html");
 });
 app.post("/signup", (req, res) => {
-
+    
 });
 
 //login
@@ -77,6 +77,7 @@ app.get("/login", (req, res) => {
         );
     res.render("login.html");
 });
+
 app.post("/login", (req, res) => {
 
 });

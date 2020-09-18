@@ -196,7 +196,6 @@ nav.mobile {
         position: absolute;
         top: 10px;
         right: 10px;
-        transform: scale(0.7);
     }
 
     ul {
@@ -952,6 +951,7 @@ footer {
     text-align: center;
 
     display: none;
+
     h3 {
         grid-area: text;
     }
@@ -1003,6 +1003,7 @@ footer {
         }
     }
 }
+
 .create-event-modal {
     form {
         width: 90%;
@@ -1071,13 +1072,151 @@ footer {
     .create-event-modal {
         form {
             grid-template-columns: 1fr;
-            grid-template-areas: 
+            grid-template-areas:
                 "name"
                 "date"
                 "datestring"
                 "photo"
                 "textbox"
                 "button";
+        }
+    }
+}
+
+//Sign in modal
+
+.signin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: $textblue;
+    height: 100vh;
+    width: 0;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+
+
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+
+    .cross {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .signin-form {
+        width: fit-content;
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+
+            .input {
+                position: relative;
+                margin-bottom: 40px;
+                width: 300px;
+
+                input {
+                    background-color: $textblue;
+                    width: 100%;
+                    height: 50px;
+                    outline: none;
+                    border: none;
+                    border-bottom: 1px solid $blue;
+                    font-size: 18px;
+                    padding: 0;
+                }
+
+                label {
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0;
+                    width: 100%;
+                    height: 50px;
+                    pointer-events: none; //need this so we can click through the label
+
+                    .label-name {
+                        position: absolute;
+                        bottom: 10px;
+                        left: 0px;
+                        color: rgb(94, 94, 94);
+                        transition: all 0.2s ease;
+                    }
+                }
+
+                input:not(:placeholder-shown)+label .label-name,
+                input:focus+label .label-name {
+                    bottom: 80%;
+                    font-size: 12px;
+                    color: rgb(42, 125, 176);
+                }
+            }
+        }
+    }
+
+    .profile-info {
+        // display: flex;
+        display: none;
+        flex-direction: column; 
+        width: 80%;
+        // max-width: ;
+        .hours{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            h2{
+                width: fit-content;
+            }
+        }
+        
+        .request-hours {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .input-button-group {
+                font-size: 0;
+                height: fit-content;
+                width: fit-content;
+                margin: 20px 0;
+                border-bottom: 1px solid $blue;
+
+                input[type=number] {
+                    -webkit-appearance: none;
+                    -webkit-appearance: textfield;
+                    background-color: $textblue;
+                    width: 40px;
+                    height: 100%;
+                    outline: none;
+                    border: none;
+                    // border-bottom: 1px solid $blue;
+                    font-size: 18px;
+                    padding: 0px;
+                    // padding-right: 0;
+                }
+
+                .action-button {
+                    background-color: $textblue;
+                    color: $blue;
+                    // border-bottom: 1px solid $blue;
+                    height: fit-content;
+                    padding: 0px;
+
+                    transition: none;
+                }
+
+                .action-button:hover {
+                    transform: none;
+                }
+            }
+
         }
     }
 }

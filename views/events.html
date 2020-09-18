@@ -7,9 +7,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
+        integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
+        crossorigin="anonymous"></script>
     <script src="js/init.js" defer></script>
+    <script src="js/profile.js" defer></script>
     <script src="js/nav.js" defer></script>
-    <script src="js/events.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -39,22 +42,22 @@
             <li>
                 <a href="/about">ABOUT US</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/events">EVENTS</a>
             </li>
             <li>
                 <a href="/contact">CONTACT</a>
             </li>
             <li>
-                <a href="/list">REGISTER</a>
+                <a href="/register">REGISTER</a>
             </li>
-            <li>
-                <a href="/test">SIGN IN</a>
+            <li class="profile">
+                <a class="signin-open" href="#">SIGN IN</a>
             </li>
         </ul>
     </nav>
     <nav class="mobile">
-        <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="40px" height="40px">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="cross close-nav" width="34px" height="34px">
             <path fill-rule="evenodd"
                 d="M19.245 4.313a1.065 1.065 0 0 0-1.508 0L11.78 10.27 5.82 4.313A1.065 1.065 0 1 0 4.312 5.82l5.958 5.958-5.958 5.959a1.067 1.067 0 0 0 1.508 1.508l5.959-5.958 5.958 5.958a1.065 1.065 0 1 0 1.508-1.508l-5.958-5.959 5.958-5.958a1.065 1.065 0 0 0 0-1.508">
             </path>
@@ -66,20 +69,66 @@
             <li>
                 <a href="/about">ABOUT US</a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/events">EVENTS</a>
             </li>
             <li>
                 <a href="/contact">CONTACT</a>
             </li>
             <li>
-                <a href="/list">REGISTER</a>
+                <a href="/register">REGISTER</a>
             </li>
-            <li>
-                <a href="/test">SIGN IN</a>
+            <li class="profile">
+                <a class="signin-open close-nav" href="#">SIGN IN</a>
             </li>
         </ul>
     </nav>
+
+    <div class="signin">
+        <button class="signin-close">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="34px" height="34px">
+                <path fill-rule="evenodd"
+                    d="M19.245 4.313a1.065 1.065 0 0 0-1.508 0L11.78 10.27 5.82 4.313A1.065 1.065 0 1 0 4.312 5.82l5.958 5.958-5.958 5.959a1.067 1.067 0 0 0 1.508 1.508l5.959-5.958 5.958 5.958a1.065 1.065 0 1 0 1.508-1.508l-5.958-5.959 5.958-5.958a1.065 1.065 0 0 0 0-1.508">
+                </path>
+            </svg>
+        </button>
+
+        <div class="signin-form">
+            <h2>SIGN IN</h2>
+            <form class="container">
+                <div class="input">
+                    <input type="email" id="signin-email" name="email" placeholder=" ">
+                    <label for="name"><span class="label-name">Email</span></label>
+                </div>
+                <div class="input">
+                    <input type="password" id="signin-password" name="pass" placeholder=" ">
+                    <label for="name"><span class="label-name">Password</span></label>
+                </div>
+                <button id="signin" class="action-button">Sign In</button>
+            </form>
+        </div>
+
+        <div class="profile-info">
+            <h1>WELCOME BACK</h1>
+            <h3>Jane Doe</h3>
+            <div class="hours">
+                <h2>HOURS</h2>
+                <div class="hour-info">
+                    <p class="confirmed-hours">10 confirmed</p>
+                    <p class="pending-hours">20 pending</p>
+                </div>
+            </div>
+            <div class="request-hours">
+                <h2>ADD HOURS</h2>
+                <div class="input input-button-group">
+                    <input type="number" placeholder="5">
+                    <button class="action-button add-hours">ADD</button>
+                </div>
+            </div>
+
+            <button id="signout-button" class="action-button">Sign Out</button>
+        </div>
+    </div>
 
 
 

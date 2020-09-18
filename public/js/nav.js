@@ -1,13 +1,33 @@
 const hamburgerClick = document.querySelector(".hamburger-click");
 const hamburger = document.querySelector(".hamburger");
 const mobileNav = document.querySelector(".mobile");
-const close = document.querySelector(".cross");
-hamburgerClick.addEventListener("click", function(){
-    console.log("clicked");
-    mobileNav.style.width = '100%';
-});
+const close = document.querySelectorAll(".close-nav");
+if (hamburgerClick) {
+    hamburgerClick.addEventListener("click", function () {
+        console.log("clicked");
+        mobileNav.style.width = '100%';
+    });
 
-close.addEventListener("click", function(){
-    console.log("clicked");
-    mobileNav.style.width = "0";
-});
+    close.forEach(element => {
+        element.addEventListener("click", function () {
+            console.log("reee");
+            mobileNav.style.width = "0";
+        })
+    });
+}
+
+
+const signIn = document.querySelector(".signin");
+const signInClose = document.querySelector(".signin-close");
+const openSignin = document.querySelectorAll(".signin-open");
+if (signIn) {
+    openSignin.forEach(element => {
+        element.addEventListener("click", function () {
+            signIn.style.width = "100%";
+        })
+    });
+
+    signInClose.addEventListener("click", function () {
+        signIn.style.width = '0';
+    });
+}

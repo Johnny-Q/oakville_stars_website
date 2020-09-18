@@ -167,7 +167,6 @@ nav.mobile .cross {
   position: absolute;
   top: 10px;
   right: 10px;
-  transform: scale(0.7);
 }
 nav.mobile ul {
   padding: 56px 20px;
@@ -756,6 +755,7 @@ p {
   align-items: center;
   text-align: center;
   display: none;
+  display: none;
 }
 .modal h3 {
   grid-area: text;
@@ -850,6 +850,119 @@ p {
     grid-template-columns: 1fr;
     grid-template-areas: "name" "date" "datestring" "photo" "textbox" "button";
   }
+}
+.signin {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #edf4fe;
+  height: 100vh;
+  width: 0;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.signin .cross {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.signin .signin-form {
+  width: fit-content;
+}
+.signin .signin-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.signin .signin-form form .input {
+  position: relative;
+  margin-bottom: 40px;
+  width: 300px;
+}
+.signin .signin-form form .input input {
+  background-color: #edf4fe;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #3b9ad5;
+  font-size: 18px;
+  padding: 0;
+}
+.signin .signin-form form .input label {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  pointer-events: none;
+}
+.signin .signin-form form .input label .label-name {
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
+  color: #5e5e5e;
+  transition: all 0.2s ease;
+}
+.signin .signin-form form .input input:not(:placeholder-shown) + label .label-name,
+.signin .signin-form form .input input:focus + label .label-name {
+  bottom: 80%;
+  font-size: 12px;
+  color: #2a7db0;
+}
+.signin .profile-info {
+  display: none;
+  flex-direction: column;
+  width: 80%;
+}
+.signin .profile-info .hours {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.signin .profile-info .hours h2 {
+  width: fit-content;
+}
+.signin .profile-info .request-hours {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signin .profile-info .request-hours .input-button-group {
+  font-size: 0;
+  height: fit-content;
+  width: fit-content;
+  margin: 20px 0;
+  border-bottom: 1px solid #3b9ad5;
+}
+.signin .profile-info .request-hours .input-button-group input[type=number] {
+  -webkit-appearance: none;
+  -webkit-appearance: textfield;
+  background-color: #edf4fe;
+  width: 40px;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding: 0px;
+}
+.signin .profile-info .request-hours .input-button-group .action-button {
+  background-color: #edf4fe;
+  color: #3b9ad5;
+  height: fit-content;
+  padding: 0px;
+  transition: none;
+}
+.signin .profile-info .request-hours .input-button-group .action-button:hover {
+  transform: none;
 }
 
 /*# sourceMappingURL=style.css.map */
