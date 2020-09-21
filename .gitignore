@@ -4,6 +4,9 @@
 *.sass.map
 *.scss.map
 
+serviceAccount.json
+.firebase
+
 # Logs
 logs
 *.log

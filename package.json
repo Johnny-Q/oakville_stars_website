@@ -24,11 +24,11 @@
     "csurf": "^1.11.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "firebase-admin": "^9.1.1",
-    "firebase-tools": "^8.7.0"
+    "firebase-admin": "^9.1.1"
   },
   "devDependencies": {
     "faker": "^5.1.0",
+    "firebase-tools": "^8.10.0",
     "nodemon": "^2.0.4"
   }
 }

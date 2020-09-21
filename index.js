@@ -8,17 +8,17 @@ const faker = require("faker");
 //middlewares
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(csrf({ cookie: true }));
+// app.use(csrf({ cookie: true }));
 
 //rendering
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("public"));
 
 //csrf
-app.all("*", (req, res, next) => {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    next();
-});
+// app.all("*", (req, res, next) => {
+//     res.cookie("XSRF-TOKEN", req.csrfToken());
+//     next();
+// });
 
 //static pages
 app.get("/", (req, res) => {
@@ -38,6 +38,9 @@ app.get("/events", (req, res) => {
 });
 app.get("/about", (req, res)=>{
     res.render("about.html");
+});
+app.get("/register", (req, res)=>{
+    res.render("register.html");
 });
 
 //components

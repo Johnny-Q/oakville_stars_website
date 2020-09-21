@@ -31,3 +31,15 @@ if (signIn) {
         signIn.style.width = '0';
     });
 }
+
+
+//change sign in to profile
+auth.onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        document.querySelectorAll(".signin-open").forEach(e=>e.innerText = "PROFILE");
+    } else {
+        // No user is signed in.
+        document.querySelectorAll(".signin-open").forEach(e=>e.innerText = "SIGN IN");
+    }
+});

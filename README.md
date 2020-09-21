@@ -17,5 +17,11 @@ Hours Request
     Name
     hours
 
+Hour database id=uid
+    name
+    authorized
+    pending
+    
+https://test-json-cbef3.web.app
 
 how confirms are going to work, supply a call back, and if confirmed, call the callback

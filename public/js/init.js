@@ -17,9 +17,11 @@ const db = firebase.firestore();
 auth.onAuthStateChanged(user=>{
     if(user){
         //try to get resources
+        console.log("user signed in", user.uid);
         
     }else{
         //not signed in
+        console.log("no user");
     }
 });
 

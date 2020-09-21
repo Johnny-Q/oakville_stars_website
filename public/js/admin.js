@@ -102,7 +102,7 @@ function closeModals() {
 function confirm() {
     showConfirm();
     return new Promise((resolve, reject) => {
-        console.log("reee");
+        // console.log("reee");
         confirmButton.addEventListener("click", removeable);
         cancelButton.addEventListener("click", removeable);
         function removeable(event) {
@@ -148,7 +148,7 @@ function createPending(docID, id, name, hours) {
 
     //add listeners to the buttons
     authorizeButton.addEventListener("click", () => {
-        console.log(pending);
+        // console.log(pending);
         accept(docID).then(() => {
             pending.remove();
             delete pending[docID];
@@ -185,7 +185,7 @@ function createEvent(id, name, dateString, count) {
     var checkbox = document.createElement("input"); checkbox.type = "checkbox";
     var eventNameDiv = createElement("div", ["name", "labelled-text"]);
     var dateDiv = createElement("div", ["date", "labelled-text"]);
-    var countDiv = createElement("div", ["count", "labelled-text"]);
+    // var countDiv = createElement("div", ["count", "labelled-text"]);
     var btnGroup = createElement("div", ["btn-group"]);
 
     var editButton = createElement("button", ["action-button"], "EDIT");
@@ -202,7 +202,7 @@ function createEvent(id, name, dateString, count) {
         //load the data in
         updateFormData(id, data.event_name, data.unix, data.dateString, data.photo_url, data.description);
         showCreateEvent();
-        console.log(events_admin);
+        // console.log(events_admin);
     });
     deleteButton.addEventListener("click", () => {
         removeEvent(id).then(() => {
@@ -220,12 +220,12 @@ function createEvent(id, name, dateString, count) {
     dateDiv.append(createElement("p", [], dateString));
 
     //count div
-    countDiv.append(createElement("small", [], "MEMBERS"));
-    countDiv.append(createElement("p", [], count));
+    // countDiv.append(createElement("small", [], "MEMBERS"));
+    // countDiv.append(createElement("p", [], count));
 
     btnGroup.append(editButton); btnGroup.append(deleteButton);
 
-    events_admin.append(checkbox); events_admin.append(eventNameDiv); events_admin.append(dateDiv); events_admin.append(countDiv); events_admin.append(btnGroup);
+    events_admin.append(checkbox); events_admin.append(eventNameDiv); events_admin.append(dateDiv); /*events_admin.append(countDiv)*/; events_admin.append(btnGroup);
 
     eventsContainer.append(events_admin);
 }

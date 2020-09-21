@@ -24,11 +24,26 @@ const listContainer = document.querySelector(".list-container");
 var lastCard = null;
 var lastList = null;
 
-function createCard(img_src, dateString, title, description, signedup = false) {
+function createCard(img_src, dateString, title, description, eventID, signedup = false) {
     var cardDiv = createElement("div", "card");
     var cardHeader = createElement("div", "card-header");
     var cardBody = createElement("div", "card-body");
-    var button = createElement("button", "action-button", signedup?"Signed Up":"Sign Up");
+    var button = createElement("button", "action-button", signedup ? "Signed Up" : "Sign Up");
+
+    if (signedup) {
+        button.disabled = true;
+    }
+
+    button.addEventListener("click", function (event) {
+        console.log(eventID);
+        this.disabled = true;
+        this.innerText = "Signed Up";
+        if (currUser != null) {
+            signUp(eventID, currUser.uid);
+        } else {
+            console.log("no user");
+        }
+    });
 
     var img = document.createElement("img"); img.src = img_src;
     cardHeader.append(img);
@@ -83,16 +98,16 @@ function renderCards(paginate = false, limit = 3) {
                 //check if the user is signed up for this event
                 if (auth.currentUser != null) {
                     console.log("checking");
-                    db.collection("signups").doc(`${auth.currentUser.uid}_${d.id}`).get().then(doc=>{
-                        if(doc.exists){
+                    db.collection("signups").doc(`${auth.currentUser.uid}_${d.id}`).get().then(doc => {
+                        if (doc.exists) {
                             console.log("detected sign up");
-                            createCard(data.photo_url, data.dateString, data.event_name, data.description, true);
-                        }else{
-                            createCard(data.photo_url, data.dateString, data.event_name, data.description);
+                            createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id, true);
+                        } else {
+                            createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
                         }
                     })
                 } else {
-                    createCard(data.photo_url, data.dateString, data.event_name, data.description);
+                    createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
                 }
             })
         });
@@ -117,4 +132,11 @@ function renderLists(paginate = false, limit = 3) {
                 createList(data.dateString, data.event_name, data.description);
             })
         });
+}
+
+function signUp(eventID, userID) {
+    return db.collection("signups").doc(`${userID}_${eventID}`).set({
+        "uid": userID,
+        "event_id": eventID
+    });
 }
