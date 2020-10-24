@@ -1,4 +1,4 @@
-;//get the data from the inputs
+//get the data from the inputs
 
 //create a doc in members
 
@@ -78,12 +78,11 @@ document.querySelector(".continue-button").addEventListener("click", function (e
                             }).then(()=>{
                                 window.location.assign("/");
                             }).catch(err=>{
-
+                                throw err;
                             });
                         }).catch(err=>{
-
+                            throw err;
                         });
-
                         //redirect to home page
                     }).catch((err) => {
                         console.log("error", err); s
@@ -100,7 +99,7 @@ document.querySelector(".continue-button").addEventListener("click", function (e
                 msg = "Please fill out all fields.";
             }
             if (!valid) {
-                curr_step--;
+                curr_step--; //curr_step was at 4
                 document.querySelector(".account-info .validation-error").innerText = msg;
                 document.querySelector(".account-info .validation-error").style.display = "block";
             }

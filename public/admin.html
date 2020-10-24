@@ -7,49 +7,77 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
-        integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
-        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
+
     <script src="js/init.js" defer></script>
-    <script src="js/profile.js" defer></script>
+    <!-- <script src="js/profile.js" defer></script> -->
     <script src="js/nav.js" defer></script>
     <script src="js/admin.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <script src="js/modal.js" defer></script>
 
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/form_elements.css">
     <title>Document</title>
 </head>
 
 <body>
+
+
     <div class="modal-background">
+        <div class="modal confirm-modal">
+            <h3>Are you sure?</h3>
+            <div class="btn-group">
+                <button id="confirm" class="form-button caution-button hide-modal">Delete All</button>
+                <button id="cancel" class="form-button negative-button hide-modal">No</button>
+            </div>
+        </div>
         <div class="modal create-event-modal container">
             <h1>Create New Event</h1>
             <form class="container">
-                <input type="hidden" id="eventID">
-                <input type="text" id="name" placeholder="Event Name" required>
+                <input type="hidden" id="event-id">
+                <input type="text" id="event-event_name" placeholder="Event Name" required>
 
-                <input type="date" id="date" required>
+                <input type="date" id="event-date" required>
 
-                <input type="text" id="dateString" placeholder="Date Description (e.g Every Thursday)" required>
-                <input type="text" id="photo" placeholder="Image link" required>
+                <input type="text" id="event-dateString" placeholder="Date Description (e.g Every Thursday)" required>
+                <input type="text" id="event-photo_url" placeholder="Image link" required>
 
-                <textarea id="desc" rows="4" placeholder="Description" required></textarea>
+                <textarea id="event-description" rows="4" placeholder="Description" required></textarea>
 
                 <div class="btn-group">
-                    <button id="confirmCreate" class="positive-button hide-modal">Create</button>
-                    <button id="confirmEdit" class="positive-button hide-modal">Edit</button>
-                    <button class="negative-button hide-modal">Cancel</button>
+                    <button id="confirmCreate" class="form-button positive-button hide-modal">Create</button>
+                    <button id="confirmEdit" class="form-button positive-button hide-modal">Edit</button>
+                    <button class="form-button negative-button hide-modal">Cancel</button>
                 </div>
             </form>
         </div>
-        <div class="modal delete-event-modal">
-            <h3>Are you sure?</h3>
+        <div class="modal request-details-modal container">
+            <div class="labelled-text name">
+                <small></small>
+                <h1></h1>
+            </div>
+            <div class="labelled-text hours">
+                <small>HOURS</small>
+                <h1></h1>
+            </div>
+            <div class="details">
+                <h2>REQUEST DETAILS</h2>
+                <p></p>
+            </div>
             <div class="btn-group">
-                <button id="confirm" class="positive-button hide-modal">Delete</button>
-                <button id="cancel" class="negative-button hide-modal">No</button>
+                <button id="acceptRequest" class="form-button positive-button hide-modal">Accept</button>
+                <button id="declineRequest" class="form-button caution-button hide-modal">Decline</button>
+                <button class="form-button negative-button hide-modal">Close</button>
             </div>
         </div>
     </div>
+
+
+
     <!-- img goes here -->
     <div class="logo container">
         <div class="hamburger">
@@ -113,7 +141,6 @@
             </li>
         </ul>
     </nav>
-
     <div class="signin">
         <button class="signin-close">
             <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="34px" height="34px">
@@ -126,34 +153,39 @@
         <div class="signin-form">
             <h2>SIGN IN</h2>
             <form class="container">
-                <div class="input">
+                <div class="labelled-input">
                     <input type="email" id="signin-email" name="email" placeholder=" ">
                     <label for="name"><span class="label-name">Email</span></label>
                 </div>
-                <div class="input">
+                <div class="labelled-input">
                     <input type="password" id="signin-password" name="pass" placeholder=" ">
                     <label for="name"><span class="label-name">Password</span></label>
                 </div>
+                <p class="error login_error"></p>
                 <button id="signin" class="action-button">Sign In</button>
             </form>
         </div>
 
         <div class="profile-info">
             <h1>WELCOME BACK</h1>
-            <h3>Jane Doe</h3>
+            <h3></h3>
             <div class="hours">
                 <h2>HOURS</h2>
                 <div class="hour-info">
-                    <p class="confirmed-hours">10 confirmed</p>
-                    <p class="pending-hours">20 pending</p>
+                    <p class="confirmed-hours"></p>
+                    <p class="pending-hours"></p>
                 </div>
             </div>
+
             <div class="request-hours">
                 <h2>ADD HOURS</h2>
-                <div class="input input-button-group">
-                    <input type="number" placeholder="5">
-                    <button class="action-button add-hours">ADD</button>
+                <p class="error invalid_hours">Invalid hour value.</p>
+                <div class="labelled-input">
+                    <input type="text" class="hours_input" placeholder=" ">
+                    <label for="name"><span class="label-name">Hours</span></label>
                 </div>
+                <textarea name="" class="request_details" cols="30" rows="4" placeholder="What did you do?"></textarea>
+                <button class="add-hours action-button">Add Hours</button>
             </div>
 
             <button id="signout-button" class="action-button">Sign Out</button>
@@ -165,26 +197,24 @@
                 PENDING HOURS
             </h2>
             <div class="btn-group">
-                <button id="authorize-all-pending" class="positive-button">Authorize All</button>
-                <button id="delete-all-pending" class="negative-button">Delete All</button>
+                <button id="authorize-all-pending" class="form-button positive-button">Authorize All</button>
+                <button id="reject-all-pending" class="form-button negative-button">Delete All</button>
             </div>
         </div>
-        <div class="pending-container">
-        </div>
+        <div class="pending-container"></div>
 
         <div class="row">
             <h2>
                 UPCOMING EVENTS
             </h2>
             <div class="btn-group">
-                <button id="addEvent" class="positive-button">Add Event</button>
-                <button id="delete-all-events" class="negative-button">Delete All</button>
+                <button id="add-event" class="form-button positive-button">Add Event</button>
+                <button id="delete-all-events" class="form-button negative-button">Delete All</button>
             </div>
         </div>
 
-        <div class="events_admin-container">
+        <div class="events_admin-container"></div>
 
-        </div>
     </main>
     <footer>
         <h5>

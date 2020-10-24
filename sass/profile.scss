@@ -1,0 +1,87 @@
+@import 'util.scss';
+
+.signin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: $textblue;
+    height: 100vh;
+    width: 0;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+
+
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+
+    .cross {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .signin-form {
+        width: fit-content;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+
+            .labelled-input {
+                width: 300px;
+            }
+        }
+    }
+
+    .profile-info {
+        // display: flex;
+        display: none;
+        flex-direction: column;
+        width: 80%;
+
+        // max-width: ;
+        .hours {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            h2 {
+                width: fit-content;
+            }
+            
+            p{
+                text-align: right;
+            }
+        }
+
+        .request-hours {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+
+            .labelled-input{
+                width: 100%;
+            }
+            textarea{
+                background-color: transparent;
+                outline: none;
+                margin-bottom: 0;
+            }
+            .action-button{
+                margin-top: 0;
+                align-self: center;
+            }
+        }
+        #signout-button{
+            margin-top: 50px;
+        }
+    }
+}

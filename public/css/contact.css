@@ -1,0 +1,64 @@
+.contact-us {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.contact-us a {
+  color: #2a7db0;
+  text-decoration-color: #2a7db0;
+}
+.contact-us .contact-form .input {
+  position: relative;
+  margin-bottom: 40px;
+}
+.contact-us .contact-form .input input {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 18px;
+  padding: 0;
+}
+.contact-us .contact-form .input label {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  pointer-events: none;
+}
+.contact-us .contact-form .input label .label-name {
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
+  color: #5e5e5e;
+  transition: all 0.2s ease;
+}
+.contact-us .contact-form .input input:not(:placeholder-shown) + label .label-name,
+.contact-us .contact-form .input input:focus + label .label-name {
+  bottom: 80%;
+  font-size: 12px;
+  color: #2a7db0;
+}
+.contact-us .contact-form textarea {
+  width: 100%;
+  color: #5e5e5e;
+  border-color: #e2e2e2;
+  padding: 8px;
+  resize: vertical;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.contact-us .contact-form .action-button {
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .contact-us {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=contact.css.map */

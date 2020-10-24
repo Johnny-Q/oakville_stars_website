@@ -14,36 +14,60 @@
 </div>
 */
 window.onload = function () {
-    renderCards(true, 6);
-    renderLists(true, 3);
+    getCards(true, 6);
+    getLists(true, 3);
 }
 
 const cardContainer = document.querySelector(".card-container");
 const listContainer = document.querySelector(".list-container");
 
+//for pagination
 var lastCard = null;
 var lastList = null;
 
-function createCard(img_src, dateString, title, description, eventID, signedup = false) {
+document.querySelector(".current-events-paginate").onclick = () => {
+    getCards(true, 3);
+};
+
+document.querySelector(".past-events-paginate").onclick = () => {
+    getLists(true, 3);
+};
+
+function renderCard(img_src, dateString, title, description, eventID, signedup = false) {
     var cardDiv = createElement("div", "card");
     var cardHeader = createElement("div", "card-header");
     var cardBody = createElement("div", "card-body");
-    var button = createElement("button", "action-button", signedup ? "Signed Up" : "Sign Up");
+    var button = createElement("button", "action-button", signedup ? "Unregister" : "Sign Up");
 
     if (signedup) {
-        button.disabled = true;
+        button.classList.add("disabled");
+        button.onclick = unregisterClick;
+    } else {
+        button.onclick = signUpClick;
     }
 
-    button.addEventListener("click", function (event) {
-        console.log(eventID);
-        this.disabled = true;
-        this.innerText = "Signed Up";
-        if (currUser != null) {
-            signUp(eventID, currUser.uid);
+    function unregisterClick(event) {
+        console.log("asdf");
+        if (Object.keys(currUser).length > 0) {
+            unregister(eventID, currUser.uid).then(() => {
+                button.classList.remove("disabled");
+                button.innerText = "Sign Up";
+                button.onclick = signUpClick;
+            });
+        }
+    }
+    function signUpClick(event) {
+        console.log("ree");
+        if (Object.keys(currUser).length > 0) {
+            signUp(eventID, currUser.uid).then(() => {
+                button.classList.add("disabled");
+                button.innerText = "Unregister";
+                button.onclick = unregisterClick;
+            });
         } else {
             console.log("no user");
         }
-    });
+    }
 
     var img = document.createElement("img"); img.src = img_src;
     cardHeader.append(img);
@@ -58,7 +82,8 @@ function createCard(img_src, dateString, title, description, eventID, signedup =
     cardContainer.append(cardDiv);
 }
 
-function createList(dateString, title, description) {
+
+function renderList(dateString, title, description) {
     var list = createElement("div", "list");
     var date = createElement("h1", "date", dateString);
     var details = createElement("div", "details");
@@ -73,65 +98,81 @@ function createList(dateString, title, description) {
     listContainer.append(list);
 }
 
-function createElement(type, className = "", text = "") {
-    var temp = document.createElement(type);
-    if (className) temp.classList.add(className);
-    if (text) temp.innerText = text;
-    return temp;
-}
-
-function renderCards(paginate = false, limit = 3) {
+//firebase functions
+function getCards(paginate = false, limit = 3) {
     var query = db.collection("events").where("unix", ">=", Date.now()).orderBy("unix");
-
+    var error = false;
     if (paginate) {
         if (lastCard !== null) {
             console.log("applied start After");
-            query = query.startAfter(lastCard);
+            try {
+                query = query.startAfter(lastCard);
+            } catch (err) {
+                error = true;
+            }
         }
-        query = query.limit(limit);
+        if (!error) {
+            query = query.limit(limit);
+        } else {
+            document.querySelector(".current-events-paginate").style.display = "none";
+        }
     }
-    query.get()
-        .then(qs => {
-            lastCard = qs.docs[qs.docs.length - 1];
-            qs.forEach(d => {
-                var data = d.data();
-                //check if the user is signed up for this event
-                if (auth.currentUser != null) {
-                    console.log("checking");
-                    db.collection("signups").doc(`${auth.currentUser.uid}_${d.id}`).get().then(doc => {
-                        if (doc.exists) {
-                            console.log("detected sign up");
-                            createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id, true);
-                        } else {
-                            createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
-                        }
-                    })
-                } else {
-                    createCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
-                }
-            })
-        });
+    if (!error) {
+        query.get()
+            .then(qs => {
+                lastCard = qs.docs[qs.docs.length - 1];
+                qs.forEach(d => {
+                    var data = d.data();
+                    //check if the user is signed up for this event
+                    if (auth.currentUser != null) {
+                        console.log("checking");
+                        db.collection("signups").doc(`${auth.currentUser.uid}_${d.id}`).get().then(doc => {
+                            if (doc.exists) {
+                                console.log("detected sign up");
+                                renderCard(data.photo_url, data.dateString, data.event_name, data.description, d.id, true);
+                            } else {
+                                renderCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
+                            }
+                        })
+                    } else {
+                        renderCard(data.photo_url, data.dateString, data.event_name, data.description, d.id);
+                    }
+                })
+            });
+    }
 }
 
 
-function renderLists(paginate = false, limit = 3) {
+function getLists(paginate = false, limit = 3) {
     var query = db.collection("events").where("unix", "<=", Date.now())
-        .orderBy("unix")
+        .orderBy("unix");
+    var error = false;
     if (paginate) {
         query = query.limit(limit);
         if (lastList !== null) {
             console.log("applied start After");
-            query = query.startAfter(lastList);
+            try {
+                query = query.startAfter(lastCard);
+            } catch (err) {
+                error = true;
+            }
+        }
+        if (!error) {
+            query = query.limit(limit);
+        } else {
+            document.querySelector(".past-events-paginate").style.display = "none";
         }
     }
-    query.get()
-        .then(qs => {
-            lastList = qs.docs[qs.docs.length - 1];
-            qs.forEach(d => {
-                var data = d.data();
-                createList(data.dateString, data.event_name, data.description);
-            })
-        });
+    if (!error) {
+        query.get()
+            .then(qs => {
+                lastList = qs.docs[qs.docs.length - 1];
+                qs.forEach(d => {
+                    var data = d.data();
+                    renderList(data.dateString, data.event_name, data.description);
+                })
+            });
+    }
 }
 
 function signUp(eventID, userID) {
@@ -139,4 +180,15 @@ function signUp(eventID, userID) {
         "uid": userID,
         "event_id": eventID
     });
+}
+
+function unregister(eventID, userID) {
+    return db.collection("signups").doc(`${userID}_${eventID}`).delete();
+}
+
+function createElement(type, className = "", text = "") {
+    var temp = document.createElement(type);
+    if (className) temp.classList.add(className);
+    if (text) temp.innerText = text;
+    return temp;
 }

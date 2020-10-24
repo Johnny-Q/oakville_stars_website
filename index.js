@@ -13,6 +13,7 @@ app.use(cookieparser());
 //rendering
 app.engine("html", require("ejs").renderFile);
 app.use(express.static("public"));
+app.set("views", "public/");
 
 //csrf
 // app.all("*", (req, res, next) => {
@@ -50,68 +51,10 @@ app.get("/signin", (req, res)=>{
 app.get("/copy", (req, res)=>{
     res.render("copy.html");
 });
-
-//signup
-app.get("/signup", (req, res) => {
-    res.render("signup.html");
+app.get("/elements", (req, res)=>{
+    res.render("form_elements.html");
 });
-app.post("/signup", (req, res) => {
-    
+app.get("/modal", (req, res)=>{
+    res.render("modal.html");
 });
-
-//login
-app.get("/login", (req, res) => {
-    const idToken = req.body.idToken.toString();
-
-    const expiresIn = 60 * 60 * 24 * 5 * 1000;
-
-    admin
-        .auth()
-        .createSessionCookie(idToken, { expiresIn })
-        .then(
-            (sessionCookie) => {
-                const options = { maxAge: expiresIn, httpOnly: true };
-                res.cookie("session", sessionCookie, options);
-                res.end(JSON.stringify({ status: "success" }));
-            },
-            (error) => {
-                res.status(401).send("UNAUTHORIZED REQUEST!");
-            }
-        );
-    res.render("login.html");
-});
-
-app.post("/login", (req, res) => {
-
-});
-
-//faker
-app.get("/date", (req, res)=>{
-    var date = faker.date.future();
-    
-    res.send((new Date(date).getTime().toString()));
-});
-
-//profile
-app.get("/profile/:userID", (req, res) => {
-    const sessionCookie = req.cookies.session || "";
-
-    admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-        .then(() => {
-            res.render("profile.html");
-        })
-        .catch((error) => {
-            res.redirect("/login");
-        });
-});
-
-app.post("/logout", (req, res) => {
-    res.clearCookie("session");
-    res.redirect("/login");
-});
-
-//admin
-
 app.listen(3000);

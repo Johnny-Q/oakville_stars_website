@@ -1,8 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-/* begin global components */
 * {
   font-family: "Quicksand", sans-serif;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
 
 html,
@@ -49,7 +52,7 @@ p {
   line-height: 1.5;
 }
 
-button {
+button, input[type=submit] {
   text-decoration: none;
   outline: none;
   border: none;
@@ -57,9 +60,6 @@ button {
 }
 
 .action-button {
-  text-decoration: none;
-  outline: none;
-  border: none;
   text-decoration-style: solid;
   letter-spacing: 0.214em;
   padding: 16px 32px;
@@ -71,7 +71,7 @@ button {
   cursor: pointer;
 }
 
-.action-button:disabled {
+.action-button:disabled, .action-button.disabled {
   background-color: #5e5e5e;
 }
 
@@ -79,8 +79,16 @@ button {
   transform: none;
 }
 
-.action-button:hover {
-  transform: scale(1.05);
+.paginate {
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.paginate h2 {
+  font-size: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
 }
 
 div.logo {
@@ -137,7 +145,6 @@ nav ul {
   flex-wrap: nowrap;
 }
 nav ul li {
-  margin-left: 30px;
   padding-bottom: 5px;
   display: inline-block;
   width: fit-content;
@@ -147,6 +154,9 @@ nav ul li a {
   text-decoration: none;
   color: black;
   letter-spacing: 0.214em;
+}
+nav ul li a span {
+  letter-spacing: 0;
 }
 nav ul li a:hover {
   color: #3b9ad5;
@@ -288,579 +298,6 @@ p {
     font-size: 22px;
   }
 }
-/* end global components */
-/* BEGIN HOME PAGE */
-.hero {
-  position: relative;
-  margin-bottom: 40px;
-}
-.hero img {
-  width: 100%;
-  min-height: 250px;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-}
-.hero .content {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 380px;
-  padding: 40px;
-  background-color: rgba(237, 244, 254, 0.8);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-between;
-  text-align: center;
-}
-.hero .content h2 {
-  color: #3b9ad5;
-  margin: 0;
-}
-.hero .content .text {
-  margin: 20px;
-}
-.hero .content .text h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 48px;
-  letter-spacing: 0.023em;
-  font-weight: 400;
-  margin: 0;
-}
-.hero .content a {
-  background-color: #3b9ad5;
-}
-
-.photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.photo-gallery .img-holder {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-.photo-gallery .img-holder img {
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s ease-in-out;
-  object-fit: cover;
-}
-.photo-gallery .img-holder img:hover {
-  transform: scale(1.2);
-}
-
-.donate {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("//isteam.wsimg.com/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/image1%20(2).jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1920,h:420,cg:true,m/cr=w:1920,h:420,ax:59.13040432272177%25,ay:41.30434782608695%25") no-repeat center;
-  background-size: cover;
-  margin: 10px 0px;
-  padding: 40px 0px;
-  width: 100%;
-}
-.donate h1,
-.donate p {
-  color: white;
-}
-
-@media (max-width: 1000px) {
-  .photo-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 770px) {
-  .hero .content {
-    position: static;
-    width: 100%;
-  }
-  .hero .content .text h1 {
-    display: inline-block;
-    margin: 0px 5px;
-  }
-}
-/* END HOME PAGE */
-/* START ABOUT PAGE */
-.double-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.double-col img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.profile-container .profile {
-  width: 100%;
-  background-color: #edf4fe;
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  text-align: center;
-}
-.profile-container .profile img {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-.profile-container .profile h3 {
-  padding: 20px 20px;
-  margin: auto 0;
-}
-
-.about {
-  padding: 40px;
-  background-color: #edf4fe;
-}
-
-@media (max-width: 1000px) {
-  .double-col {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-  }
-  .double-col img {
-    grid-row: 1/2;
-  }
-
-  .profile-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 500px) {
-  .profile-container {
-    grid-template-columns: 1fr;
-  }
-
-  .about {
-    padding: 20px;
-  }
-}
-/* END ABOUT PAGE */
-/* START EVENTS PAGE */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.card-container .card {
-  display: grid;
-  grid-template-rows: 3fr 3fr 1fr;
-}
-.card-container .card .card-header {
-  overflow: hidden;
-}
-.card-container .card .card-header img {
-  height: 100%;
-  width: 100%;
-  max-height: 240px;
-  object-fit: contain;
-}
-.card-container .card .card-body h3 {
-  margin-top: 0;
-}
-.card-container .card .action-button {
-  justify-self: end;
-  align-self: start;
-}
-
-.list-container .list {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  width: 100%;
-  border-bottom: 1px solid #bfbfbf;
-}
-.list-container .list .date {
-  color: #3b9ad5;
-  text-align: left;
-  justify-self: start;
-}
-
-@media (max-width: 1000px) {
-  .card-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 800px) {
-  .list-container .list {
-    grid-template-columns: 1fr;
-  }
-  .list-container .list .date {
-    text-align: left;
-    align-self: flex-end;
-    justify-self: start;
-    margin-bottom: 0;
-  }
-  .list-container .list .details h3 {
-    margin-top: 0;
-  }
-  .list-container .list .details p {
-    display: none;
-  }
-}
-@media (max-width: 500px) {
-  .card-container {
-    grid-template-columns: 1fr;
-  }
-}
-/* END EVENTS PAGE */
-/* START CONTACT PAGE */
-.contact-us {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-.contact-us a {
-  color: #2a7db0;
-  text-decoration-color: #2a7db0;
-}
-.contact-us .contact-form .input {
-  position: relative;
-  margin-bottom: 40px;
-}
-.contact-us .contact-form .input input {
-  width: 100%;
-  height: 50px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #e2e2e2;
-  font-size: 18px;
-  padding: 0;
-}
-.contact-us .contact-form .input label {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  pointer-events: none;
-}
-.contact-us .contact-form .input label .label-name {
-  position: absolute;
-  bottom: 10px;
-  left: 0px;
-  color: #5e5e5e;
-  transition: all 0.2s ease;
-}
-.contact-us .contact-form .input input:not(:placeholder-shown) + label .label-name,
-.contact-us .contact-form .input input:focus + label .label-name {
-  bottom: 80%;
-  font-size: 12px;
-  color: #2a7db0;
-}
-.contact-us .contact-form textarea {
-  width: 100%;
-  color: #5e5e5e;
-  border-color: #e2e2e2;
-  padding: 8px;
-  resize: vertical;
-  font-size: 18px;
-  line-height: 1.75;
-  margin-bottom: 40px;
-}
-.contact-us .contact-form .action-button {
-  width: 100%;
-}
-
-@media (max-width: 1000px) {
-  .contact-us {
-    grid-template-columns: 1fr;
-  }
-}
-/* END CONTACT PAGE */
-.labelled-text {
-  display: grid;
-  grid-template-rows: 30px 1fr;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-.labelled-text small {
-  align-self: end;
-}
-.labelled-text h1 {
-  margin: 0;
-  text-align: left;
-}
-.labelled-text p {
-  margin: 0;
-}
-
-.btn-group {
-  width: fit-content;
-  height: fit-content;
-  font-size: 0;
-  white-space: nowrap;
-}
-.btn-group .action-button {
-  transition: none;
-}
-.btn-group .action-button:hover {
-  transform: none;
-}
-.btn-group .delete-button {
-  padding: 16px;
-  background-color: lightgray;
-}
-
-.events_admin-container .events_admin {
-  height: 100px;
-  display: grid;
-  grid-template-columns: 20px repeat(12, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: "checkbox name name name name name name date date count empty3 button button";
-  background-color: #edf4fe;
-  align-items: center;
-  padding: 20px;
-  margin: 20px 0;
-}
-.events_admin-container .events_admin input[type=checkbox] {
-  grid-area: checkbox;
-}
-.events_admin-container .events_admin .name {
-  padding-left: 20px;
-  grid-area: name;
-}
-.events_admin-container .events_admin .name h2 {
-  margin: 0;
-  color: black;
-}
-.events_admin-container .events_admin .date {
-  grid-area: date;
-}
-.events_admin-container .events_admin .count {
-  grid-area: count;
-}
-.events_admin-container .events_admin .btn-group {
-  justify-self: end;
-  grid-area: button;
-}
-
-@media (max-width: 1000px) {
-  .events_admin-container .events_admin small {
-    font-size: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .btn-group .action-button {
-    padding: 8px 16px;
-  }
-  .btn-group .delete-button {
-    padding: 8px;
-  }
-}
-@media (max-width: 800px) {
-  .events_admin-container .events_admin {
-    height: fit-content;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 20px repeat(3, 1fr);
-    grid-template-areas: "empty checkbox" "name name" "date count" "button button";
-  }
-  .events_admin-container .events_admin input[type=checkbox] {
-    justify-self: end;
-  }
-  .events_admin-container .events_admin .name {
-    padding: 0;
-  }
-  .events_admin-container .events_admin .btn-group {
-    justify-self: center;
-    grid-area: button;
-    padding: 8px 16px;
-  }
-}
-.pending-container .pending {
-  display: grid;
-  grid-template-columns: 30px 1fr 70px 1fr;
-  justify-items: start;
-  align-items: center;
-  background-color: #edf4fe;
-  padding: 20px;
-  margin: 20px 0;
-}
-.pending-container .pending .member-name {
-  width: 100%;
-  overflow: hidden;
-}
-.pending-container .pending .member-name h1 {
-  text-align: left;
-  margin: 0;
-}
-.pending-container .pending .hours h1 {
-  text-align: left;
-  margin: 0;
-}
-.pending-container .pending .btn-group {
-  justify-self: end;
-  align-self: center;
-}
-
-@media (max-width: 1000px) {
-  .pending-container .pending small {
-    font-size: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .btn-group .action-button {
-    padding: 8px 16px;
-  }
-  .btn-group .delete-button {
-    padding: 8px;
-  }
-}
-@media (max-width: 800px) {
-  .pending-container .pending {
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 20px 1fr 1fr;
-    grid-template-areas: "empty checkbox" "name  hours" "button  button";
-    row-gap: 20px;
-  }
-  .pending-container .pending .member-name {
-    grid-area: name;
-  }
-  .pending-container .pending .hours {
-    grid-area: hours;
-    justify-self: center;
-  }
-  .pending-container .pending input[type=checkbox] {
-    grid-area: checkbox;
-    justify-self: end;
-  }
-  .pending-container .pending .btn-group {
-    justify-self: center;
-    grid-area: button;
-  }
-}
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  display: none;
-}
-
-.modal {
-  background-color: white;
-  z-index: 3;
-  margin: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  text-align: center;
-  display: none;
-  display: none;
-}
-.modal h3 {
-  grid-area: text;
-}
-.modal .btn-group {
-  width: fit-content;
-  height: fit-content;
-}
-
-.positive-button {
-  padding: 20px;
-  letter-spacing: 0.125em;
-  font-size: 18px;
-  color: #3b9ad5;
-  background-color: #edf4fe;
-}
-
-.negative-button {
-  padding: 20px;
-  letter-spacing: 0.125em;
-  font-size: 18px;
-  color: #1b1b1b;
-  background-color: #f0f0f0;
-}
-
-.delete-event-modal .btn-group .positive-button {
-  color: red;
-  background-color: #ffdbd9;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-}
-.row .btn-group .positive-button {
-  background: transparent;
-}
-.row .btn-group .negative-button {
-  background: transparent;
-}
-
-.create-event-modal form {
-  width: 90%;
-  max-width: 1000px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "name name" "date datestring" "photo photo" "textbox textbox" "empty button";
-  gap: 30px;
-}
-.create-event-modal form input {
-  width: 100%;
-  height: 50px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #e2e2e2;
-  font-size: 18px;
-  padding: 0;
-}
-.create-event-modal form #name {
-  grid-area: name;
-}
-.create-event-modal form #date {
-  grid-area: date;
-}
-.create-event-modal form #dateString {
-  grid-area: datestring;
-}
-.create-event-modal form #photo {
-  grid-area: photo;
-}
-.create-event-modal form #desc {
-  grid-area: textbox;
-}
-.create-event-modal form textarea {
-  width: 100%;
-  color: #5e5e5e;
-  border-color: #e2e2e2;
-  padding: 8px;
-  resize: vertical;
-  font-size: 18px;
-  line-height: 1.75;
-  margin-bottom: 40px;
-}
-.create-event-modal form .btn-group {
-  grid-area: button;
-  justify-self: end;
-  align-self: end;
-}
-
-@media (max-width: 900px) {
-  .create-event-modal form {
-    grid-template-columns: 1fr;
-    grid-template-areas: "name" "date" "datestring" "photo" "textbox" "button";
-  }
-}
 .signin {
   position: fixed;
   top: 0;
@@ -892,41 +329,8 @@ p {
   align-items: center;
   width: fit-content;
 }
-.signin .signin-form form .input {
-  position: relative;
-  margin-bottom: 40px;
+.signin .signin-form form .labelled-input {
   width: 300px;
-}
-.signin .signin-form form .input input {
-  background-color: #edf4fe;
-  width: 100%;
-  height: 50px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #3b9ad5;
-  font-size: 18px;
-  padding: 0;
-}
-.signin .signin-form form .input label {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  pointer-events: none;
-}
-.signin .signin-form form .input label .label-name {
-  position: absolute;
-  bottom: 10px;
-  left: 0px;
-  color: #5e5e5e;
-  transition: all 0.2s ease;
-}
-.signin .signin-form form .input input:not(:placeholder-shown) + label .label-name,
-.signin .signin-form form .input input:focus + label .label-name {
-  bottom: 80%;
-  font-size: 12px;
-  color: #2a7db0;
 }
 .signin .profile-info {
   display: none;
@@ -941,79 +345,47 @@ p {
 .signin .profile-info .hours h2 {
   width: fit-content;
 }
+.signin .profile-info .hours p {
+  text-align: right;
+}
 .signin .profile-info .request-hours {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 }
-.signin .profile-info .request-hours .input-button-group {
-  font-size: 0;
-  height: fit-content;
-  width: fit-content;
-  margin: 20px 0;
-  border-bottom: 1px solid #3b9ad5;
+.signin .profile-info .request-hours .labelled-input {
+  width: 100%;
 }
-.signin .profile-info .request-hours .input-button-group input[type=number] {
-  -webkit-appearance: none;
-  -webkit-appearance: textfield;
-  background-color: #edf4fe;
-  width: 40px;
-  height: 100%;
+.signin .profile-info .request-hours textarea {
+  background-color: transparent;
   outline: none;
-  border: none;
-  font-size: 18px;
-  padding: 0px;
+  margin-bottom: 0;
 }
-.signin .profile-info .request-hours .input-button-group .action-button {
-  background-color: #edf4fe;
-  color: #3b9ad5;
-  height: fit-content;
-  padding: 0px;
-  transition: none;
+.signin .profile-info .request-hours .action-button {
+  margin-top: 0;
+  align-self: center;
 }
-.signin .profile-info .request-hours .input-button-group .action-button:hover {
-  transform: none;
+.signin .profile-info #signout-button {
+  margin-top: 50px;
 }
 
-.register-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 52px;
-  grid-template-areas: "tabs form" "empty button";
-  column-gap: 100px;
-}
-.register-page .tabs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  grid-area: tabs;
-}
-.register-page .tabs .form_step {
-  color: #5e5e5e;
-}
-.register-page .tabs .form_step.active {
-  color: #3b9ad5;
-}
-.register-page .register-form {
-  grid-area: form;
-}
-.register-page .register-form .input {
+.labelled-input {
   position: relative;
   margin-bottom: 40px;
-  width: 300px;
+  background-color: transparent;
 }
-.register-page .register-form .input input {
-  background-color: white;
+.labelled-input input {
+  background-color: transparent;
   width: 100%;
   height: 50px;
   outline: none;
   border: none;
-  border-bottom: 1px solid #3b9ad5;
+  border-bottom: 1px solid #e2e2e2;
   font-size: 18px;
   padding: 0;
 }
-.register-page .register-form .input label {
+.labelled-input label {
   position: absolute;
   bottom: 0px;
   left: 0;
@@ -1021,74 +393,95 @@ p {
   height: 50px;
   pointer-events: none;
 }
-.register-page .register-form .input label .label-name {
+.labelled-input label .label-name {
   position: absolute;
   bottom: 10px;
   left: 0px;
   color: #5e5e5e;
   transition: all 0.2s ease;
 }
-.register-page .register-form .input input:not(:placeholder-shown) + label .label-name,
-.register-page .register-form .input input:focus + label .label-name {
+.labelled-input input:not(:placeholder-shown) + label .label-name,
+.labelled-input input:focus + label .label-name {
   bottom: 80%;
   font-size: 12px;
   color: #2a7db0;
 }
-.register-page .register-form .validation-error {
+
+.placeholder-input {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 18px;
+  padding: 0;
+}
+
+.error {
   color: red;
   display: none;
+  margin: 0;
+  padding: 0;
 }
-.register-page .register-form select {
+
+.delete-button {
+  padding: 16px;
+  background-color: lightgray;
+}
+
+.btn-group .action-button:hover {
+  transform: none;
+}
+
+.form-button {
+  padding: 20px;
+  letter-spacing: 0.125em;
+  font-size: 18px;
+}
+
+.positive-button {
+  color: #3b9ad5;
+  background-color: #edf4fe;
+}
+
+.caution-button {
+  color: red;
+  background-color: #ffdbd9;
+}
+
+.negative-button {
+  color: #1b1b1b;
+  background-color: #f0f0f0;
+}
+
+textarea {
+  width: 100%;
+  color: #5e5e5e;
+  border-color: #e2e2e2;
+  padding: 8px;
+  resize: vertical;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+
+select {
   margin-bottom: 40px;
   font-size: 18px;
   width: 300px;
 }
-.register-page .register-form .member-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-.register-page .register-form .tac {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  display: none;
-}
-.register-page .register-form .account-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  display: none;
-}
-.register-page .register-form .checkbox-agree {
-  margin-bottom: 20px;
-}
-.register-page .btn-group {
-  grid-area: button;
-}
-.register-page .btn-group .goback-button {
-  display: none;
-  background-color: transparent;
-}
 
+@media (max-width: 800px) {
+  .btn-group {
+    justify-self: center;
+  }
+}
 @media (max-width: 600px) {
-  .register-page {
-    grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr 52px;
-    grid-template-areas: "tabs" "form" "button";
-    gap: 20px;
+  .btn-group .action-button, .btn-group .form-button {
+    padding: 8px 16px;
   }
-  .register-page .tabs {
-    align-items: flex-start;
-  }
-  .register-page .form_step {
-    display: none;
-  }
-  .register-page .form_step.active {
-    display: block;
+  .btn-group .delete-button {
+    padding: 8px;
   }
 }
 

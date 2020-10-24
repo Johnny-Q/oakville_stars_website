@@ -7,15 +7,19 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
-        integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
-        crossorigin="anonymous"></script>
+
     <script src="js/init.js" defer></script>
     <script src="js/profile.js" defer></script>
     <script src="js/nav.js" defer></script>
     <script src="js/register.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form_elements.css">
+    <link rel="stylesheet" href="css/register.css">
+
 
     <title>Document</title>
 </head>
@@ -38,22 +42,22 @@
     <nav>
         <ul>
             <li>
-                <a href="/">HOME</a>
+                <a href="/">HOM<span>E</span></a>
             </li>
             <li>
-                <a href="/about">ABOUT US</a>
+                <a href="/about">ABOUT U<span>S</span></a>
             </li>
             <li>
-                <a href="/events">EVENTS</a>
+                <a href="/events">EVENT<span>S</span></a>
             </li>
             <li>
-                <a href="/contact">CONTACT</a>
+                <a href="/contact">CONTAC<span>T</span></a>
             </li>
-            <li>
-                <a href="/register">REGISTER</a>
+            <li class="active">
+                <a href="/register">REGISTE<span>R</span></a>
             </li>
             <li class="profile">
-                <a class="signin-open" href="#">SIGN IN</a>
+                <a class="signin-open" href="#">SIGN I<span>N</span></a>
             </li>
         </ul>
     </nav>
@@ -76,7 +80,7 @@
             <li>
                 <a href="/contact">CONTACT</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="/register">REGISTER</a>
             </li>
             <li class="profile">
@@ -84,7 +88,6 @@
             </li>
         </ul>
     </nav>
-
     <div class="signin">
         <button class="signin-close">
             <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="34px" height="34px">
@@ -97,40 +100,44 @@
         <div class="signin-form">
             <h2>SIGN IN</h2>
             <form class="container">
-                <div class="input">
+                <div class="labelled-input">
                     <input type="email" id="signin-email" name="email" placeholder=" ">
                     <label for="name"><span class="label-name">Email</span></label>
                 </div>
-                <div class="input">
+                <div class="labelled-input">
                     <input type="password" id="signin-password" name="pass" placeholder=" ">
                     <label for="name"><span class="label-name">Password</span></label>
                 </div>
+                <p class="error login_error"></p>
                 <button id="signin" class="action-button">Sign In</button>
             </form>
         </div>
 
         <div class="profile-info">
             <h1>WELCOME BACK</h1>
-            <h3>Jane Doe</h3>
+            <h3></h3>
             <div class="hours">
                 <h2>HOURS</h2>
                 <div class="hour-info">
-                    <p class="confirmed-hours">10 confirmed</p>
-                    <p class="pending-hours">20 pending</p>
+                    <p class="confirmed-hours"></p>
+                    <p class="pending-hours"></p>
                 </div>
             </div>
+
             <div class="request-hours">
                 <h2>ADD HOURS</h2>
-                <div class="input input-button-group">
-                    <input type="number" placeholder="5">
-                    <button class="action-button add-hours">ADD</button>
+                <p class="error invalid_hours">Invalid hour value.</p>
+                <div class="labelled-input">
+                    <input type="text" class="hours_input" placeholder=" ">
+                    <label for="name"><span class="label-name">Hours</span></label>
                 </div>
+                <textarea name="" class="request_details" cols="30" rows="4" placeholder="What did you do?"></textarea>
+                <button class="add-hours action-button">Add Hours</button>
             </div>
 
             <button id="signout-button" class="action-button">Sign Out</button>
         </div>
     </div>
-
     <main>
         <!-- 
             child firstname, lastname
@@ -162,28 +169,28 @@
             </div>
             <form action="" class="register-form">
                 <div class="member-info">
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="child_fullname" placeholder=" ">
                         <label for="child_fullname"><span class="label-name">Child's Full Name</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="parent_fullname" placeholder=" ">
                         <label for="parent_fullname"><span class="label-name">Parent's Full Name</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="contact_email" placeholder=" ">
                         <label for="contact_email"><span class="label-name">Email</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="mailing_address" placeholder=" ">
                         <label for="mailing_address"><span class="label-name">Mailing Address</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="tel" name="phone" placeholder=" ">
                         <label for="phone"><span class="label-name">Phone</span></label>
                     </div>
 
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="date" name="child_dob" placeholder=" ">
                         <label for="child_dob"><span class="label-name">Child's Date of Birth</span></label>
                     </div>
@@ -227,13 +234,15 @@
                         <option value="Other"> Other </option>
                     </select>
 
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="emergency_contact_name" placeholder=" ">
-                        <label for="emergency_contact_name"><span class="label-name">Emergency Contact Full Name</span></label>
+                        <label for="emergency_contact_name"><span class="label-name">Emergency Contact Full
+                                Name</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="text" name="emergency_contact_phone" placeholder=" ">
-                        <label for="emergency_contact_phone"><span class="label-name">Emergency Contact Phone</span></label>
+                        <label for="emergency_contact_phone"><span class="label-name">Emergency Contact
+                                Phone</span></label>
                     </div>
                     <p class="validation-error">Please fill out all fields.</p>
                 </div>
@@ -288,15 +297,15 @@
                 </div>
 
                 <div class="account-info">
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="email" name="reg_email" placeholder=" ">
                         <label for="email"><span class="label-name">Email</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="password" name="reg_password" placeholder=" ">
                         <label for="password"><span class="label-name">Password</span></label>
                     </div>
-                    <div class="input">
+                    <div class="labelled-input">
                         <input type="password" name="reg_password_conf" placeholder=" ">
                         <label for="pasword_conf"><span class="label-name">Confirm Password</span></label>
                     </div>

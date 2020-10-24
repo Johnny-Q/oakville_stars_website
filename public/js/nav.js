@@ -16,7 +16,6 @@ if (hamburgerClick) {
     });
 }
 
-
 const signIn = document.querySelector(".signin");
 const signInClose = document.querySelector(".signin-close");
 const openSignin = document.querySelectorAll(".signin-open");

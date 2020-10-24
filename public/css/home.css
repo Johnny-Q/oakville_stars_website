@@ -1,0 +1,101 @@
+.hero {
+  position: relative;
+  margin-bottom: 40px;
+}
+.hero img {
+  width: 100%;
+  min-height: 250px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+.hero .content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 380px;
+  padding: 40px;
+  background-color: rgba(237, 244, 254, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  text-align: center;
+}
+.hero .content h2 {
+  color: #3b9ad5;
+  margin: 0;
+}
+.hero .content .text {
+  margin: 20px;
+}
+.hero .content .text h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  letter-spacing: 0.023em;
+  font-weight: 400;
+  margin: 0;
+}
+.hero .content a {
+  background-color: #3b9ad5;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.photo-gallery .img-holder {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.photo-gallery .img-holder img {
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+  object-fit: cover;
+}
+.photo-gallery .img-holder img:hover {
+  transform: scale(1.2);
+}
+
+.donate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("//isteam.wsimg.com/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/image1%20(2).jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1920,h:420,cg:true,m/cr=w:1920,h:420,ax:59.13040432272177%25,ay:41.30434782608695%25") no-repeat center;
+  background-size: cover;
+  margin: 10px 0px;
+  padding: 40px 0px;
+  width: 100%;
+}
+.donate h1,
+.donate p {
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .photo-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 770px) {
+  .hero .content {
+    position: static;
+    width: 100%;
+  }
+  .hero .content .text h1 {
+    display: inline-block;
+    margin: 0px 5px;
+  }
+}
+
+/*# sourceMappingURL=home.css.map */

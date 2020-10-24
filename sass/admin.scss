@@ -1,0 +1,349 @@
+@import 'util.scss';
+.labelled-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    small {
+        width: 100%;
+    }
+
+    h2,
+    h1,
+    p {
+        margin: 0;
+        width: 100%;
+        color: black;
+        text-align: inherit;
+    }
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .btn-group {
+        .positive-button {
+            background: transparent;
+        }
+
+        .negative-button {
+            background: transparent;
+        }
+    }
+}
+
+.pending-container {
+    .pending {
+        display: grid;
+        grid-template-columns: 30px 1fr 70px 1fr;
+        justify-items: start;
+        align-items: center;
+        background-color: $textblue;
+        padding: 20px;
+        margin: 20px 0;
+
+        .member-name {
+            width: 100%;
+            overflow: hidden;
+
+            h1 {
+                text-align: left;
+                margin: 0;
+            }
+        }
+
+        .hours {
+            h1 {
+                text-align: left;
+                margin: 0;
+            }
+        }
+
+        .btn-group {
+            justify-self: end;
+            align-self: center;
+        }
+    }
+}
+
+@media (max-width:1000px) {
+
+    //change text size and padding
+    .pending-container {
+        .pending {
+            small {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+// @media (max-width:600px) {
+//     .btn-group {
+//         .action-button {
+//             padding: 8px 16px;
+//         }
+
+//         .delete-button {
+//             padding: 8px;
+//         }
+//     }
+// }
+
+@media (max-width: 800px) {
+    .pending-container {
+        .pending {
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 20px 1fr 1fr;
+            grid-template-areas:
+                "empty checkbox"
+                "name  hours"
+                "button  button";
+            row-gap: 20px;
+
+            .member-name {
+                grid-area: name;
+            }
+
+            .hours {
+                grid-area: hours;
+                justify-self: center;
+            }
+
+            input[type='checkbox'] {
+                grid-area: checkbox;
+                justify-self: end;
+            }
+
+            .btn-group {
+                justify-self: center;
+                grid-area: button;
+            }
+        }
+    }
+}
+
+.events_admin-container {
+    .events_admin {
+        height: 100px;
+        display: grid;
+        // grid-template-columns: 30px 3fr 1fr 1fr 2fr;
+        grid-template-columns: 20px repeat(12, 1fr);
+        grid-template-rows: 1fr;
+        grid-template-areas: "checkbox name name name name name name date date button button button button";
+        // gap: 10px;
+        background-color: $textblue;
+        align-items: center;
+        padding: 20px;
+        margin: 20px 0;
+
+        input[type='checkbox'] {
+            grid-area: checkbox;
+        }
+
+        .name {
+            padding-left: 20px;
+            grid-area: name;
+        }
+
+        .date {
+            grid-area: date;
+        }
+
+        .btn-group {
+            justify-self: end;
+            grid-area: button;
+        }
+
+    }
+}
+
+
+@media (max-width:1000px) {
+
+    //change text size and padding
+    .labelled-text {
+        small {
+            font-size: 10px;
+        }
+    }
+}
+
+@media(max-width: 600px) {
+    .btn-group {
+        .action-button {
+            padding: 8px 16px;
+        }
+
+        .delete-button {
+            padding: 8px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .events_admin-container {
+        .events_admin {
+            height: fit-content;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 20px repeat(3, 1fr);
+            grid-template-areas:
+                "empty checkbox"
+                "name name"
+                "date date"
+                "button button";
+
+            input[type='checkbox'] {
+                justify-self: end;
+            }
+
+            .name {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    display: none;
+}
+
+.modal {
+    background-color: white;
+    z-index: 3;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+
+    .btn-group {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    display: none;
+}
+
+.create-event-modal {
+    form {
+        width: 90%;
+        max-width: 1000px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "name name"
+            "date datestring"
+            "photo photo"
+            "textbox textbox"
+            "empty button";
+        gap: 30px;
+
+        input {
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgb(226, 226, 226);
+            font-size: 18px;
+            padding: 0;
+        }
+
+        #event-event_name {
+            grid-area: name;
+        }
+
+        #event-date {
+            grid-area: date;
+        }
+
+        #event-dateString {
+            grid-area: datestring;
+        }
+
+        #event-photo_url {
+            grid-area: photo;
+        }
+
+        #event-description {
+            grid-area: textbox;
+        }
+
+        textarea {
+            width: 100%;
+            color: rgb(94, 94, 94);
+            border-color: rgb(226, 226, 226);
+            padding: 8px;
+            resize: vertical;
+            font-size: 18px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        .btn-group {
+            grid-area: button;
+            justify-self: end;
+            align-self: end;
+        }
+
+    }
+}
+
+@media (max-width: 900px) {
+    .create-event-modal {
+        form {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "name"
+                "date"
+                "datestring"
+                "photo"
+                "textbox"
+                "button";
+        }
+    }
+}
+
+.request-details-modal{
+    display: grid;
+    max-width: 600px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "name hours"
+        "text text"
+        "button button";
+    justify-items: start;
+    align-items: start;
+    text-align: left;
+    .name{
+        grid-area: name;
+    }
+    .hours{
+        grid-area: hours;
+    }
+    .details{
+        grid-area: text
+    }
+    .btn-group{
+        grid-area: button;
+        justify-self: end;
+    }
+    display: none;
+}

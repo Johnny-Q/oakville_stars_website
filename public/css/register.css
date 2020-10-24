@@ -1,0 +1,80 @@
+.register-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 52px;
+  grid-template-areas: "tabs form" "empty button";
+  column-gap: 100px;
+}
+.register-page .tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  grid-area: tabs;
+}
+.register-page .tabs .form_step {
+  color: #5e5e5e;
+}
+.register-page .tabs .form_step.active {
+  color: #3b9ad5;
+}
+.register-page .register-form {
+  grid-area: form;
+}
+.register-page .register-form .labelled-input {
+  width: 300px;
+}
+.register-page .register-form .validation-error {
+  color: red;
+  display: none;
+}
+.register-page .register-form .member-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.register-page .register-form .tac {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  display: none;
+}
+.register-page .register-form .account-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  display: none;
+}
+.register-page .register-form .checkbox-agree {
+  margin-bottom: 20px;
+}
+.register-page .btn-group {
+  grid-area: button;
+}
+.register-page .btn-group .goback-button {
+  display: none;
+  background-color: transparent;
+}
+
+@media (max-width: 600px) {
+  .register-page {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr 52px;
+    grid-template-areas: "tabs" "form" "button";
+    gap: 20px;
+  }
+  .register-page .tabs {
+    align-items: flex-start;
+  }
+  .register-page .form_step {
+    display: none;
+  }
+  .register-page .form_step.active {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=register.css.map */

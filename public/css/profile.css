@@ -1,0 +1,73 @@
+.signin {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #edf4fe;
+  height: 100vh;
+  width: 0;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.signin .cross {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.signin .signin-form {
+  width: fit-content;
+}
+.signin .signin-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.signin .signin-form form .labelled-input {
+  width: 300px;
+}
+.signin .profile-info {
+  display: none;
+  flex-direction: column;
+  width: 80%;
+}
+.signin .profile-info .hours {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.signin .profile-info .hours h2 {
+  width: fit-content;
+}
+.signin .profile-info .hours p {
+  text-align: right;
+}
+.signin .profile-info .request-hours {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+.signin .profile-info .request-hours .labelled-input {
+  width: 100%;
+}
+.signin .profile-info .request-hours textarea {
+  background-color: transparent;
+  outline: none;
+  margin-bottom: 0;
+}
+.signin .profile-info .request-hours .action-button {
+  margin-top: 0;
+  align-self: center;
+}
+.signin .profile-info #signout-button {
+  margin-top: 50px;
+}
+
+/*# sourceMappingURL=profile.css.map */
