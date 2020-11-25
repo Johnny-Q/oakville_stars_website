@@ -112,7 +112,17 @@
 
         <div class="profile-info">
             <h1>WELCOME BACK</h1>
-            <h3></h3>
+            <div class="row">
+                <h3></h3>
+                <div class="btn-group">
+                    <button class="form-button positive-button" id="view-profile">
+                        View Profile
+                    </button>
+                    <button class="form-button negative-button" id="signout-button">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
             <div class="hours">
                 <h2>HOURS</h2>
                 <div class="hour-info">
@@ -124,15 +134,20 @@
             <div class="request-hours">
                 <h2>ADD HOURS</h2>
                 <p class="error invalid_hours">Invalid hour value.</p>
-                <div class="labelled-input">
-                    <input type="text" class="hours_input" placeholder=" ">
-                    <label for="name"><span class="label-name">Hours</span></label>
+                <div class="row">
+                    <div class="labelled-input">
+                        <input type="text" class="hours_input" placeholder=" ">
+                        <label for="name"><span class="label-name">Hours</span></label>
+                    </div>
+                    <div class="labelled-input">
+                        <input type="date" class="date_input" placeholder=" ">
+                        <label for="name"><span class="label-name">Date</span></label>
+                    </div>
                 </div>
-                <textarea name="" class = "request_details" cols="30" rows="4" placeholder="What did you do?"></textarea>
+                <textarea name="" class="request_details" cols="30" rows="4" placeholder="What did you do?"></textarea>
                 <button class="add-hours action-button">Add Hours</button>
             </div>
 
-            <button id="signout-button" class="action-button">Sign Out</button>
         </div>
     </div>
     <!-- cards container -->

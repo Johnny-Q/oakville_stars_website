@@ -1,13 +1,16 @@
 @import 'util.scss';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 * {
     font-family: 'Quicksand', sans-serif;
     box-sizing: border-box;
     // border: 1px red solid;
 }
-a{
+
+a {
     text-decoration: none;
 }
+
 html,
 body {
     margin: 0;
@@ -52,7 +55,8 @@ p {
     line-height: 1.5;
 }
 
-button, input[type=submit]{
+button,
+input[type=submit] {
     text-decoration: none;
     outline: none;
     border: none;
@@ -75,7 +79,8 @@ button, input[type=submit]{
     cursor: pointer;
 }
 
-.action-button:disabled, .action-button.disabled {
+.action-button:disabled,
+.action-button.disabled {
     background-color: $gray;
 }
 
@@ -92,7 +97,8 @@ button, input[type=submit]{
     display: flex;
     width: 100%;
     justify-content: center;
-    h2{
+
+    h2 {
         font-size: 12px;
         cursor: pointer;
         -webkit-user-select: none;
@@ -164,7 +170,8 @@ nav {
                 text-decoration: none;
                 color: black;
                 letter-spacing: 0.214em;
-                span{
+
+                span {
                     letter-spacing: 0;
                 }
             }
@@ -179,7 +186,7 @@ nav {
         }
     }
 
-    ul > :first-child {
+    ul> :first-child {
         margin-left: 0;
     }
 }
@@ -386,6 +393,40 @@ footer {
         flex-direction: column;
         width: 80%;
 
+        .row {
+            //make it unselectable
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+
+            h3 {
+                justify-self: flex-start;
+                margin: 0;
+            }
+
+            .btn-group {
+                justify-self: flex-end;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+
+                button {
+                    background-color: transparent;
+                    margin: 0;
+                    padding: 0;
+                    margin-left: 10px;
+                    font-size: 16px;
+                    height: fit-content;
+                }
+            }
+        }
+
         // max-width: ;
         .hours {
             display: flex;
@@ -395,8 +436,8 @@ footer {
             h2 {
                 width: fit-content;
             }
-            
-            p{
+
+            p {
                 text-align: right;
             }
         }
@@ -407,21 +448,55 @@ footer {
             justify-content: space-between;
             align-items: start;
 
-            .labelled-input{
+            .row {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                border: none;
+            }
+
+            .labelled-input {
                 width: 100%;
             }
-            textarea{
+
+            textarea {
                 background-color: transparent;
                 outline: none;
                 margin-bottom: 0;
             }
-            .action-button{
+
+            .action-button {
                 margin-top: 0;
                 align-self: center;
+                width: 100%;
             }
         }
-        #signout-button{
-            margin-top: 50px;
+    }
+}
+
+@media(max-width: 550px) {
+    .signin {
+        .profile-info {
+            .row {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+
+                .btn-group {
+                    width: 100%;
+                    justify-content: space-between;
+
+                    button {
+                        margin: 0;
+                    }
+                }
+            }
+
+            .request-hours {
+                .row {
+                    flex-direction: column;
+                }
+            }
         }
     }
 }
@@ -478,7 +553,7 @@ footer {
     padding: 0;
 }
 
-.error{
+.error {
     color: $red;
     display: none;
     margin: 0;
@@ -533,6 +608,7 @@ select {
     font-size: 18px;
     width: 300px;
 }
+
 @media (max-width: 1000px) {}
 
 @media(max-width: 800px) {
@@ -545,7 +621,9 @@ select {
 
 @media(max-width: 600px) {
     .btn-group {
-        .action-button, .form-button {
+
+        .action-button,
+        .form-button {
             padding: 8px 16px;
         }
 

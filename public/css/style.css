@@ -52,7 +52,8 @@ p {
   line-height: 1.5;
 }
 
-button, input[type=submit] {
+button,
+input[type=submit] {
   text-decoration: none;
   outline: none;
   border: none;
@@ -71,7 +72,8 @@ button, input[type=submit] {
   cursor: pointer;
 }
 
-.action-button:disabled, .action-button.disabled {
+.action-button:disabled,
+.action-button.disabled {
   background-color: #5e5e5e;
 }
 
@@ -337,6 +339,34 @@ p {
   flex-direction: column;
   width: 80%;
 }
+.signin .profile-info .row {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+.signin .profile-info .row h3 {
+  justify-self: flex-start;
+  margin: 0;
+}
+.signin .profile-info .row .btn-group {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.signin .profile-info .row .btn-group button {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 16px;
+  height: fit-content;
+}
 .signin .profile-info .hours {
   display: flex;
   flex-direction: row;
@@ -354,6 +384,13 @@ p {
   justify-content: space-between;
   align-items: start;
 }
+.signin .profile-info .request-hours .row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  border: none;
+}
 .signin .profile-info .request-hours .labelled-input {
   width: 100%;
 }
@@ -365,11 +402,25 @@ p {
 .signin .profile-info .request-hours .action-button {
   margin-top: 0;
   align-self: center;
-}
-.signin .profile-info #signout-button {
-  margin-top: 50px;
+  width: 100%;
 }
 
+@media (max-width: 550px) {
+  .signin .profile-info .row {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .signin .profile-info .row .btn-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .signin .profile-info .row .btn-group button {
+    margin: 0;
+  }
+  .signin .profile-info .request-hours .row {
+    flex-direction: column;
+  }
+}
 .labelled-input {
   position: relative;
   margin-bottom: 40px;
@@ -477,7 +528,8 @@ select {
   }
 }
 @media (max-width: 600px) {
-  .btn-group .action-button, .btn-group .form-button {
+  .btn-group .action-button,
+.btn-group .form-button {
     padding: 8px 16px;
   }
   .btn-group .delete-button {

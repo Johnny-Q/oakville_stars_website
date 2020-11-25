@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
-    
+
     <script src="js/init.js" defer></script>
     <script src="js/profile.js" defer></script>
     <script src="js/nav.js" defer></script>
-    <script src="js/gallery.js" defer></script>
-    
+    <script src="js/profile_information.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/form_elements.css">
+    <link rel="stylesheet" href="css/profile_information.css">
 
-    <title>Document</title>
+    <title>Profile Information - Oakville STARZ</title>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
     </div>
     <nav>
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">HOM<span>E</span></a>
             </li>
             <li>
@@ -66,7 +67,7 @@
             </path>
         </svg>
         <ul>
-            <li class="active">
+            <li>
                 <a href="/">HOME</a>
             </li>
             <li>
@@ -86,6 +87,7 @@
             </li>
         </ul>
     </nav>
+
     <div class="signin">
         <button class="signin-close">
             <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="34px" height="34px">
@@ -151,52 +153,99 @@
 
         </div>
     </div>
-    <main>
-        <div class="hero">
-            <img src="//isteam.wsimg.com/ip/aaa15e0e-1eeb-4f0f-8f7a-a24b1f91b79c/7C96EA66-F2DA-40EA-AD6E-DA6E87234434.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1240,h:500,cg:true,m/cr=w:1240,h:500,ax:50%25,ay:50%25"" alt="">
-            <div class=" hero-img">
-        </div>
-        <div class="content">
-            <h2>WELCOME TO</h2>
-            <div class="text">
-                <h1>Oakville</h1>
-                <h1>STARZ</h1>
-            </div>
-            <a class="action-button" href="//youtube.com">OUR NEW YOUTUBE</a>
-        </div>
-        </div>
 
-        <div class="photo-gallery">
+    <main>
+        <div class="row">
+            <div class="labelled-input">
+                <input type="text" name="child_fullname" class="data" placeholder=" " disabled>
+                <label for="child_fullname"><span class="label-name">Child's Full Name</span></label>
+            </div>
+            <button class="form-button positive-button edit">Edit Information</button>
         </div>
-        <div class="paginate">
-            <h2>
-                SHOW MORE
-            </h2>
+        <div class="grid">
+            <div class="labelled-input">
+                <input type="text" name="old_memberid" class="data" placeholder=" " disabled>
+                <label for="old_memberid"><span class="label-name">Old Member ID</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="date" name="child_dob" class="data" placeholder=" " disabled>
+                <label for="child_dob"><span class="label-name">Child's Date of Birth</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="text" name="contact_email" class="data" placeholder=" " disabled>
+                <label for="contact_email"><span class="label-name">Email</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="text" name="parent_fullname" class="data" placeholder=" " disabled>
+                <label for="parent_fullname"><span class="label-name">Parent's Full Name</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="text" name="mailing_address" class="data" placeholder=" " disabled>
+                <label for="mailing_address"><span class="label-name">Mailing Address</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="tel" name="phone" class="data" placeholder=" " disabled>
+                <label for="phone"><span class="label-name">Phone</span></label>
+            </div>
+            <div class="select-group">
+                <div>
+                    <label for="">Child's Specialty/Hobby</label>
+                    <select name="specialty" id="" class="data" disabled>
+                        <option value="Piano 钢琴"> Piano 钢琴 </option>
+                        <option value="Violin 小提琴"> Violin 小提琴 </option>
+                        <option value="Cello 大提琴"> Cello 大提琴 </option>
+                        <option value="Viola 中提琴"> Viola 中提琴 </option>
+                        <option value="Drum 打击乐"> Drum 打击乐 </option>
+                        <option value="Flute 长笛"> Flute 长笛 </option>
+                        <option value="Clarinet 黑管"> Clarinet 黑管 </option>
+                        <option value="Guitar 吉他"> Guitar 吉他 </option>
+                        <option value="Saxophone 萨克斯风"> Saxophone 萨克斯风 </option>
+                        <option value="Vocal 声乐"> Vocal 声乐 </option>
+                        <option value="Dance 舞蹈"> Dance 舞蹈 </option>
+                        <option value="Zither 古筝"> Zither 古筝 </option>
+                        <option value="Lute 琵琶"> Lute 琵琶 </option>
+                        <option value="Erhu 二胡"> Erhu 二胡 </option>
+                        <option value="Photography 摄影摄像"> Photography 摄影摄像 </option>
+                        <option value="Website Design 网站建设和维护"> Website Design 网站建设和维护 </option>
+                        <option value="Other 其他"> Other 其他 </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Level</label>
+                    <select name="level" id="" class="data" disabled>
+                        <option value="N/A">N/A</option>
+                        <option value="Level 1"> Level 1 </option>
+                        <option value="Level 2"> Level 2 </option>
+                        <option value="Level 3"> Level 3 </option>
+                        <option value="Level 4"> Level 4 </option>
+                        <option value="Level 5"> Level 5 </option>
+                        <option value="Level 6"> Level 6 </option>
+                        <option value="Level 7"> Level 7 </option>
+                        <option value="Level 8"> Level 8 </option>
+                        <option value="Level 9"> Level 9 </option>
+                        <option value="Level 10"> Level 10 </option>
+                        <option value="Other"> Other </option>
+                    </select>
+                </div>
+            </div>
+            <div class="labelled-input">
+                <input type="text" name="emergency_contact_name" class="data" placeholder=" " disabled>
+                <label for="emergency_contact_name"><span class="label-name">Emergency Contact Full Name</span></label>
+            </div>
+            <div class="labelled-input">
+                <input type="text" name="emergency_contact_phone" class="data" placeholder=" " disabled>
+                <label for="emergency_contact_phone"><span class="label-name">Emergency Contact Phone</span></label>
+            </div>
         </div>
     </main>
-
-    <div class="donate">
-        <div class="container">
-            <div class="content">
-                <h1>Donate and Support Our Mission!</h1>
-                <p>
-                    Your support and contributions will enable us to meet our goals and improve conditions. Your
-                    generous donation will fund our mission: to gather young generations to care and contribute to
-                    society by
-                    providing them with access to good quality volunteering and social opportunities so that they can
-                    realize their own ideas and fulfill their full potential.
-                </p>
-            </div>
-        </div>
-    </div>
-
 
     <footer>
         <h5>
             COPYRIGHT © 2020 OAKVILLE STARZ - ALL RIGHTS RESERVED.
         </h5>
         <div class="icons">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
                 <g>
                     <path
                         d="M20 12a8 8 0 10-9.25 7.903v-5.59H8.719V12h2.031v-1.762c0-2.005 1.194-3.113 3.022-3.113.875 0 1.79.156 1.79.156V9.25h-1.008c-.994 0-1.304.617-1.304 1.25V12h2.219l-.355 2.313H13.25v5.59A8.002 8.002 0 0020 12z"
@@ -206,14 +255,16 @@
                         fill="#fff"></path>
                 </g>
             </svg>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
                 <g fill="#E1306C">
                     <path
                         d="M14.667 12a2.57 2.57 0 0 0-.782-1.885A2.57 2.57 0 0 0 12 9.333a2.57 2.57 0 0 0-1.885.782A2.57 2.57 0 0 0 9.333 12c0 .736.26 1.365.782 1.885.52.521 1.149.782 1.885.782a2.57 2.57 0 0 0 1.885-.782c.521-.52.782-1.149.782-1.885zm1.437 0c0 1.139-.4 2.108-1.198 2.906-.798.799-1.767 1.198-2.906 1.198-1.139 0-2.108-.4-2.906-1.198-.799-.798-1.198-1.767-1.198-2.906 0-1.139.4-2.108 1.198-2.906.798-.799 1.767-1.198 2.906-1.198 1.139 0 2.108.4 2.906 1.198.799.798 1.198 1.767 1.198 2.906zm1.125-4.27c0 .263-.094.489-.281.676a.923.923 0 0 1-.677.282.923.923 0 0 1-.677-.282.923.923 0 0 1-.281-.677c0-.264.093-.49.28-.677a.923.923 0 0 1 .678-.281c.264 0 .49.094.677.281a.923.923 0 0 1 .281.677zM12 5.437l-.797-.006a56.514 56.514 0 0 0-1.099 0c-.25.004-.585.014-1.005.032-.42.017-.778.052-1.073.104a4.177 4.177 0 0 0-.745.192c-.347.14-.653.34-.916.605-.264.263-.466.569-.605.916-.076.202-.14.45-.192.745a8.255 8.255 0 0 0-.104 1.073c-.018.42-.028.755-.032 1.005-.003.25-.003.616 0 1.1l.006.796-.006.797c-.003.483-.003.849 0 1.099.004.25.014.585.032 1.005.017.42.052.778.104 1.073.052.295.116.543.192.745.14.347.34.653.605.916.263.264.569.466.916.605.202.076.45.14.745.192.295.052.653.087 1.073.104.42.018.755.028 1.005.032.25.003.616.003 1.1 0l.796-.005.797.005c.483.003.849.003 1.099 0 .25-.004.585-.014 1.005-.032.42-.017.778-.052 1.073-.104.295-.052.543-.116.745-.192.347-.14.653-.34.916-.605.264-.263.466-.569.605-.916.076-.202.14-.45.192-.745.052-.295.087-.653.104-1.073.018-.42.028-.755.032-1.005.003-.25.003-.616 0-1.1L18.562 12l.006-.797c.003-.483.003-.849 0-1.099a38.59 38.59 0 0 0-.032-1.005 8.255 8.255 0 0 0-.104-1.073 4.177 4.177 0 0 0-.192-.745 2.703 2.703 0 0 0-.605-.916 2.703 2.703 0 0 0-.916-.605 4.177 4.177 0 0 0-.745-.192 8.255 8.255 0 0 0-1.073-.104c-.42-.018-.755-.028-1.005-.032-.25-.003-.616-.003-1.1 0L12 5.438zM20 12c0 1.59-.017 2.691-.052 3.302-.07 1.445-.5 2.563-1.292 3.354-.791.792-1.91 1.222-3.354 1.292-.611.035-1.712.052-3.302.052s-2.691-.017-3.302-.052c-1.445-.07-2.563-.5-3.354-1.292-.792-.791-1.222-1.91-1.292-3.354C4.017 14.691 4 13.59 4 12s.017-2.691.052-3.302c.07-1.445.5-2.563 1.292-3.354.791-.792 1.91-1.222 3.354-1.292C9.309 4.017 10.41 4 12 4s2.691.017 3.302.052c1.445.07 2.563.5 3.354 1.292.792.791 1.222 1.91 1.292 3.354.035.611.052 1.712.052 3.302z">
                     </path>
                 </g>
             </svg>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
                 <g>
                     <path
                         d="M20.624 8.034c.376 1.451.376 4.48.376 4.48s0 3.027-.376 4.478a2.258 2.258 0 01-1.591 1.62C17.628 19 12 19 12 19s-5.629 0-7.032-.389a2.258 2.258 0 01-1.592-1.619C3 15.541 3 12.513 3 12.513s0-3.028.376-4.479c.207-.8.817-1.431 1.592-1.645C6.37 6 12 6 12 6s5.629 0 7.032.389a2.294 2.294 0 011.592 1.645z"

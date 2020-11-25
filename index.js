@@ -43,6 +43,9 @@ app.get("/about", (req, res)=>{
 app.get("/register", (req, res)=>{
     res.render("register.html");
 });
+app.get("/profile_information", (req, res)=>{
+    res.render("profile_information.html");
+});
 
 //components
 app.get("/signin", (req, res)=>{

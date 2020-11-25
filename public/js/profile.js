@@ -15,7 +15,7 @@ auth.onAuthStateChanged(function (user) {
             currUser.name = data.name;
 
             //change text
-            document.querySelector(".profile-info > h3").innerText = data.name;
+            document.querySelector(".profile-info > div > h3").innerText = data.name;
             document.querySelector(".confirmed-hours").innerText = `${data.hours} confirmed`;
             document.querySelector(".pending-hours").innerText = `${data.pending_hours} pending`;
         });
@@ -68,13 +68,18 @@ document.querySelector("#signout-button").addEventListener("click", (event) => {
     auth.signOut();
     window.location.assign("/");
 });
+document.querySelector("#view-profile").addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.assign("/profile_information");
+});
 
 //add hours
 var hour_input = document.querySelector(".hours_input");
+var date_input = document.querySelector(".date_input");
 var details_textarea = document.querySelector(".request_details");
 let hours_error = document.querySelector(".invalid_hours");
 document.querySelector(".add-hours").addEventListener("click", async (event) => {
-    if (hour_input.value && details_textarea.value) {
+    if (hour_input.value && date_input && details_textarea.value) {
         var hours = parseInt(hour_input.value);
         var details = details_textarea.value;
         if (0 < hours && hours < 100) {
@@ -99,20 +104,21 @@ document.querySelector(".add-hours").addEventListener("click", async (event) => 
                 //delete the doc in case something goes wrong?
                 console.log(err);
             }
-        }else{
+        } else {
             hours_error.style.display = "block";
             hours_error.innerText = "Invalid input.";
         }
-    }else{
+    } else {
         hours_error.style.display = "block";
         hours_error.innerText = "Please fill out all fields.";
     }
 });
 
-function requestHours(uid, name, hours) {
+function requestHours(uid, name, date, hours) {
     return db.collection("pending").add({
         "uid": uid,
         "name": name,
+        "date": date,
         "hours": hours
     }).then(() => {
         return db.collection("hours").doc(uid).update({
