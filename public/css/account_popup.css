@@ -1,0 +1,124 @@
+.account_popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #edf4fe;
+  height: 100vh;
+  width: 0;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 200;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}
+.account_popup .cross {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.account_popup .signin-form {
+  width: fit-content;
+}
+.account_popup .signin-form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.account_popup .signin-form form .labelled_input {
+  width: 300px;
+}
+
+.account_popup .profile-info {
+  display: none;
+  flex-direction: column;
+  width: 80%;
+}
+.account_popup .profile-info .row {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+.account_popup .profile-info .row h3 {
+  justify-self: flex-start;
+  margin: 0;
+}
+.account_popup .profile-info .row .btn_group {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.account_popup .profile-info .row .btn_group button {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 16px;
+  height: fit-content;
+}
+.account_popup .profile-info .hours {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.account_popup .profile-info .hours h2 {
+  width: fit-content;
+}
+.account_popup .profile-info .hours p {
+  text-align: right;
+}
+.account_popup .profile-info .request-hours {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+.account_popup .profile-info .request-hours .row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  border: none;
+}
+.account_popup .profile-info .request-hours .labelled_input {
+  width: 100%;
+}
+.account_popup .profile-info .request-hours textarea {
+  background-color: transparent;
+  outline: none;
+  margin-bottom: 0;
+}
+.account_popup .profile-info .request-hours .action_button {
+  margin-top: 0;
+  align-self: center;
+  width: 100%;
+}
+
+@media (max-width: 550px) {
+  .signin .profile-info .row {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .signin .profile-info .row .btn-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .signin .profile-info .row .btn-group button {
+    margin: 0;
+  }
+  .signin .profile-info .request-hours .row {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=account_popup.css.map */

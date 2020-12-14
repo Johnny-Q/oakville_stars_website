@@ -1,0 +1,17 @@
+@import "util.scss";
+div.event_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    div.event {
+        div.img {
+            width: 100%;
+            
+            img {
+                width: 100%;
+                max-height: 250px;
+                object-fit: contain;
+            }
+        }
+    }
+}

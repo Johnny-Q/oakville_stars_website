@@ -1,0 +1,59 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .row {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  margin-bottom: 40px;
+}
+main .row .labelled-input {
+  margin: 0;
+}
+main .row .labelled-input input {
+  border: none;
+  font-size: 24px;
+}
+main .row button {
+  background-color: transparent;
+  padding: 0;
+  height: 50px;
+  text-align: right;
+}
+main .grid {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+main .grid .select-group {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  main .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  main .grid .select-group {
+    flex-direction: column;
+  }
+}
+@media (max-width: 500px) {
+  main .row {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  main .row button {
+    margin-top: 10px;
+  }
+  main .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=member_information.css.map */

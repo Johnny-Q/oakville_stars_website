@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "watch": true,
+        "outDir": "../public/js",
+        "typeRoots": [
+            "types.ts",
+            "node_modules/@types"
+        ],
+        "removeComments": true
+    }
+}

@@ -1,0 +1,60 @@
+div.hero {
+  width: 100%;
+  height: fit-content;
+  background-color: #3b9ad5;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+}
+div.hero div.img {
+  background: url("https://firebasestorage.googleapis.com/v0/b/test-json-cbef3.appspot.com/o/hero.JPG?alt=media&token=599bb8c2-8d14-4fcf-a806-8e96859dc79f");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+div.hero img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+div.hero div.text {
+  background-color: #edf4fe;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+div.hero div.text h2 {
+  margin: 0;
+}
+div.hero div.text a {
+  background-color: #3b9ad5;
+  text-decoration: none;
+  text-decoration-style: solid;
+  font-weight: 700;
+  letter-spacing: 0.214em;
+  width: fit-content;
+  padding: 16px 32px;
+  color: black;
+}
+div.hero div.text a span {
+  letter-spacing: 0;
+}
+
+@media (max-width: 950px) {
+  div.hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 300px;
+  }
+  div.hero div.img,
+div.hero img {
+    height: auto;
+  }
+  div.hero div.text {
+    height: 300px;
+  }
+}
+
+/*# sourceMappingURL=hero.css.map */

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand&display=swap"
+        rel="stylesheet">
+
+    <!-- css imports -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/form_elements.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/account_popup.css">
+
+    <link rel="stylesheet" href="../css/register.css">
+
+    <!-- js imports -->
+    <script src="../js/mobile_nav.js" defer></script>
+    <script src="../js/account_popup.js" defer></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="logo container">
+        <div class="hamburger">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px">
+                <path fill-rule="evenodd"
+                    d="M19 8H5a1 1 0 1 1 0-2h14a1 1 0 0 1 0 2zm0 5.097H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2zm0 5.25H5a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2z">
+                </path>
+            </svg>
+        </div>
+        <h1 class="logo-text">Oakville STARZ</h1>
+    </div>
+
+    <nav>
+        <div class="desktop">
+            <ul>
+                <li>
+                    <a href="/">HOM<span>E</span></a>
+                </li>
+                <li>
+                    <a href="/about">ABOUT U<span>S</span></a>
+                </li>
+                <li>
+                    <a href="/events">EVENT<span>S</span></a>
+                </li>
+                <li>
+                    <a href="/contact">CONTAC<span>T</span></a>
+                </li>
+                <li>
+                    <a href="/register">REGISTE<span>R</span></a>
+                </li>
+                <li class="profile">
+                    <a class="signin-open">SIGN I<span>N</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="mobile">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="cross close-nav" width="34px" height="34px">
+                <path fill-rule="evenodd"
+                    d="M19.245 4.313a1.065 1.065 0 0 0-1.508 0L11.78 10.27 5.82 4.313A1.065 1.065 0 1 0 4.312 5.82l5.958 5.958-5.958 5.959a1.067 1.067 0 0 0 1.508 1.508l5.959-5.958 5.958 5.958a1.065 1.065 0 1 0 1.508-1.508l-5.958-5.959 5.958-5.958a1.065 1.065 0 0 0 0-1.508">
+                </path>
+            </svg>
+            <ul>
+                <li>
+                    <a href="/">HOME</a>
+                </li>
+                <li>
+                    <a href="/about">ABOUT US</a>
+                </li>
+                <li>
+                    <a href="/events">EVENTS</a>
+                </li>
+                <li>
+                    <a href="/contact">CONTACT</a>
+                </li>
+                <li>
+                    <a href="/register">REGISTER</a>
+                </li>
+                <li class="profile">
+                    <a class="signin-open close-nav">SIGN IN</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="account_popup">
+        <button class="signin-close">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="cross" width="34px" height="34px">
+                <path fill-rule="evenodd"
+                    d="M19.245 4.313a1.065 1.065 0 0 0-1.508 0L11.78 10.27 5.82 4.313A1.065 1.065 0 1 0 4.312 5.82l5.958 5.958-5.958 5.959a1.067 1.067 0 0 0 1.508 1.508l5.959-5.958 5.958 5.958a1.065 1.065 0 1 0 1.508-1.508l-5.958-5.959 5.958-5.958a1.065 1.065 0 0 0 0-1.508">
+                </path>
+            </svg>
+        </button>
+
+        <div class="signin-form">
+            <h2>SIGN IN</h2>
+            <form class="container">
+                <div class="labelled_input">
+                    <input type="email" id="signin-email" name="email" placeholder=" ">
+                    <label for="email"><span class="label_text">Email</span></label>
+                </div>
+                <div class="labelled_input">
+                    <input type="password" id="signin-password" name="pass" placeholder=" ">
+                    <label for="pass"><span class="label_text">Password</span></label>
+                </div>
+                <p class="error login_error"></p>
+                <button id="signin" class="action_button">Sign In</button>
+            </form>
+        </div>
+
+        <div class="profile-info">
+            <h1>WELCOME BACK</h1>
+            <div class="row">
+                <h3></h3>
+                <div class="btn_group">
+                    <button class="form_button positive_button" id="view-profile">
+                        View Profile
+                    </button>
+                    <button class="form_button negative_button" id="signout-button">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+            <div class="hours">
+                <h2>HOURS</h2>
+                <div class="hour-info">
+                    <p class="confirmed-hours"></p>
+                    <p class="pending-hours"></p>
+                </div>
+            </div>
+
+            <div class="request-hours">
+                <h2>ADD HOURS</h2>
+                <p class="error invalid_hours">Invalid hour value.</p>
+                <div class="row">
+                    <div class="labelled_input">
+                        <input type="text" class="hours_input" placeholder=" ">
+                        <label><span class="label_text">Hours</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="date" class="date_input" placeholder=" ">
+                        <label><span class="label_text">Date</span></label>
+                    </div>
+                </div>
+                <textarea name="" class="request_details" cols="30" rows="4" placeholder="What did you do?"></textarea>
+                <button class="add-hours action_button">Add Hours</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <!-- 
+                child firstname, lastname
+                parents names
+                mailling address
+                email address
+                phone number
+                what the child plays
+                level
+                emergency contact name
+                emerygency contact phone number
+             -->
+        <h1>Create your account</h1>
+        <div class="register-page">
+            <div class="tabs">
+                <div>
+                    <h2 class="form_step active">MEMBER INFORMATION</h2>
+                </div>
+                <div>
+                    <h2 class="form_step">TERMS AND CONDITIONS</h2>
+                </div>
+                <div>
+                    <h2 class="form_step">ACCOUNT INFORMATION</h2>
+                </div>
+
+            </div>
+            <form action="" class="register-form">
+                <div class="member-info">
+                    <div class="labelled_input">
+                        <input type="text" name="child_fullname" placeholder=" ">
+                        <label for="child_fullname"><span class="label_text">Child's Full Name</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="text" name="parent_fullname" placeholder=" ">
+                        <label for="parent_fullname"><span class="label_text">Parent's Full Name</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="text" name="contact_email" placeholder=" ">
+                        <label for="contact_email"><span class="label_text">Email</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="text" name="mailing_address" placeholder=" ">
+                        <label for="mailing_address"><span class="label_text">Mailing Address</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="tel" name="phone" placeholder=" ">
+                        <label for="phone"><span class="label_text">Phone</span></label>
+                    </div>
+
+                    <div class="labelled_input">
+                        <input type="date" name="child_dob" placeholder=" ">
+                        <label for="child_dob"><span class="label_text">Child's Date of Birth</span></label>
+                    </div>
+                    <label for="">Child's Specialty/Hobby</label>
+
+                    <select name="specialty" id="">
+                        <option value=""> </option>
+                        <option value="Piano 钢琴"> Piano 钢琴 </option>
+                        <option value="Violin 小提琴"> Violin 小提琴 </option>
+                        <option value="Cello 大提琴"> Cello 大提琴 </option>
+                        <option value="Viola 中提琴"> Viola 中提琴 </option>
+                        <option value="Drum 打击乐"> Drum 打击乐 </option>
+                        <option value="Flute 长笛"> Flute 长笛 </option>
+                        <option value="Clarinet 黑管"> Clarinet 黑管 </option>
+                        <option value="Guitar 吉他"> Guitar 吉他 </option>
+                        <option value="Saxophone 萨克斯风"> Saxophone 萨克斯风 </option>
+                        <option value="Vocal 声乐"> Vocal 声乐 </option>
+                        <option value="Dance 舞蹈"> Dance 舞蹈 </option>
+                        <option value="Zither 古筝"> Zither 古筝 </option>
+                        <option value="Lute 琵琶"> Lute 琵琶 </option>
+                        <option value="Erhu 二胡"> Erhu 二胡 </option>
+                        <option value="Photography 摄影摄像"> Photography 摄影摄像 </option>
+                        <option value="Website Design 网站建设和维护"> Website Design 网站建设和维护 </option>
+                        <option value="Other 其他"> Other 其他 </option>
+                        <option value=""> </option>
+                    </select>
+                    <label for="">Level</label>
+                    <select name="level" id="">
+                        <option value=""></option>
+                        <option value="N/A">N/A</option>
+                        <option value="Level 1"> Level 1 </option>
+                        <option value="Level 2"> Level 2 </option>
+                        <option value="Level 3"> Level 3 </option>
+                        <option value="Level 4"> Level 4 </option>
+                        <option value="Level 5"> Level 5 </option>
+                        <option value="Level 6"> Level 6 </option>
+                        <option value="Level 7"> Level 7 </option>
+                        <option value="Level 8"> Level 8 </option>
+                        <option value="Level 9"> Level 9 </option>
+                        <option value="Level 10"> Level 10 </option>
+                        <option value="Other"> Other </option>
+                    </select>
+
+                    <div class="labelled_input">
+                        <input type="text" name="emergency_contact_name" placeholder=" ">
+                        <label for="emergency_contact_name"><span class="label_text">Emergency Contact Full
+                                Name</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="text" name="emergency_contact_phone" placeholder=" ">
+                        <label for="emergency_contact_phone"><span class="label_text">Emergency Contact
+                                Phone</span></label>
+                    </div>
+                    <p class="validation-error">Please fill out all fields.</p>
+                </div>
+
+                <div class="tac">
+                    <div>
+                        <h3>Membership Rules</h3>
+                        <p>
+                            1. Love music and performance.<br>
+                            2. Good cooperator, enjoy team work.<br>
+                            3. Willing to contribute to the community services.<br>
+                            4. Willing to commit time to any assigned tasks.
+                        </p>
+                    </div>
+                    <div class="checkbox-agree">
+                        <input type="checkbox" name="" id="">
+                        <span> I have read, understood, and accepted the rules for membership.</span>
+                    </div>
+                    <div>
+                        <h3>Consent</h3>
+                        <p>I give permission to the Oakville StarZ, and/or parties designated by the Oakville StarZ
+                            to
+                            photograph/video me and use such photograph(s)/video(s) in all forms of media, for any
+                            and
+                            all promotional purposes including advertising, display, audiovisual, exhibition or
+                            editorial use.<br>
+                            <br>
+                            I understand and agree that I will not receive any payment for my time or expenses or
+                            any
+                            royalty for the publication of the photograph(s)/video(s) and I hereby release the
+                            Oakville
+                            StarZ and/or any parties designated by the Oakville StarZ from any such claims.<br>
+                            <br>
+                            I certify that I have read and fully understand this consent and release, and that all
+                            questions pertaining to this consent have been answered to my satisfaction.
+                        </p>
+                    </div>
+                    <div class="checkbox-agree">
+                        <input type="checkbox" name="" id="">
+                        <span>
+                            I have read, understood and accepted the above photograph and video consents.</span>
+                    </div>
+                    <div>
+                        <h3>Statement</h3>
+                        <p>
+                            Oakville Starz is a subdivision of the registered Non-Profit-Organization “WeDo Youth
+                            Association”. All Oakville Starz members automatically become members of the
+                            Association.
+                            Membership number and membership information will be sent out to members via email.
+                        </p>
+                    </div>
+                    <div class="checkbox-agree">
+                        <input type="checkbox" name="" id="">
+                        <span> I accept.</span>
+                    </div>
+                    <p class="validation-error">Please accept all fields.</p>
+                </div>
+
+                <div class="account-info">
+                    <div class="labelled_input">
+                        <input type="email" name="reg_email" placeholder=" ">
+                        <label for="email"><span class="label_text">Email</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="password" name="reg_password" placeholder=" ">
+                        <label for="password"><span class="label_text">Password</span></label>
+                    </div>
+                    <div class="labelled_input">
+                        <input type="password" name="reg_password_conf" placeholder=" ">
+                        <label for="pasword_conf"><span class="label_text">Confirm Password</span></label>
+                    </div>
+                    <p class="validation-error">Passwords do not match.</p>
+                </div>
+            </form>
+            <div class="btn_group">
+                <button class="action_button goback-button">
+                    Go Back
+                </button>
+                <button class="action_button continue-button">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h5>
+            COPYRIGHT © 2020 OAKVILLE STARZ - ALL RIGHTS RESERVED.
+        </h5>
+        <div class="icons">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
+                <g>
+                    <path
+                        d="M20 12a8 8 0 10-9.25 7.903v-5.59H8.719V12h2.031v-1.762c0-2.005 1.194-3.113 3.022-3.113.875 0 1.79.156 1.79.156V9.25h-1.008c-.994 0-1.304.617-1.304 1.25V12h2.219l-.355 2.313H13.25v5.59A8.002 8.002 0 0020 12z"
+                        fill="#1877F2"></path>
+                    <path
+                        d="M15.114 14.313L15.47 12h-2.22v-1.5c0-.633.31-1.25 1.304-1.25h1.008V7.281s-.915-.156-1.79-.156c-1.828 0-3.022 1.107-3.022 3.113V12H8.719v2.313h2.031v5.59c.828.13 1.672.13 2.5 0v-5.59h1.864z"
+                        fill="#fff"></path>
+                </g>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
+                <g fill="#E1306C">
+                    <path
+                        d="M14.667 12a2.57 2.57 0 0 0-.782-1.885A2.57 2.57 0 0 0 12 9.333a2.57 2.57 0 0 0-1.885.782A2.57 2.57 0 0 0 9.333 12c0 .736.26 1.365.782 1.885.52.521 1.149.782 1.885.782a2.57 2.57 0 0 0 1.885-.782c.521-.52.782-1.149.782-1.885zm1.437 0c0 1.139-.4 2.108-1.198 2.906-.798.799-1.767 1.198-2.906 1.198-1.139 0-2.108-.4-2.906-1.198-.799-.798-1.198-1.767-1.198-2.906 0-1.139.4-2.108 1.198-2.906.798-.799 1.767-1.198 2.906-1.198 1.139 0 2.108.4 2.906 1.198.799.798 1.198 1.767 1.198 2.906zm1.125-4.27c0 .263-.094.489-.281.676a.923.923 0 0 1-.677.282.923.923 0 0 1-.677-.282.923.923 0 0 1-.281-.677c0-.264.093-.49.28-.677a.923.923 0 0 1 .678-.281c.264 0 .49.094.677.281a.923.923 0 0 1 .281.677zM12 5.437l-.797-.006a56.514 56.514 0 0 0-1.099 0c-.25.004-.585.014-1.005.032-.42.017-.778.052-1.073.104a4.177 4.177 0 0 0-.745.192c-.347.14-.653.34-.916.605-.264.263-.466.569-.605.916-.076.202-.14.45-.192.745a8.255 8.255 0 0 0-.104 1.073c-.018.42-.028.755-.032 1.005-.003.25-.003.616 0 1.1l.006.796-.006.797c-.003.483-.003.849 0 1.099.004.25.014.585.032 1.005.017.42.052.778.104 1.073.052.295.116.543.192.745.14.347.34.653.605.916.263.264.569.466.916.605.202.076.45.14.745.192.295.052.653.087 1.073.104.42.018.755.028 1.005.032.25.003.616.003 1.1 0l.796-.005.797.005c.483.003.849.003 1.099 0 .25-.004.585-.014 1.005-.032.42-.017.778-.052 1.073-.104.295-.052.543-.116.745-.192.347-.14.653-.34.916-.605.264-.263.466-.569.605-.916.076-.202.14-.45.192-.745.052-.295.087-.653.104-1.073.018-.42.028-.755.032-1.005.003-.25.003-.616 0-1.1L18.562 12l.006-.797c.003-.483.003-.849 0-1.099a38.59 38.59 0 0 0-.032-1.005 8.255 8.255 0 0 0-.104-1.073 4.177 4.177 0 0 0-.192-.745 2.703 2.703 0 0 0-.605-.916 2.703 2.703 0 0 0-.916-.605 4.177 4.177 0 0 0-.745-.192 8.255 8.255 0 0 0-1.073-.104c-.42-.018-.755-.028-1.005-.032-.25-.003-.616-.003-1.1 0L12 5.438zM20 12c0 1.59-.017 2.691-.052 3.302-.07 1.445-.5 2.563-1.292 3.354-.791.792-1.91 1.222-3.354 1.292-.611.035-1.712.052-3.302.052s-2.691-.017-3.302-.052c-1.445-.07-2.563-.5-3.354-1.292-.792-.791-1.222-1.91-1.292-3.354C4.017 14.691 4 13.59 4 12s.017-2.691.052-3.302c.07-1.445.5-2.563 1.292-3.354.791-.792 1.91-1.222 3.354-1.292C9.309 4.017 10.41 4 12 4s2.691.017 3.302.052c1.445.07 2.563.5 3.354 1.292.792.791 1.222 1.91 1.292 3.354.035.611.052 1.712.052 3.302z">
+                    </path>
+                </g>
+            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial"
+                class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
+                <g>
+                    <path
+                        d="M20.624 8.034c.376 1.451.376 4.48.376 4.48s0 3.027-.376 4.478a2.258 2.258 0 01-1.591 1.62C17.628 19 12 19 12 19s-5.629 0-7.032-.389a2.258 2.258 0 01-1.592-1.619C3 15.541 3 12.513 3 12.513s0-3.028.376-4.479c.207-.8.817-1.431 1.592-1.645C6.37 6 12 6 12 6s5.629 0 7.032.389a2.294 2.294 0 011.592 1.645z"
+                        fill="#FF0000"></path>
+                    <path d="M10.16 15.86l4.704-3-4.705-3v6z" fill="#fff"></path>
+                </g>
+            </svg>
+        </div>
+        <h5 class="right">
+            OAKVILLESTARZ.COM
+        </h5>
+    </footer>
+</body>
+
+</html>
