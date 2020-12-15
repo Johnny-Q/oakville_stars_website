@@ -22,30 +22,23 @@ app.set("views", "public/views");
 // });
 
 //static pages
+let main_pages = ["contact", 
+"admin", 
+"events", 
+"about", 
+"register", 
+"member_information",
+"js_test"];
 app.get("/", (req, res) => {
     res.render("home.html");
 });
-app.get("/contact", (req, res) => {
-    res.render("contact.html");
+
+main_pages.forEach(name => {
+    app.get(`/${name}`, (req, res) => {
+        res.render(`${name}.html`);
+    });
 });
-app.get("/fonts", (req, res) => {
-    res.render("fonts.html");
-});
-app.get("/admin", (req, res) => {
-    res.render("admin.html");
-});
-app.get("/events", (req, res) => {
-    res.render("events.html");
-});
-app.get("/about", (req, res) => {
-    res.render("about.html");
-});
-app.get("/register", (req, res) => {
-    res.render("register.html");
-});
-app.get("/member_information", (req, res) => {
-    res.render("member_information.html");
-});
+
 
 //components
 let component_names = [
