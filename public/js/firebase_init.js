@@ -1,11 +1,10 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyDkn3sh33RTb6nRPtNAD9p-JZc6Qbb-frg",
-    authDomain: "test-json-cbef3.firebaseapp.com",
-    databaseURL: "https://test-json-cbef3.firebaseio.com",
-    projectId: "test-json-cbef3",
-    storageBucket: "test-json-cbef3.appspot.com",
-    messagingSenderId: "610759909312",
-    appId: "1:610759909312:web:e3fb6f03a77529824a7225"
+    apiKey: "AIzaSyC-IJouRbz3QjiydiUWd1adjobgewWbBqY",
+    authDomain: "oakville-starz-d73ab.firebaseapp.com",
+    projectId: "oakville-starz-d73ab",
+    storageBucket: "oakville-starz-d73ab.appspot.com",
+    messagingSenderId: "723886393929",
+    appId: "1:723886393929:web:9e167afe9502133a194d98"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();

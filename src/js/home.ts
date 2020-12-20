@@ -1,6 +1,6 @@
 //load the dynamic hero image
 let hero_img = document.querySelector(".hero > img") as HTMLImageElement;
-storage_wrapper.getImage("hero.JPG").then(url => {
+storage_wrapper.getImage("hero.jpg").then(url => {
     console.log(url);
     hero_img.src = url;
 });

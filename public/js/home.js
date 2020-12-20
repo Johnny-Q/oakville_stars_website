@@ -1,5 +1,5 @@
 let hero_img = document.querySelector(".hero > img");
-storage_wrapper.getImage("hero.JPG").then(url => {
+storage_wrapper.getImage("hero.jpg").then(url => {
     console.log(url);
     hero_img.src = url;
 });
