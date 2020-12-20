@@ -1,0 +1,38 @@
+div.team_members_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+div.team_members_container div.team_member {
+  background-color: #edf4fe;
+  width: 100%;
+}
+div.team_members_container div.team_member div.img {
+  width: 100%;
+  background: url("https://firebasestorage.googleapis.com/v0/b/test-json-cbef3.appspot.com/o/hero.JPG?alt=media&token=fa00476f-e030-461d-80b2-09a3c654d80d") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+div.team_members_container div.team_member div.img:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+div.team_members_container div.team_member h3 {
+  padding: 20px 30px;
+  margin: auto 0;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  div.team_members_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 500px) {
+  div.team_members_container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*# sourceMappingURL=team_grid.css.map */

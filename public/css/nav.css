@@ -1,4 +1,126 @@
-/* DESKTOP NAV */
-/* MOBILE NAV */
+nav div.desktop {
+  margin-bottom: 20px;
+}
+nav div.desktop ul {
+  border-bottom: 1px solid #a6ddff;
+  padding: 0;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+nav div.desktop ul li {
+  padding-bottom: 5px;
+  display: inline-block;
+  width: fit-content;
+  text-align: center;
+}
+nav div.desktop ul li a {
+  text-decoration: none;
+  color: black;
+  letter-spacing: 0.214em;
+  cursor: pointer;
+}
+nav div.desktop ul li a span {
+  letter-spacing: 0;
+}
+nav div.desktop ul li a:hover {
+  color: #3b9ad5;
+}
+nav div.desktop ul li.active {
+  border-bottom: 1px solid #3b9ad5;
+}
+nav div.desktop ul > :first-child {
+  margin-left: 0;
+}
+
+div.logo {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  height: fit-content;
+}
+div.logo .logo-text {
+  line-height: 1;
+  padding: 8px 16px;
+  border: 1px solid black;
+  width: fit-content;
+  justify-self: center;
+  align-self: center;
+  grid-column: 2/3;
+}
+div.logo .hamburger {
+  display: none;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  color: #3b9ad5;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+div.logo .hamburger svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+nav div.mobile {
+  display: none;
+  width: 0;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #edf4fe;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: width ease-in-out 0.3s;
+}
+nav div.mobile .cross {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+nav div.mobile ul {
+  padding: 56px 20px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  list-style: none;
+}
+nav div.mobile ul li {
+  padding: 0;
+  margin: 16px 24px;
+  width: fit-content;
+  text-align: left;
+}
+nav div.mobile ul li a {
+  font-size: 22px;
+  color: #1b1b1b;
+}
+nav div.mobile ul li a.active {
+  font-weight: 700;
+}
+nav div.mobile ul li.active {
+  border: none;
+  font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+  div.logo .hamburger {
+    display: block;
+  }
+
+  nav div.desktop {
+    display: none;
+  }
+
+  nav div.mobile {
+    display: block;
+  }
+}
 
 /*# sourceMappingURL=nav.css.map */

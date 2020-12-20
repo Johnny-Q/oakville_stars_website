@@ -1,9 +1,41 @@
-.labelled-input {
+.action_button {
+  text-decoration-style: solid;
+  letter-spacing: 0.214em;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 16px;
+  color: black;
+  background-color: #3b9ad5;
+  cursor: pointer;
+}
+
+.action_button:disabled,
+.action_button.disabled {
+  background-color: #5e5e5e;
+}
+
+.action_button:disabled:hover {
+  transform: none;
+}
+
+.paginate {
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.paginate h2 {
+  font-size: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+}
+
+.labelled_input {
   position: relative;
   margin-bottom: 40px;
   background-color: transparent;
 }
-.labelled-input input {
+.labelled_input input {
   background-color: transparent;
   width: 100%;
   height: 50px;
@@ -13,7 +45,7 @@
   font-size: 18px;
   padding: 0;
 }
-.labelled-input label {
+.labelled_input label {
   position: absolute;
   bottom: 0px;
   left: 0;
@@ -21,21 +53,21 @@
   height: 50px;
   pointer-events: none;
 }
-.labelled-input label .label-name {
+.labelled_input label .label_text {
   position: absolute;
   bottom: 10px;
   left: 0px;
   color: #5e5e5e;
   transition: all 0.2s ease;
 }
-.labelled-input input:not(:placeholder-shown) + label .label-name,
-.labelled-input input:focus + label .label-name {
+.labelled_input input:not(:placeholder-shown) + label .label_text,
+.labelled_input input:focus + label .label_text {
   bottom: 80%;
   font-size: 12px;
   color: #2a7db0;
 }
 
-.placeholder-input {
+.input_with_placeholder {
   width: 100%;
   height: 50px;
   outline: none;
@@ -52,32 +84,32 @@
   padding: 0;
 }
 
-.delete-button {
+.delete_button {
   padding: 16px;
   background-color: lightgray;
 }
 
-.btn-group .action-button:hover {
+.btn_group .action_button:hover {
   transform: none;
 }
 
-.form-button {
+.form_button {
   padding: 20px;
   letter-spacing: 0.125em;
   font-size: 18px;
 }
 
-.positive-button {
+.positive_button {
   color: #3b9ad5;
   background-color: #edf4fe;
 }
 
-.caution-button {
+.caution_button {
   color: red;
   background-color: #ffdbd9;
 }
 
-.negative-button {
+.negative_button {
   color: #1b1b1b;
   background-color: #f0f0f0;
 }
@@ -99,16 +131,41 @@ select {
   width: 300px;
 }
 
+.labelled-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.labelled-text small {
+  width: 100%;
+}
+.labelled-text h2,
+.labelled-text h1,
+.labelled-text p {
+  margin: 0;
+  width: 100%;
+  color: black;
+  text-align: inherit;
+}
+
+@media (max-width: 1000px) {
+  .labelled-text small {
+    font-size: 10px;
+  }
+}
 @media (max-width: 800px) {
-  .btn-group {
+  .btn_group {
     justify-self: center;
   }
 }
 @media (max-width: 600px) {
-  .btn-group .action-button, .btn-group .form-button {
+  .btn_group .action_button,
+.btn_group .form_button {
     padding: 8px 16px;
   }
-  .btn-group .delete-button {
+  .btn_group .delete_button {
     padding: 8px;
   }
 }

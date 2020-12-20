@@ -1,0 +1,389 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyC-IJouRbz3QjiydiUWd1adjobgewWbBqY",
+    authDomain: "oakville-starz-d73ab.firebaseapp.com",
+    projectId: "oakville-starz-d73ab",
+    storageBucket: "oakville-starz-d73ab.appspot.com",
+    messagingSenderId: "723886393929",
+    appId: "1:723886393929:web:9e167afe9502133a194d98"
+  };
+
+
+// Initialize Firebase
+//@ts-expect-error
+firebase.initializeApp(firebaseConfig);
+
+//@ts-expect-error
+const auth = firebase.auth();
+//signInWithEmailAndPassword
+//createUserWithEmailAndPassword
+
+//@ts-expect-error
+const db = firebase.firestore();
+//@ts-expect-error
+const storage = firebase.storage();
+
+/**
+ * @description simple CRUD wrapper functions to abstract working with firestore
+ * @todo focus on reading first
+ * 
+ */
+class FirebaseDBWrapper {
+    db;
+    constructor(db) {
+        this.db = db;
+    }
+    /*
+    .collection("collection_name").doc("doc_name");
+    .doc("collection_name/doc_name");
+    */
+
+    //----------   EVENTS LOGIC   ---------------
+    /**
+     * 
+     * @param limit 
+     * @param startAfterId doc_id of the last event gotten
+     */
+    async getUpcomingEvents(limit = 0, startAfterId: string = ""): Promise<Array<any>> {
+        //base query, if there is pagination, will build up on it
+        var query = this.db.collection("events").where("unix", ">", Date.now()).orderBy("unix");
+        if (startAfterId) {
+            let snapshot = await this.db.doc(`/events/${startAfterId}`).get();
+            query = query.startAfter(snapshot);
+        }
+        if (limit) {
+            query = query.limit(limit);
+        }
+        let event_refs = (await query.get()).docs;
+        let event_data: Array<EventDetails> = [];
+        event_refs.forEach(event => {
+            event_data.push(this.addIdToData(event));
+        });
+        return event_data;
+        // return [event_data, event_refs[event_refs.length - 1]];
+        // return event_refs;
+    }
+
+    /**
+     * @returns returns the data as well as the doc reference to the last doc so other objects can update their pagination
+     * @param startAfterId 
+     * @param limit 
+     */
+    async getPastEvents(limit = 0, startAfterId = ""): Promise<Array<any>> {
+        //base query, if there is pagination, will build up on it
+        var query = this.db.collection("events").where("unix", "<=", Date.now()).orderBy("unix");
+        if (startAfterId) {
+            let snapshot = await this.db.doc(`/events/${startAfterId}`).get();
+            query = query.startAfter(snapshot);
+        }
+        if (limit) {
+            query = query.limit(limit);
+        }
+        let event_refs = (await query.get()).docs;
+        let event_data: Array<EventDetails> = [];
+        event_refs.forEach(event => {
+            event_data.push(this.addIdToData(event));
+        });
+        return event_data;
+        // return [event_data, event_refs[event_refs.length - 1]];
+        // return event_refs;w
+    }
+
+    /**
+     * returns the event data in json format for a specfied event
+     * @param event_id the firebase doc id for the event
+     */
+    async getEventData(event_id): Promise<EventDetails> {
+        let doc = this.db.doc(`/events/${event_id}`);
+        let event = await doc.get();
+
+        if (event.exists) {
+            return this.addIdToData(event);
+        } else {
+            throw "doesn't exist";
+        }
+    }
+
+    /**
+     * will only run if signed up, will throw an error if the user is not signed up
+     * @param event_id doc id of the event
+     */
+    async isSignedUp(event_id): Promise<boolean> {
+        if (!auth.currentUser) throw "Not signed in";
+        let event_ref = this.db.doc(`/signups/${auth.currentUser.uid}_${event_id}`);
+        let event = await event_ref.get();
+        return event.exists;
+    }
+
+    /**
+     * creates a doc
+     * @param event_id firebase doc id of the event
+     */
+    async createSignupForEvent(event_id): Promise<any> {
+        if (!auth.currentUser) throw "Not signed in";
+        let doc_ref = this.db.doc(`/signups/${auth.currentUser.uid}_${event_id}`);
+        return doc_ref.set({
+            "event_id": event_id,
+            "uid": auth.currentUser.uid
+        });
+    }
+    async deleteSignupForEvent(event_id): Promise<any>{
+        if(!auth.currentUser) throw "Not signed in";
+        return db.doc(`/signups/${auth.currentUser.uid}_${event_id}`).delete();
+    }
+
+    //-----------  MEMBER ACCOUNT LOGIC  -----------
+    async getCurrentHours(): Promise<MemberHours> {
+        if (!auth.currentUser) throw "Not signed in";
+
+        let doc_ref = this.db.doc(`/hours/${auth.currentUser.uid}`);
+        let hours = await doc_ref.get();
+
+        return this.addIdToData(hours);
+    }
+
+    async createHoursRequest(hours_request: HourRequest): Promise<any> {
+        if (!auth.currentUser) throw "Not signed in";
+        //create a doc with an autogenerated id for use in the batched write
+        let pending_request_ref = this.db.collection("requests").doc();
+        let member_hours_ref = this.db.doc(`/hours/${auth.currentUser.uid}`);
+
+        let batch = this.db.batch();
+        batch.set(pending_request_ref, hours_request);
+        batch.update(member_hours_ref, {
+            //@ts-expect-error
+            "pending_hours": firebase.firestore.FieldValue.increment(hours_request.hours)
+        });
+
+        return batch.commit();
+    }
+
+    async getCurrentInformation(): Promise<MemberInformation> {
+        if (!auth.currentUser) throw "Not signed in";
+
+        let member_info_ref = this.db.doc(`/members/${auth.currentUser.uid}`);
+        let member_info = await member_info_ref.get();
+
+        return this.addIdToData(member_info);
+    }
+
+    async updateCurrentInformation(member_info: MemberInformation): Promise<any> {
+        if (!auth.currentUser) throw "Not signed in";
+
+        let member_info_ref = this.db.doc(`/members/${auth.currentUser.uid}`);
+
+        return member_info_ref.update(member_info);
+    }
+
+    async createAccountInformation(member_info: MemberInformation): Promise<any> {
+        if (!auth.currentUser) throw "Not signed in";
+        let batch = this.db.batch();
+        let member_info_ref = this.db.doc(`/members/${auth.currentUser.uid}`);
+        let member_hours_ref = this.db.doc(`/hours/${auth.currentUser.uid}`);
+        batch.set(member_info_ref, member_info);
+        batch.set(member_hours_ref, {
+            "name": member_info.child_fullname,
+            "hours": 0,
+            "pending_hours": 0
+        });
+        return batch.commit();
+    }
+
+    //------------ TEAM MEMBER LOGIC ------------
+    /**
+     * might replace this for static implementation
+     */
+    async getTeamMembers(): Promise<Array<TeamMember>> {
+        let team_members_ref = this.db.collection("/team_members").orderBy("unix_added");
+        let team_members = await team_members_ref.get();
+        let data = [];
+        team_members.forEach(member => {
+            data.push(this.addIdToData(member));
+        });
+        // data.reverse(); //get earliest to newest
+        return data;
+    }
+
+    addIdToData(snapshot): any {
+        if (!snapshot.exists) return {};
+        let temp = snapshot.data();
+        temp.doc_id = snapshot.id;
+        return temp;
+    }
+}
+
+class FirebaseAuthWrapper {
+    auth;
+    last_request = 0;
+    db;
+    constructor(auth, db: FirebaseDBWrapper) {
+        this.auth = auth;
+        this.db = db;
+    }
+    async createAccount(email, password, member_info): Promise<any> {
+        await this.auth.createUserWithEmailAndPassword(email, password);
+        return this.db.createAccountInformation(member_info);
+    }
+}
+
+/**
+ * @description handle retreiving photos and uploading photos
+ */
+class FirebaseStorageWrapper {
+    storage;
+    constructor(storage) {
+        this.storage = storage;
+    }
+
+    async uploadEventImage(file: File): Promise<string> {
+        let file_name = this.validate(file.name) + Date.now().toString();
+        let file_path = `event_photos/${file_name}.${file.type.split("/")[1]}`;
+        let ref = this.storage.ref(file_path);
+        await ref.put(file);
+        return file_path;
+    }
+
+    async getImage(path: string) {
+        let ref = this.storage.ref(path);
+        return await ref.getDownloadURL();
+    }
+
+    validate(name: string): string {
+        return name.replaceAll("/", "_");
+    }
+}
+
+
+interface EventDetails {
+    doc_id?: string,
+    date: string,
+    dateString: string,
+    description: string,
+    event_name: string,
+    photo_url: string,
+    unix: number
+}
+
+interface MemberInformation {
+    child_dob: string,
+    child_fullname: string,
+    contact_email: string,
+    emergency_contact_name: string,
+    emergency_contact_phone: string,
+    level: string,
+    mailing_address: string,
+    old_memberid: string,
+    parent_fullname: string,
+    phone: string,
+    specialty: string,
+    account_email: string
+}
+
+interface HourRequest {
+    doc_id?: string,
+    details: string,
+    hours: number,
+    name: string,
+    uid: string,
+    date: string
+}
+
+interface MemberHours {
+    doc_id: string,
+    name: string,
+    pending_hours: number,
+    hours: number
+}
+
+/**
+ * [user id]_[event id]
+ */
+interface Signup {
+    doc_id?: string,
+    event_id: string,
+    uid: string
+}
+
+interface TeamMember {
+    doc_id?: string,
+    name: string,
+    image_url: string,
+    unix_added: number
+}
+
+// TESTS
+
+let db_wrapper = new FirebaseDBWrapper(db);
+let auth_wrapper = new FirebaseAuthWrapper(auth, db_wrapper);
+let storage_wrapper = new FirebaseStorageWrapper(storage);
+
+// let member_info: MemberInformation = {
+//     "account_email": "test@oakvillestarz.com",
+//     "child_dob": "2020-12-25",
+//     "child_fullname": "Test Account",
+//     "contact_email": "test@oakvillestarz.com",
+//     "emergency_contact_name": "None",
+//     "emergency_contact_phone": "None",
+//     "level": "N/A",
+//     "mailing_address": "123 Sesame Street",
+//     "parent_fullname": "Elon Musk",
+//     "phone": "None",
+//     "specialty": "None",
+//     "old_memberid": ""
+// };
+
+//create new user -- WORKS
+// auth_wrapper.createAccount("test@oakvillestarz.com", "asdfasdf", member_info);
+
+//update visuals if we're signed in
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        //try to get resources
+        console.log(auth.currentUser);
+
+        //need to get their current hours and name
+        let current_hours = await db_wrapper.getCurrentHours();
+        auth.currentUser.name = current_hours.name;
+
+        //change signin to profile
+        document.querySelectorAll(".signin-open").forEach((e: HTMLElement) => e.innerText = "PROFILE");
+
+        //show hours info on account popup
+        signinForm.style.display = "none";
+        profileInfo.style.display = "flex";
+        auth.currentUser.uid = user.uid;
+
+
+        //@ts-expect-error
+        document.querySelector(".profile-info > div > h3").innerText = current_hours.name;
+        //@ts-expect-error
+        document.querySelector(".confirmed-hours").innerText = `${current_hours.hours} confirmed`;
+        //@ts-expect-error
+        document.querySelector(".pending-hours").innerText = `${current_hours.pending_hours} pending`;
+
+
+
+        //change sign-in to profile
+
+        //show the profile screen
+
+    } else {
+
+        //change text to sign in
+        document.querySelectorAll(".signin-open").forEach((e: HTMLElement) => e.innerText = "SIGN IN");
+
+        //show the sign in screen
+        signinForm.style.display = "block";
+        profileInfo.style.display = "none";
+    }
+});
+
+function createElement(type, classNames = [], text = "") {
+    let temp = document.createElement(type) as HTMLElement;
+    classNames.forEach(name => {
+        temp.classList.add(name);
+    });
+    if (text) {
+        temp.innerText = text;
+    }
+    return temp;
+}

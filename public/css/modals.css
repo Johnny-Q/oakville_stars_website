@@ -1,0 +1,134 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+
+.modal {
+  background-color: white;
+  z-index: 3;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  display: none;
+}
+.modal .btn_group {
+  width: fit-content;
+  height: fit-content;
+}
+
+.create-event-modal {
+  display: none;
+}
+.create-event-modal form {
+  width: 90%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "name name" "date datestring" "photo photo" "textbox textbox" "empty button";
+  gap: 30px;
+}
+.create-event-modal form input {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 18px;
+  padding: 0;
+}
+.create-event-modal form #event-event_name {
+  grid-area: name;
+}
+.create-event-modal form #event-date {
+  grid-area: date;
+}
+.create-event-modal form #event-dateString {
+  grid-area: datestring;
+}
+.create-event-modal form .event-photo {
+  grid-area: photo;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.create-event-modal form .event-photo p {
+  text-align: left;
+  flex-basis: 200px;
+  line-height: 50px;
+  margin: 0;
+}
+.create-event-modal form .event-photo input[type=file] {
+  flex-grow: 1;
+  line-height: 50px;
+}
+.create-event-modal form #event-description {
+  grid-area: textbox;
+}
+.create-event-modal form textarea {
+  width: 100%;
+  color: #5e5e5e;
+  border-color: #e2e2e2;
+  padding: 8px;
+  resize: vertical;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.create-event-modal form .btn_group {
+  grid-area: button;
+  justify-self: end;
+  align-self: end;
+}
+
+@media (max-width: 900px) {
+  .create-event-modal form {
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "date" "datestring" "photo" "textbox" "button";
+  }
+}
+.request-details-modal {
+  display: grid;
+  max-width: 600px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas: "name hours" "text text" "button button";
+  justify-items: start;
+  align-items: start;
+  text-align: left;
+  display: none;
+}
+.request-details-modal .name {
+  grid-area: name;
+}
+.request-details-modal .hours {
+  grid-area: hours;
+}
+.request-details-modal .details {
+  grid-area: text;
+  width: 100%;
+}
+.request-details-modal .details div.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.request-details-modal .btn_group {
+  grid-area: button;
+  justify-self: end;
+}
+
+/*# sourceMappingURL=modals.css.map */
