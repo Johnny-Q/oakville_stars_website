@@ -13,5 +13,16 @@ div.event_grid {
                 object-fit: contain;
             }
         }
+        div.card_body{
+            div.header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                h2{
+                    margin: 0;
+                }
+            }
+        }
     }
 }

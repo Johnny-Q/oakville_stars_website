@@ -11,5 +11,14 @@ div.event_grid div.event div.img img {
   max-height: 250px;
   object-fit: contain;
 }
+div.event_grid div.event div.card_body div.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+div.event_grid div.event div.card_body div.header h2 {
+  margin: 0;
+}
 
 /*# sourceMappingURL=event_grid.css.map */

@@ -110,7 +110,15 @@ footer {
     }
 }
 
-div.section_title{
+div.section_title {
     margin: 20px 0;
     margin-top: 40px;
+}
+
+div.no_results {
+    display: none;
+    h1 {
+        color: #707070;
+        font-family: 'Quicksand', sans-serif;
+    }
 }

@@ -23,26 +23,69 @@ signinButton.onclick = (event) => {
         lastRequest = Date.now();
         var email = document.querySelector("#signin-email").value;
         var pass = document.querySelector("#signin-password").value;
+        auth.signInWithEmailAndPassword(email, pass).then(() => {
+            window.location.reload();
+        }).catch(err => {
+            let msg = "";
+            switch (err.code) {
+                case "auth/user-not-found":
+                    msg = "invalid credentials";
+                    break;
+                case "auth/wrong-password":
+                    msg = "invalid credentials";
+                    break;
+                case "auth/invalid-email":
+                    msg = "Please enter a valid email.";
+                    break;
+                case "auth/too-many-requests":
+                    msg = "Too many requests. Account temporarily locked. Please contact an admin.";
+                    break;
+                default:
+                    msg = "Unknown error. Please Refresh.";
+                    break;
+            }
+            login_error.style.display = "block";
+            login_error.innerText = msg;
+            console.log("error signing in", err);
+        });
     }
 };
 document.querySelector("#signout-button").addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.assign("/");
+    auth.signOut();
+    window.location.reload();
 });
 document.querySelector("#view-profile").addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.assign("/profile_information");
+    window.location.assign("/member_information");
 });
 var hour_input = document.querySelector(".hours_input");
 var date_input = document.querySelector(".date_input");
 var details_textarea = document.querySelector(".request_details");
 let hours_error = document.querySelector(".invalid_hours");
 document.querySelector(".add-hours").addEventListener("click", async (event) => {
-    if (hour_input.value && date_input && details_textarea.value) {
-        var hours = parseInt(hour_input.value);
-        var details = details_textarea.value;
+    if (hour_input.value && date_input.value && details_textarea.value) {
+        let hours = parseInt(hour_input.value);
+        let details = details_textarea.value;
+        let date = date_input.value;
         if (0 < hours && hours < 100) {
-            let docRef;
+            let hour_request = {
+                "name": auth.currentUser.name,
+                "uid": auth.currentUser.uid,
+                hours,
+                details,
+                date
+            };
+            db_wrapper.createHoursRequest(hour_request).then(() => {
+                var currHourP = document.querySelector(".pending-hours");
+                currHourP.innerText = `${parseInt(currHourP.innerText) + hours} pending`;
+                hour_input.value = "";
+                details_textarea.value = "";
+                date_input.value = "";
+                hours_error.style.display = "none";
+            }).catch((err) => {
+                console.log(err);
+            });
         }
         else {
             hours_error.style.display = "block";

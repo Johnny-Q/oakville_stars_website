@@ -30,6 +30,9 @@
   height: fit-content;
 }
 
+.create-event-modal {
+  display: none;
+}
 .create-event-modal form {
   width: 90%;
   max-width: 1000px;
@@ -105,6 +108,7 @@
   justify-items: start;
   align-items: start;
   text-align: left;
+  display: none;
 }
 .request-details-modal .name {
   grid-area: name;
@@ -114,11 +118,13 @@
 }
 .request-details-modal .details {
   grid-area: text;
+  width: 100%;
 }
 .request-details-modal .details div.row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
 }
 .request-details-modal .btn_group {
   grid-area: button;

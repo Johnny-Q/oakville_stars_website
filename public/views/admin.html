@@ -22,15 +22,18 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
+    <script src="../js/firebase_init.js" defer></script>
     <script src="../js/mobile_nav.js" defer></script>
     <script src="../js/account_popup.js" defer></script>
-    
+
 
     <!-- page specific -->
     <!-- css -->
-
     <link rel="stylesheet" href="../css/modals.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <!-- js -->
+    <script src="../js/modal.js" defer></script>
+    <script src="../js/admin.js" defer></script>
 
     <title>Document</title>
 </head>
@@ -232,41 +235,29 @@
             </div>
         </div>
         <div class="pending-container">
-            <div class="pending" id="415rCiRua1Kh1SPoY3GA"><input type="checkbox">
-                <div class="member-name labelled-text"><small>ID: 415rCiRua1Kh1SPoY3GA</small>
-                    <h1>Test Account</h1>
-                </div>
-                <div class="hours labelled-text"><small>HOURS</small>
-                    <h1>5</h1>
-                </div>
-                <div class="btn_group"><button class="action_button">View</button><button
-                        class="action_button delete_button"><svg width="16" height="16" viewBox="0 0 16 16"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
-                                fill="#242424"></path>
-                        </svg></button></div>
-            </div>
-            <div class="pending" id="m3HbYH1LKnQ8u8niz2tJ"><input type="checkbox">
+            <!-- <div class="pending" id="m3HbYH1LKnQ8u8niz2tJ"><input type="checkbox">
                 <div class="member-name labelled-text"><small>ID: m3HbYH1LKnQ8u8niz2tJ</small>
                     <h1>Test Account</h1>
                 </div>
                 <div class="hours labelled-text"><small>HOURS</small>
                     <h1>2</h1>
                 </div>
-                <div class="btn_group"><button class="action_button">View</button><button
-                        class="action_button delete_button"><svg width="16" height="16" viewBox="0 0 16 16"
-                            xmlns="http://www.w3.org/2000/svg">
+                <div class="btn_group">
+                    <button class="action_button">View</button>
+                    <button class="action_button delete_button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
                                 d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
                                 fill="#242424"></path>
-                        </svg></button></div>
-            </div>
+                        </svg>
+                    </button>
+                </div>
+            </div> -->
         </div>
 
         <div class="row">
             <h2>
-                UPCOMING EVENTS
+                EVENTS
             </h2>
             <div class="btn_group">
                 <button id="add-event" class="form_button positive_button">Add Event</button>
@@ -275,36 +266,24 @@
         </div>
 
         <div class="events_admin-container">
-            <div class="events_admin" id="DpqrA31FppkGcNJzGTrn"><input type="checkbox">
-                <div class="name labelled-text"><small>ID: DpqrA31FppkGcNJzGTrn</small>
-                    <h2>test</h2>
-                </div>
-                <div class="date labelled-text"><small>DATE</small>
-                    <p></p>
-                </div>
-                <div class="btn_group"><button class="action_button">EDIT</button><button
-                        class="action_button delete_button"><svg width="16" height="16" viewBox="0 0 16 16"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
-                                fill="#242424"></path>
-                        </svg></button></div>
-            </div>
-            <div class="events_admin" id="NpfvHz3l2YfT2XTn9fiB"><input type="checkbox">
+            <!-- <div class="events_admin" id="NpfvHz3l2YfT2XTn9fiB"><input type="checkbox">
                 <div class="name labelled-text"><small>ID: NpfvHz3l2YfT2XTn9fiB</small>
                     <h2>Test</h2>
                 </div>
                 <div class="date labelled-text"><small>DATE</small>
                     <p>date</p>
                 </div>
-                <div class="btn_group"><button class="action_button">EDIT</button><button
-                        class="action_button delete_button"><svg width="16" height="16" viewBox="0 0 16 16"
-                            xmlns="http://www.w3.org/2000/svg">
+                <div class="btn_group">
+                    <button class="action_button">EDIT</button>
+                    <button class="action_button delete_button">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <path class="fill-path" fill-rule="evenodd" clip-rule="evenodd"
                                 d="M11.43 1.897H15.31C15.7 1.897 16 2.217 16 2.606C16 2.994 15.7 3.291 15.31 3.291H14.47L13.6 13.92C13.58 15.177 12.57 16.183 11.31 16.183H4.66C3.41 16.183 2.4 15.177 2.38 13.92L1.53 3.269H0.69C0.3 3.269 0 2.971 0 2.583C0 2.194 0.3 1.897 0.69 1.897H4.57V1.051C4.57 0.457 5.12 0 5.81 0H10.19C10.88 0 11.43 0.457 11.43 1.051V1.897ZM10.06 1.371H5.94V1.897H10.06V1.371ZM6.22 12.503H6.19C5.83 12.503 5.53 12.206 5.51 11.84L5.26 6.263C5.23 5.874 5.53 5.554 5.92 5.554H5.94C6.31 5.554 6.61 5.851 6.63 6.217L6.88 11.794C6.88 12.16 6.61 12.48 6.22 12.503ZM9.81 12.503C10.17 12.503 10.47 12.206 10.49 11.84L10.74 6.263C10.74 5.897 10.47 5.577 10.08 5.554H10.06C9.69 5.554 9.39 5.851 9.37 6.217L9.12 11.794C9.12 12.16 9.39 12.48 9.78 12.503H9.81Z"
                                 fill="#242424"></path>
-                        </svg></button></div>
-            </div>
+                        </svg>
+                    </button>
+                </div>
+            </div> -->
         </div>
 
     </main>

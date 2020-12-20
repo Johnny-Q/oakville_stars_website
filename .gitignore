@@ -4,6 +4,9 @@
 *.sass.map
 *.scss.map
 
+src/js/tests.ts
+public/js/tests.js
+
 serviceAccount.json
 .firebase
 

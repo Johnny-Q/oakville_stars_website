@@ -22,14 +22,17 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
+    <script src="../js/firebase_init.js" defer></script>
     <script src="../js/mobile_nav.js" defer></script>
     <script src="../js/account_popup.js" defer></script>
-    
+
 
     <!-- page specific -->
     <!-- css -->
+    <!-- js -->
+    <script src="../js/events.js" defer></script>
 
-    
+
     <link rel="stylesheet" href="../css/event_row.css">
     <link rel="stylesheet" href="../css/event_grid.css">
     <link rel="stylesheet" href="../events.css">
@@ -168,8 +171,11 @@
         <div class="section_title">
             <h1>Upcoming Events</h1>
         </div>
+        <div class="no_results">
+            <h1>No Upcoming Events. Stay Tuned!</h1>
+        </div>
         <div class="event_grid">
-            <div class="event">
+            <!-- <div class="event">
                 <div class="img">
                     <img src="https://firebasestorage.googleapis.com/v0/b/test-json-cbef3.appspot.com/o/hero.JPG?alt=media&token=fa00476f-e030-461d-80b2-09a3c654d80d"
                         alt="">
@@ -282,32 +288,13 @@
                     </div>
                     <button class="action_button">Sign Up</button>
                 </div>
-            </div>
-            <div class="event">
-                <div class="img">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/test-json-cbef3.appspot.com/o/hero.JPG?alt=media&token=fa00476f-e030-461d-80b2-09a3c654d80d"
-                        alt="">
-                </div>
-                <div class="card_body">
-                    <div class="description">
-                        <h2>Title</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda enim corporis minima qui
-                            sed.
-                            Dignissimos nihil fugiat repudiandae aspernatur iste officia natus ipsam, vitae deleniti cum
-                            ab
-                            omnis voluptatem libero delectus id beatae, aliquid tempora accusantium! Eum exercitationem
-                            vitae doloribus autem, tempora modi maiores, sapiente necessitatibus similique, est in non!
-                        </p>
-                    </div>
-                    <button class="action_button">Sign Up</button>
-                </div>
-            </div>
+            </div> -->
         </div>
         <div class="section_title">
             <h2>PAST EVENTS</h2>
         </div>
         <div class="events_row">
-            <div class="event">
+            <!-- <div class="event">
                 <h1 class="date_string">
                     December 25th, 2020
                 </h1>
@@ -391,7 +378,7 @@
                         adipisci consequatur officiis vel, dolorem amet, laboriosam laborum animi. Quia quibusdam natus
                         voluptatem dicta nemo temporibus reprehenderit! Amet, quis necessitatibus.</p>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </main>

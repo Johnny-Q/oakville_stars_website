@@ -22,6 +22,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
+    <script src="../js/firebase_init.js" defer></script>
     <script src="../js/mobile_nav.js" defer></script>
     <script src="../js/account_popup.js" defer></script>
     
@@ -29,6 +30,8 @@
     <!-- page specific -->
     <!-- css -->
     <link rel="stylesheet" href="../css/register.css">
+    <!-- js -->
+    <script src="../js/register.js" defer></script>
 
     <title>Document</title>
 </head>
@@ -215,7 +218,7 @@
                     </div>
                     <label for="">Child's Specialty/Hobby</label>
 
-                    <select name="specialty" id="">
+                    <select name="specialty">
                         <option value=""> </option>
                         <option value="Piano 钢琴"> Piano 钢琴 </option>
                         <option value="Violin 小提琴"> Violin 小提琴 </option>
@@ -237,7 +240,7 @@
                         <option value=""> </option>
                     </select>
                     <label for="">Level</label>
-                    <select name="level" id="">
+                    <select name="level">
                         <option value=""></option>
                         <option value="N/A">N/A</option>
                         <option value="Level 1"> Level 1 </option>
@@ -277,7 +280,7 @@
                         </p>
                     </div>
                     <div class="checkbox-agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="">
                         <span> I have read, understood, and accepted the rules for membership.</span>
                     </div>
                     <div>
@@ -300,7 +303,7 @@
                         </p>
                     </div>
                     <div class="checkbox-agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="">
                         <span>
                             I have read, understood and accepted the above photograph and video consents.</span>
                     </div>
@@ -314,7 +317,7 @@
                         </p>
                     </div>
                     <div class="checkbox-agree">
-                        <input type="checkbox" name="" id="">
+                        <input type="checkbox" name="">
                         <span> I accept.</span>
                     </div>
                     <p class="validation-error">Please accept all fields.</p>

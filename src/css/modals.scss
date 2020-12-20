@@ -39,7 +39,7 @@
 }
 
 .create-event-modal {
-    // display: none;
+    display: none;
 
     form {
         width: 90%;
@@ -156,10 +156,12 @@
 
     .details {
         grid-area: text;
+        width: 100%;
         div.row{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            width: 100%;
         }
     }
 
@@ -167,4 +169,5 @@
         grid-area: button;
         justify-self: end;
     }
+    display: none;
 }

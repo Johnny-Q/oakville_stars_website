@@ -107,7 +107,7 @@ class FirebaseDBWrapper {
      * will only run if signed up, will throw an error if the user is not signed up
      * @param event_id doc id of the event
      */
-    async isSignedUp(event_id): Promise<Boolean> {
+    async isSignedUp(event_id): Promise<boolean> {
         if (!auth.currentUser) throw "Not signed in";
         let event_ref = this.db.doc(`/signups/${auth.currentUser.uid}_${event_id}`);
         let event = await event_ref.get();
@@ -125,6 +125,10 @@ class FirebaseDBWrapper {
             "event_id": event_id,
             "uid": auth.currentUser.uid
         });
+    }
+    async deleteSignupForEvent(event_id): Promise<any>{
+        if(!auth.currentUser) throw "Not signed in";
+        return db.doc(`/signups/${auth.currentUser.uid}_${event_id}`).delete();
     }
 
     //-----------  MEMBER ACCOUNT LOGIC  -----------
@@ -207,101 +211,6 @@ class FirebaseDBWrapper {
     }
 }
 
-class AdminWrapper extends FirebaseDBWrapper {
-    constructor(db) {
-        super(db);
-    }
-
-    //--------- EVENTS ---------
-    async createEvent(event_details: EventDetails): Promise<any> {
-        if (!auth.currentUser) throw "Not signed in";
-        return this.db.collection("/events").add(event_details);
-    }
-
-    async updateEvent(event_details: EventDetails, event_id: string): Promise<any> {
-        if (!auth.currentUser) throw "Not signed in";
-        return this.db.doc(`/events/${event_id}`).update(event_details);
-    }
-
-    async deleteEvent(event_id: string): Promise<any> {
-        if (!auth.currentUser) throw "Not signed in";
-        return this.db.doc(`/events/${event_id}`).delete();
-    }
-
-
-    //--------  MEMBERS  ---------
-    async getHourRequests(limit = 0, startAfterId = ""): Promise<Array<HourRequest>> {
-        if (!auth.currentUser) throw "Not signed in";
-        var query = this.db.collection("requests");
-        if (startAfterId) {
-            let snapshot = await this.db.doc(`/requests/${startAfterId}`).get();
-            query = query.startAfter(snapshot);
-        }
-        if (limit) {
-            query = query.limit(limit);
-        }
-        let hour_requests = (await query.get()).docs;
-        let data = [];
-        hour_requests.forEach(request => {
-            data.push(this.addIdToData(request));
-        });
-        return data;
-    }
-    async acceptRequest(request_id: string) {
-        if (!auth.currentUser) throw "Not signed in";
-        let docRef = db.collection("requests").doc(request_id);
-
-        return db.runTransaction(function (transaction) {
-            return transaction.get(docRef).then(function (doc) {
-                if (!doc.exists) {
-                    throw "Document does not exist";
-                }
-                //read to who and how many hours
-                var memID = doc.data().uid;
-                var hours = doc.data().hours;
-
-                //add to hours and remove from pending for user
-                transaction.update(db.collection("hours").doc(memID), {
-                    //@ts-expect-error
-                    "hours": firebase.firestore.FieldValue.increment(hours),
-                    //@ts-expect-error
-                    "pending_hours": firebase.firestore.FieldValue.increment(-hours)
-                });
-                //delete the request after we're done with it
-                transaction.delete(docRef);
-            })
-        });
-    }
-    async declineRequest(request_id: string): Promise<any> {
-        if (!auth.currentUser) throw "Not signed in";
-        let docRef = db.collection("requests").doc(request_id);
-        return db.runTransaction(function (transaction) {
-            return transaction.get(docRef).then(function (doc) {
-                if (!doc.exists) {
-                    throw "Document does not exist";
-                }
-                var memID = doc.data().uid;
-                var hours = doc.data().hours;
-                //remove queued hours
-                transaction.update(db.collection("hours").doc(memID), {
-                    //@ts-expect-error
-                    "pending_hours": firebase.firestore.FieldValue.increment(-hours)
-                });
-
-                //delete the request after we're done with it
-                transaction.delete(docRef);
-            })
-        });
-    }
-}
-
-/**
- * @description handle retreiving photos and uploading photos
- */
-class FirebaseStorageWrapper {
-
-}
-
 class FirebaseAuthWrapper {
     auth;
     last_request = 0;
@@ -315,6 +224,34 @@ class FirebaseAuthWrapper {
         return this.db.createAccountInformation(member_info);
     }
 }
+
+/**
+ * @description handle retreiving photos and uploading photos
+ */
+class FirebaseStorageWrapper {
+    storage;
+    constructor(storage) {
+        this.storage = storage;
+    }
+
+    async uploadEventImage(file: File): Promise<string> {
+        let file_name = this.validate(file.name) + Date.now().toString();
+        let file_path = `event_photos/${file_name}.${file.type.split("/")[1]}`;
+        let ref = this.storage.ref(file_path);
+        await ref.put(file);
+        return file_path;
+    }
+
+    async getImage(path: string) {
+        let ref = this.storage.ref(path);
+        return await ref.getDownloadURL();
+    }
+
+    validate(name: string): string {
+        return name.replaceAll("/", "_");
+    }
+}
+
 
 interface EventDetails {
     doc_id?: string,
@@ -346,7 +283,8 @@ interface HourRequest {
     details: string,
     hours: number,
     name: string,
-    uid: string
+    uid: string,
+    date: string
 }
 
 interface MemberHours {
@@ -372,28 +310,26 @@ interface TeamMember {
     unix_added: number
 }
 
-
-
-
 // TESTS
 
-let db_wrapper = new AdminWrapper(db);
+let db_wrapper = new FirebaseDBWrapper(db);
 let auth_wrapper = new FirebaseAuthWrapper(auth, db_wrapper);
+let storage_wrapper = new FirebaseStorageWrapper(storage);
 
-let member_info: MemberInformation = {
-    "account_email": "test@oakvillestarz.com",
-    "child_dob": "2020-12-25",
-    "child_fullname": "Test Account",
-    "contact_email": "test@oakvillestarz.com",
-    "emergency_contact_name": "None",
-    "emergency_contact_phone": "None",
-    "level": "N/A",
-    "mailing_address": "123 Sesame Street",
-    "parent_fullname": "Elon Musk",
-    "phone": "None",
-    "specialty": "None",
-    "old_memberid": ""
-};
+// let member_info: MemberInformation = {
+//     "account_email": "test@oakvillestarz.com",
+//     "child_dob": "2020-12-25",
+//     "child_fullname": "Test Account",
+//     "contact_email": "test@oakvillestarz.com",
+//     "emergency_contact_name": "None",
+//     "emergency_contact_phone": "None",
+//     "level": "N/A",
+//     "mailing_address": "123 Sesame Street",
+//     "parent_fullname": "Elon Musk",
+//     "phone": "None",
+//     "specialty": "None",
+//     "old_memberid": ""
+// };
 
 //create new user -- WORKS
 // auth_wrapper.createAccount("test@oakvillestarz.com", "asdfasdf", member_info);
@@ -402,16 +338,52 @@ let member_info: MemberInformation = {
 auth.onAuthStateChanged(async (user) => {
     if (user) {
         //try to get resources
-        console.log("user signed in", user.uid);
-
         console.log(auth.currentUser);
 
-        //need to get their current hours
+        //need to get their current hours and name
         let current_hours = await db_wrapper.getCurrentHours();
         auth.currentUser.name = current_hours.name;
-        console.log(auth.currentUser, auth.currentUser.name);
+
+        //change signin to profile
+        document.querySelectorAll(".signin-open").forEach((e: HTMLElement) => e.innerText = "PROFILE");
+
+        //show hours info on account popup
+        signinForm.style.display = "none";
+        profileInfo.style.display = "flex";
+        auth.currentUser.uid = user.uid;
+
+
+        //@ts-expect-error
+        document.querySelector(".profile-info > div > h3").innerText = current_hours.name;
+        //@ts-expect-error
+        document.querySelector(".confirmed-hours").innerText = `${current_hours.hours} confirmed`;
+        //@ts-expect-error
+        document.querySelector(".pending-hours").innerText = `${current_hours.pending_hours} pending`;
+
+
+
+        //change sign-in to profile
+
+        //show the profile screen
+
     } else {
-        //not signed in
-        console.log("no user");
+
+        //change text to sign in
+        document.querySelectorAll(".signin-open").forEach((e: HTMLElement) => e.innerText = "SIGN IN");
+
+        //show the sign in screen
+        signinForm.style.display = "block";
+        profileInfo.style.display = "none";
     }
 });
+
+function createElement(type, classNames = [], text = "") {
+    let temp = document.createElement(type) as HTMLElement;
+    classNames.forEach(name => {
+        temp.classList.add(name);
+    });
+    if (text) {
+        temp.innerText = text;
+    }
+    return temp;
+}
