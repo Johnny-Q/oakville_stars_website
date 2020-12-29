@@ -10,6 +10,10 @@ public/js/tests.js
 serviceAccount.json
 .firebase
 
+.firebaserc
+firebase.json
+public/*.html
+
 # Logs
 logs
 *.log
