@@ -15,7 +15,8 @@ async function renderTeamCard(team_member: TeamMember){
 
 window.onload = async()=>{
     let team = await db_wrapper.getTeamMembers();
-    team.forEach(member=>{
-        renderTeamCard(member);
-    });
+    console.log(team);
+    for(let i = 0; i<team.length; i++){
+        await renderTeamCard(team[i]);
+    }
 }
