@@ -23,6 +23,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  cursor: pointer;
 }
 .paginate h2 {
   font-size: 12px;

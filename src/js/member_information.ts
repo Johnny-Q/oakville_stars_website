@@ -13,9 +13,12 @@
 // }
 let editing = false;
 let editButton = document.querySelector('.edit');
+let passwordReset = document.querySelector(".password_reset");
+let passwordResetLastClick = 0;
+
 auth.onAuthStateChanged(user => {
     console.log(user);
-    if (Object.keys(user).length) {
+    if (user && Object.keys(user).length) {
         db.collection("members").doc(user.uid).get().then((doc) => {
             let data = doc.data();
             for (let [key, val] of Object.entries(data)) {
@@ -46,8 +49,18 @@ auth.onAuthStateChanged(user => {
             });
             editButton.innerText = editing ? "Save" : "Edit Information";
         });
+        passwordReset.onclick = () => {
+            //limit users to pressing the button every 10 seconds
+            if (Date.now() - passwordResetLastClick < 10 * 1000) return;
+            passwordResetLastClick = Date.now();
+            auth.sendPasswordResetEmail(auth.currentUser.email).then(() => {
+                passwordReset.innerText = "Check Email";
+            }).catch(() => {
+                passwordReset.innerText = "Error, refresh";
+            });
+        }
     }
-    else{
+    else {
         window.location.assign("/");
     }
 });

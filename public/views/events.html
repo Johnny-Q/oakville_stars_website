@@ -12,31 +12,31 @@
         rel="stylesheet">
 
     <!-- css imports -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/form_elements.css">
-    <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/account_popup.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form_elements.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/account_popup.css">
 
     <!-- js imports -->
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js" defer></script>
-    <script src="../js/firebase_init.js" defer></script>
-    <script src="../js/mobile_nav.js" defer></script>
-    <script src="../js/account_popup.js" defer></script>
-    <script src="../js/footer.js" defer></script>
+    <script src="/js/firebase_init.js" defer></script>
+    <script src="/js/mobile_nav.js" defer></script>
+    <script src="/js/account_popup.js" defer></script>
+    <script src="/js/footer.js" defer></script>
 
 
     <!-- page specific -->
     <!-- css -->
     <!-- js -->
-    <script src="../js/events.js" defer></script>
+    <script src="/js/events.js" defer></script>
 
 
-    <link rel="stylesheet" href="../css/event_row.css">
-    <link rel="stylesheet" href="../css/event_grid.css">
-    <link rel="stylesheet" href="../events.css">
+    <link rel="stylesheet" href="/css/event_row.css">
+    <link rel="stylesheet" href="/css/event_grid.css">
+    <link rel="stylesheet" href="/css/events.css">
 
     <title>Events - Oakville STARZ</title>
 </head>
@@ -294,24 +294,9 @@
         <div class="section_title">
             <h2>PAST EVENTS</h2>
         </div>
-        <div class="events_row">
-            <!-- <div class="event">
-                <h1 class="date_string">
-                    December 25th, 2020
-                </h1>
-                <div class="row_body">
-                    <div class="header">
-                        <h3>Title</h3>
-                        <h3>xx:xx-xx:xx</h3>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, amet! Iste, at ex. Pariatur
-                        odio
-                        autem eveniet nihil facilis consequuntur minus enim ratione quas quod optio quam placeat ea
-                        alias
-                        adipisci consequatur officiis vel, dolorem amet, laboriosam laborum animi. Quia quibusdam natus
-                        voluptatem dicta nemo temporibus reprehenderit! Amet, quis necessitatibus.</p>
-                </div>
-            </div>
+        <div class="event_grid"></div>
+        <h2 class="paginate" id="past_events_paginate">SHOW MORE</h2>
+        <!-- <div class="events_row">
             <div class="event">
                 <h1 class="date_string">
                     December 25th, 2020
@@ -379,16 +364,33 @@
                         adipisci consequatur officiis vel, dolorem amet, laboriosam laborum animi. Quia quibusdam natus
                         voluptatem dicta nemo temporibus reprehenderit! Amet, quis necessitatibus.</p>
                 </div>
-            </div> -->
+            </div>
+            <div class="event">
+                <h1 class="date_string">
+                    December 25th, 2020
+                </h1>
+                <div class="row_body">
+                    <div class="header">
+                        <h3>Title</h3>
+                        <h3>xx:xx-xx:xx</h3>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, amet! Iste, at ex. Pariatur
+                        odio
+                        autem eveniet nihil facilis consequuntur minus enim ratione quas quod optio quam placeat ea
+                        alias
+                        adipisci consequatur officiis vel, dolorem amet, laboriosam laborum animi. Quia quibusdam natus
+                        voluptatem dicta nemo temporibus reprehenderit! Amet, quis necessitatibus.</p>
+                </div>
+            </div>
 
-        </div>
+        </div> -->
     </main>
     <footer>
         <h5>
             COPYRIGHT © 2020 OAKVILLE STARZ - ALL RIGHTS RESERVED.
         </h5>
         <div class="icons">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial" id="footer_facebook"
+            <!-- <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial" id="footer_facebook"
                 class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
                 <g>
                     <path
@@ -398,7 +400,7 @@
                         d="M15.114 14.313L15.47 12h-2.22v-1.5c0-.633.31-1.25 1.304-1.25h1.008V7.281s-.915-.156-1.79-.156c-1.828 0-3.022 1.107-3.022 3.113V12H8.719v2.313h2.031v5.59c.828.13 1.672.13 2.5 0v-5.59h1.864z"
                         fill="#fff"></path>
                 </g>
-            </svg>
+            </svg> -->
             <svg viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px" data-ux="IconSocial" id="footer_ig"
                 class="x-el x-el-svg c1-1 c1-2 c1-5b c1-1x c1-4t c1-4d c1-4c c1-4e c1-4b c1-b c1-c c1-d c1-e c1-f c1-g">
                 <g fill="#E1306C">

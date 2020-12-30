@@ -30,7 +30,7 @@ let main_pages = ["contact",
 "member_information",
 "js_test"];
 app.get("/", (req, res) => {
-    res.render("home.html");
+    res.render("index.html");
 });
 
 main_pages.forEach(name => {

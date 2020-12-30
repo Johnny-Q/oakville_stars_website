@@ -1,5 +1,14 @@
-//load the dynamic hero image
 let events_grid = document.querySelector(".event_grid");
+//@ts-expect-error
+// let events_row = document.querySelector(".events_row") as HTMLElement;
+let events_row = document.querySelectorAll(".event_grid")[1] as HTMLElement;
+let past_events_startAfter = "";
+//@ts-expect-error
+let isPlaceholderHidden = false;
+//@ts-expect-error
+let placeholder = document.querySelector(".no_results") as HTMLElement; //No results message
+let paginate_button = document.querySelector("#past_events_paginate");
+
 async function renderGridEvent(event_details: EventDetails, signedUp: boolean) {
     /*
     <div class="event">
@@ -58,7 +67,7 @@ async function renderGridEvent(event_details: EventDetails, signedUp: boolean) {
 
     event.append(div_img, card_body);
 
-    events_grid.append(event);
+    // events_grid.append(event);
 
     function register() {
         if (auth.currentUser) {
@@ -78,10 +87,10 @@ async function renderGridEvent(event_details: EventDetails, signedUp: boolean) {
             });
         }
     }
+
+    return event;
 }
 
-//@ts-expect-error
-let events_row = document.querySelector(".events_row") as HTMLElement;
 //@ts-expect-error
 function renderRowEvent(event_details: EventDetails) {
     /*
@@ -120,19 +129,46 @@ function renderRowEvent(event_details: EventDetails) {
 
     event.append(date_string, row_body);
 
-    events_row.append(event);
+    // events_row.append(event);
+    return event
+}
+
+function renderPastEvent(event_details: EventDetails): HTMLElement{
+    let event = createElement("div", ["event"]);
+    let div_img = createElement("div", ["img"]);
+    let img = createElement("img") as HTMLImageElement;
+    storage_wrapper.getImage(event_details.photo_url).then(url=>{
+        img.src = url;
+    });
+
+    div_img.append(img);
+
+    let card_body = createElement("div", ["card_body"]);
+    let desc_div = createElement("div", ["description"]);
+    let header = createElement("div", ["header"]);
+    let title = createElement("h2");
+    title.innerText = event_details.event_name;
+    let date_string = createElement("h3");
+    date_string.innerText = event_details.dateString;
+    header.append(title, date_string);
+
+    let description = createElement("p");
+    description.innerText = event_details.description;
+
+    desc_div.append(header, description);
+
+    card_body.append(desc_div);
+
+    event.append(div_img, card_body);
+    return event;
 }
 
 
-//@ts-expect-error
-let isPlaceholderHidden = false;
-//@ts-expect-error
-let placeholder = document.querySelector(".no_results") as HTMLElement;
+
 
 auth.onAuthStateChanged(user => {
-
     //load the events on page
-    db_wrapper.getUpcomingEvents(6).then(events => {
+    db_wrapper.getUpcomingEvents().then(events => {
         if (!events.length) {
             placeholder.style.display = "block";
             // isPlaceholderHidden = true;
@@ -143,7 +179,7 @@ auth.onAuthStateChanged(user => {
             if (user) {
                 signedUp = await db_wrapper.isSignedUp(event_details.doc_id);
             }
-            renderGridEvent(event_details, signedUp);
+            events_grid.append(await renderGridEvent(event_details, signedUp));
         });
     });
 
@@ -154,9 +190,40 @@ auth.onAuthStateChanged(user => {
             return;
         }
         events.forEach(event_details => {
-            console.log(event_details);
-            renderRowEvent(event_details);
+            // console.log(event_details);
+            // renderRowEvent(event_details);
+            events_row.append(renderPastEvent(event_details));
         });
+        
+        if(events.length == 3){
+            //set the paginate
+            past_events_startAfter = events[events.length-1].doc_id;
+            console.log(past_events_startAfter);
+        }
     });
-
 })
+
+paginate_button.onclick = ()=>{
+    db_wrapper.getPastEvents(3, past_events_startAfter).then(events => {
+        if(!past_events_startAfter) return;
+        if (!events.length) {
+            past_events_startAfter = "";
+            paginate_button.remove();
+            return;
+        }
+        events.forEach(event_details => {
+            // console.log(event_details);
+            // renderRowEvent(event_details);
+            events_row.append(renderPastEvent(event_details));
+        });
+        
+        if(events.length == 3){
+            //set the paginate
+            past_events_startAfter = events[events.length-1].doc_id;
+            console.log(past_events_startAfter);
+        }else{ //if we get less than 3 events, it means we've reached the end
+            past_events_startAfter = "";
+            paginate_button.remove();
+        }
+    });
+}
